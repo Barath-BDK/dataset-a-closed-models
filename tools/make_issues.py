@@ -53,7 +53,7 @@ def main():
                  f"| **Check with Claude, in the browser** | [`prompts/CLAUDE_CHECK_PROMPT.md`]({URL}prompts/CLAUDE_CHECK_PROMPT.md) |", ""]
         master = ["## 1. The MASTER PROMPT (paste this first in every new chat)", "",
                   "Copy it with the copy button in the corner of the box. The AI must answer `ready`.", "", "````text", mp, "````", ""]
-        branch = lambda tag: f"`issue/<this issue number>-{tag}`"
+        branch = lambda tag: "`issue/<this issue number>`"
         if full:
             first, rest = rs[:5], rs[5:]
             wnum = 15 + int(pid[1:])

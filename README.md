@@ -10,7 +10,7 @@ ISEA Phase 3 project *Dynamic Security Testing of LLM-Generated Code*. Eleven pe
 
 1. Open the **Issues** tab of this repository. Your issue is the one **assigned to you** (it names your model and language, for example `[P05] Gemini x Python: 100 rows`). Note your package name, for example `P05_gemini_python`.
 2. **The prompts are inside the issue itself.** The issue text has the instructions and the **master prompt**; the prompts you paste into the AI are in the issue (Step 1: 5 prompts in the text) or in the **comments of the issue** (Step 2: **10 prompts per comment, one comment = one chat**).
-3. Your **hand-in file** is one file: **`submissions/<your package>.txt`** (for example `submissions/P05_gemini_python.txt`). It already exists and is empty; you fill it in.
+3. Your **hand-in file** is one file: **`submissions/<your package>.txt`** (for example `submissions/P05_gemini_python.txt`). It already exists: it has a line `=== 001`, `=== 002`, ... for every row with an empty space under it, and you paste the answers into those spaces.
 
 That is all you work with: **your issues (with the prompts) and one hand-in file.**
 
@@ -57,7 +57,7 @@ This makes your **personal branch** `dev/<your-github-username>` (a copy of `mai
 ```bash
 git checkout dev/<your-github-username>
 git pull
-git checkout -b issue/<number>-<package>
+git checkout -b issue/<number>
 ```
 
 Now open your issue (start with Step 1). It is built like this:
@@ -112,15 +112,15 @@ You hand in exactly one file: **`submissions/<package>.txt`**, with every row fi
 ```bash
 git add submissions/<package>.txt
 git commit -m "<package>: all rows pasted and checked"
-git push -u origin issue/<number>-<package>
+git push -u origin issue/<number>
 ```
 
-Then on GitHub: **Pull requests → New pull request**. Set **base = `dev/<your-github-username>`** (not `main`) and **compare = `issue/<number>-<package>`**. Title: the issue title. In the description write `Closes #<number>` and the exact model name you used. Create the pull request and ask the lead for review. When it is approved, merge it into your personal branch.
+Then on GitHub: **Pull requests → New pull request**. Set **base = `dev/<your-github-username>`** (not `main`) and **compare = `issue/<number>`**. Title: the issue title. In the description write `Closes #<number>` and the exact model name you used. Create the pull request and ask the lead for review. When it is approved, merge it into your personal branch.
 
 When all your issues are merged into your personal branch, open **one last pull request: `dev/<your-github-username>` → `main`**. The lead merges it.
 
 ### No Git on your computer?
-You can do everything on the website: open `submissions/<package>.txt` on GitHub, click the pencil icon, paste your answers, then **Commit changes → "Create a new branch for this commit and start a pull request"**. Name the branch `issue/<number>-<package>` and choose the right base branch in the pull request.
+You can do everything on the website: open `submissions/<package>.txt` on GitHub, click the pencil icon, paste your answers, then **Commit changes → "Create a new branch for this commit and start a pull request"**. Name the branch `issue/<number>` and choose the right base branch in the pull request.
 
 ---
 
@@ -153,4 +153,4 @@ packages/, data/, issues/, tools/    material of the lead; you can ignore these
 One complete function. No second function. No helper that is not defined. No words like "vulnerable" or "safe" in comments or names. Vulnerable rows have a fix of at most 10 lines. Safe rows have no fix. Length close to what the prompt asks, no padding.
 
 ## Questions
-Ask in your issue or in your pull request. If a prompt looks impossible, write it in the issue, use the closest sensible choice, and add a `NOTE:` under the answer.
+Ask in your issue or in your pull request, or open a new issue with the **Question** template (Issues → New issue → Question). If a prompt looks impossible, write it in the issue, use the closest sensible choice, and add a `NOTE:` under the answer.

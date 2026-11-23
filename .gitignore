@@ -3,3 +3,4 @@ __pycache__/
 .env
 *.key
 submissions/*/replies/*.tmp
+submissions/*/

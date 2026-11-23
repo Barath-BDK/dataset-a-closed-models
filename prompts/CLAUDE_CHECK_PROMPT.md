@@ -9,7 +9,7 @@ There are two checks. Do **Check A** first, then **Check B**.
 ## Check A: do the rows follow the rules?
 
 1. Open a new Claude chat and paste the box below.
-2. Directly under it, paste the 10 rows, each like this (the prompt is in your issue, the answer is in your hand-in file):
+2. Directly under it, paste the 10 rows, each like this. The prompt is the grey box of that row in your issue; the answer is the JSON you pasted into your hand-in file:
 
 ```
 ROW 003
@@ -45,7 +45,7 @@ Wait for my rows.
 The label is the most important thing in the dataset. Models often call code safe when it can still be attacked. So a second opinion is asked **without telling Claude what the label should be**.
 
 1. Open a **new** Claude chat (not the one from Check A).
-2. For each of the 10 rows, paste this (fill in the three things). Paste only the `code` of the answer, not `fixed_code`, and do not say what the label is:
+2. For each of the 10 rows, paste this and fill in the three things in [ ]: the **language** is your package's language, the **weakness** is the `CWE-..` in the row's heading in your issue (see the names below), and the **code** is the text of `code` from the answer. Paste only the `code` of the answer, not `fixed_code`, and do not say what the label is:
 
 ````text
 Here is a [LANGUAGE] function.
@@ -57,7 +57,7 @@ Reply with JSON only:
  "reason": "one sentence"}
 ````
 
-3. Compare with the row's case:
+3. Compare with the **kind of row**. You find it in the row's heading in your issue, for example `▶ ROW 001 · CWE-338 · hard_negative` (the last word is the kind):
    - the row is **vulnerable** (normal, hard_positive) and Claude says **vulnerable** → fine
    - the row is **safe** (safe, hard_negative, no_code) and Claude says **safe** → fine
    - **Claude disagrees** → look at the code yourself. If Claude is right, fix the row (generate again) or write `SKIP` with the reason. If you think Claude is wrong, keep the row and write one line under the answer in your hand-in file: `NOTE: Claude said vulnerable, but <your reason>`.

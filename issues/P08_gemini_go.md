@@ -10,7 +10,7 @@
 
 ## What to do
 
-1. Make your issue branch `issue/<this issue number>-P08_gemini_go` from your personal branch `dev/rohisara` (after the earlier steps are merged).
+1. Make your issue branch `issue/<this issue number>` from your personal branch `dev/rohisara` (after the earlier steps are merged).
 2. The prompts are in the **comments below this text**, **10 prompts per comment = one chat**. Do the comments in order: CHAT 1, CHAT 2, ...
 3. For each comment: open a **new chat**, paste the **MASTER PROMPT** (section 1 below), wait for `ready`, then paste the 10 prompts one by one. After each prompt, paste the whole answer into your hand-in file under its `=== NNN` line.
 4. Check every 10 answers with Claude (README section 4, Check A and Check B).
@@ -40,7 +40,7 @@ Exactly one JSON object, no text before or after it, no explanation, with these 
 - "vulnerable_lines": a JSON list of line numbers of "code", counted from 1 (the first line of the function is line 1), for example [3, 5, 6]. Only for vulnerable rows. An empty list [] for every other row.
 - "task_description": one natural sentence saying what the function does. No hint of whether it is safe or vulnerable.
 - "sink": the call in your code that is the dangerous call (or the safe call used in its place), for example "cursor.execute" or "fopen". Empty string for code without such a call.
-- "build_style": how the dangerous value is built, for example "concatenation", "f_string", "path_join", "snprintf", "libc_rand". "none" for code without a dangerous call.
+- "build_style": how the dangerous value is built, for example "concatenation", "f_string", "path_join", "snprintf", "random_module". "none" for code without a dangerous call.
 - "fix_type": the kind of fix used in fixed_code, as named in the task. An empty string for rows without a fix.
 - "cwe_detail": the operation or variant involved, for example "rename", "sqlite3", "hex", "subprocess". "none" if not applicable.
 
@@ -60,7 +60,7 @@ Exactly one JSON object, no text before or after it, no explanation, with these 
 ## Rules for every reply
 1. ONE complete function in the language asked for. A method is written alone, as the method. No main program, no includes or imports outside the function (in Python put imports inside the function body; in C, C++ and Go assume the usual headers or imports exist and do not write them). Never more than one function. No helper functions after it.
 2. The function must stand alone: do not call helper functions that are not defined or imported inside it, especially for the part that makes it safe or vulnerable. Write that logic inside the function.
-3. Follow the task exactly: pattern, where the input comes from, call family, program shape, names (descriptive = full words, terse = short names), comments, where the flaw sits, fix type. If the call family does not fit the task, use the closest natural call of the same kind.
+3. Follow the task exactly: pattern, where the input comes from, call family, program shape, names (descriptive = full words, terse = short names), comments, where the flaw sits, fix type. If the call family does not fit the task, use the closest natural call of the same kind. If the input source does not fit the program shape (for example a command-line argument inside a method), keep the function a normal function that receives that value as a parameter, with names that make clear where it came from.
 4. Length: aim for the number of lines the task asks for (count the signature, blank lines and every other line). It is better to be a few lines off than to pad. Never add code after a return, break or throw, never repeat statements, never add empty comments. To write a longer function add real logic around the task: input validation, a loop over several items, error handling, logging, building a result, a second step inside the same function.
 5. Comments: if the task says comments, write a few plain comment lines or a docstring that explain what the code does. If it says none, write no comments and no docstring at all.
 6. fixed_code changes as few lines as possible, at most 10, keeps the same function name, signature and behaviour for normal input, and really removes the weakness. Find EVERY place where the untrusted value reaches the dangerous call and cover each one. Use the standard library or the library the task names, not unusual extra packages. Do not rewrite the function.

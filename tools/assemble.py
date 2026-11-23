@@ -134,7 +134,7 @@ def main():
              f"- replies that contain no readable JSON: {', '.join(f'{m:03d}' for m in unreadable) if unreadable else 'none'}", ""]
     held = [r for r in report if r[2]]
     lines.append(f"## Rows to generate again ({len(held)})\n")
-    lines.append("Generate each one again in a NEW chat (master prompt first, then that row's prompt from `packages/" + a.package + "/batch_NN.md`), save the reply over the same file, and run this script again.\n")
+    lines.append("Generate each one again in a NEW chat (master prompt first, then the prompt of that row from your issue), save the reply over the same file, and run this script again.\n")
     for no, b, hard, soft, notes in held:
         lines.append(f"- **{no:03d}** `{b['sample_id']}` ({b['case_type']}): " + "; ".join(hard))
     lines += ["", "## Notes (rows were kept)", ""]
