@@ -1,0 +1,26 @@
+row_no,batch,sample_id,weakness,case_type,pattern,call_family,target_lines,band,shape,source,names,comments,flaw,fix_type,indirect,task
+1,1,cla_rnd_go_0015,CWE-338,hard_positive,secure_sounding_name_weak_generator,math/rand,8,6-10,method on a struct,not_applicable,terse,with,late,secure_bytes_encoded,,Create a nonce for a content security policy header.
+2,1,cla_rnd_go_0001,CWE-338,normal,plain,math/rand,4,1-5,method on a struct,not_applicable,terse,with,early,rejection_sampling_secure_index,yes,Generate a session key for an encrypted chat.
+3,1,cla_rnd_go_0014,CWE-338,hard_negative,secure_secret_plus_ordinary_random_elsewhere,math/rand,8,6-10,goroutine or callback,not_applicable,terse,without,,,,Generate a nonce for a signed request.
+4,1,cla_rnd_go_0010,CWE-338,hard_negative,secure_secret_plus_ordinary_random_elsewhere,math/rand,15,11-20,command line tool function (uses flags or os.Args values),not_applicable,terse,without,,,,Create a salt for hashing a password.
+5,1,cla_rnd_go_0021,CWE-338,normal,plain,math/rand,4,1-5,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,without,middle,rejection_sampling_secure_index,,Create a private link token for a quiz.
+6,1,cla_rnd_go_0002,CWE-338,safe,plain,math/rand,8,6-10,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,with,,,,Generate a bearer token for a service account.
+7,1,cla_rnd_go_0005,CWE-338,safe,plain,math/rand,8,6-10,command line tool function (uses flags or os.Args values),not_applicable,descriptive,without,,,,Issue an API key for a new client.
+8,1,cla_rnd_go_0018,CWE-338,normal,plain,math/rand,4,1-5,command line tool function (uses flags or os.Args values),not_applicable,terse,without,early,rejection_sampling_secure_index,,Create a verification code for a phone number.
+9,1,cla_rnd_go_0009,CWE-338,no_code,plain,none,4,1-5,command line tool function (uses flags or os.Args values),not_applicable,descriptive,without,,,,Check that a token has the expected length and characters.
+10,1,cla_rnd_go_0007,CWE-338,safe,plain,math/rand,15,11-20,HTTP handler (http.HandlerFunc or a handler method),not_applicable,terse,with,,,,Generate a license key for a software installation.
+11,2,cla_rnd_go_0019,CWE-338,hard_negative,ordinary_random_simulation,math/rand,8,6-10,command line tool function (uses flags or os.Args values),not_applicable,terse,with,,,,Simulate customer arrivals at a shop with random gaps between them.
+12,2,cla_rnd_go_0003,CWE-338,hard_negative,ordinary_random_sampling,math/rand,15,11-20,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,with,,,,Pick a random sample of users for a satisfaction survey.
+13,2,cla_rnd_go_0025,CWE-338,hard_positive,weak_value_hashed,math/rand,30,21-40,plain function,not_applicable,descriptive,with,late,secure_generator_api,yes,Generate a PIN for a card activation.
+14,2,cla_rnd_go_0013,CWE-338,hard_negative,ordinary_random_games,math/rand,55,41-100,plain function,not_applicable,descriptive,without,,,,Roll dice for a board game.
+15,2,cla_rnd_go_0022,CWE-338,hard_negative,ordinary_random_games,math/rand,30,21-40,plain function,not_applicable,terse,without,,,,Pick a random spawn position for an enemy in a game.
+16,2,cla_rnd_go_0023,CWE-338,no_code,plain,none,15,11-20,plain function,not_applicable,descriptive,without,,,,Compute the entropy of a value from its length and alphabet size.
+17,2,cla_rnd_go_0008,CWE-338,hard_positive,weak_generator_behind_helper,math/rand,15,11-20,goroutine or callback,not_applicable,terse,with,middle,secure_generator_api,,Issue a gift card code with a check value.
+18,2,cla_rnd_go_0024,CWE-338,hard_negative,ordinary_random_sampling,math/rand,15,11-20,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,without,,,,Choose which products to feature on the home page.
+19,2,cla_rnd_go_0012,CWE-338,normal,plain,math/rand,55,41-100,command line tool function (uses flags or os.Args values),not_applicable,terse,without,middle,secure_generator_api,,Create a password for a guest Wi-Fi voucher.
+20,2,cla_rnd_go_0020,CWE-338,safe,plain,math/rand,55,41-100,command line tool function (uses flags or os.Args values),not_applicable,descriptive,without,,,,Create a session identifier for a signed-in user.
+21,3,cla_rnd_go_0004,CWE-338,hard_positive,weak_generator_behind_helper,math/rand,8,6-10,plain function,not_applicable,descriptive,with,early,rejection_sampling_secure_index,yes,Generate a one-time voucher for a refund.
+22,3,cla_rnd_go_0011,CWE-338,normal,plain,math/rand,55,41-100,helper called by another function,not_applicable,terse,with,early,secure_generator_api,,Generate a PIN for a card activation.
+23,3,cla_rnd_go_0006,CWE-338,normal,plain,math/rand,15,11-20,method on a struct,not_applicable,terse,with,middle,rejection_sampling_secure_index,yes,Create an OAuth state value for a login redirect.
+24,3,cla_rnd_go_0017,CWE-338,normal,plain,math/rand,8,6-10,plain function,not_applicable,descriptive,without,late,secure_bytes_encoded,,Generate an access token for a mobile app.
+25,3,cla_rnd_go_0016,CWE-338,normal,plain,math/rand,15,11-20,plain function,not_applicable,descriptive,with,late,secure_generator_api,,Issue an invitation link token.

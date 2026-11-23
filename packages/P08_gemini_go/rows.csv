@@ -1,0 +1,101 @@
+row_no,batch,sample_id,weakness,case_type,pattern,call_family,target_lines,band,shape,source,names,comments,flaw,fix_type,indirect,task
+1,1,gem_rnd_go_0013,CWE-338,normal,plain,math/rand,30,21-40,helper called by another function,not_applicable,descriptive,without,late,secure_generator_api,yes,Create a token for confirming a newsletter subscription.
+2,1,gem_sqli_go_0021,CWE-89,safe,plain,database/sql Query,30,21-40,goroutine or callback,command_line,terse,with,,,,Return the stock quantity for a product code.
+3,1,gem_cmdi_go_0021,CWE-78,safe,plain,exec.Command with sh -c,55,41-100,method on a struct,function_argument,terse,with,,,,Start a background job from a script name.
+4,1,gem_cmdi_go_0014,CWE-78,hard_negative,argument_list_with_user_data,exec.Command with arguments,30,21-40,helper called by another function,web_request,terse,with,,,,Print the version of a tool chosen from a list.
+5,1,gem_rnd_go_0002,CWE-338,normal,plain,math/rand,8,6-10,plain function,not_applicable,terse,with,late,secure_bytes_encoded,yes,Generate a session key for an encrypted chat.
+6,1,gem_pt_go_0006,CWE-22,normal,plain,http.ServeFile,4,1-5,method on a struct,environment,terse,with,late,allow_list_mapping,,Return the contents of a help page file.
+7,1,gem_rnd_go_0009,CWE-338,hard_negative,ordinary_random_shuffling,math/rand,8,6-10,helper called by another function,not_applicable,descriptive,without,,,,Shuffle a playlist before playing it.
+8,1,gem_cmdi_go_0022,CWE-78,safe,plain,exec.Command with sh -c,15,11-20,helper called by another function,web_request,descriptive,without,,,,Mount a network share with given options.
+9,1,gem_sqli_go_0004,CWE-89,hard_negative,identifier_allowlist,database/sql QueryRow,8,6-10,helper called by another function,environment,descriptive,without,,,,Update the email address of a user profile.
+10,1,gem_sqli_go_0013,CWE-89,hard_negative,placeholders_only_format,database/sql Exec,15,11-20,plain function,command_line,descriptive,with,,,,Update the status of a support ticket.
+11,2,gem_pt_go_0016,CWE-22,normal,plain,http.ServeFile,55,41-100,plain function,command_line,descriptive,with,early,base_name_only,,Extract the entries of an uploaded archive into a folder.
+12,2,gem_cmdi_go_0025,CWE-78,normal,plain,exec.Command with arguments,8,6-10,command line tool function (uses flags or os.Args values),command_line,terse,without,late,argv_no_shell,,Look up the registration data of a domain.
+13,2,gem_cmdi_go_0007,CWE-78,normal,plain,exec.Command with sh -c,30,21-40,method on a struct,environment,descriptive,with,early,quoting,yes,Count the lines of a file with a standard tool.
+14,2,gem_sqli_go_0002,CWE-89,safe,plain,database/sql Exec,55,41-100,command line tool function (uses flags or os.Args values),command_line,descriptive,with,,,,Delete a user's saved bookmarks that match a title.
+15,2,gem_rnd_go_0021,CWE-338,hard_negative,ordinary_random_test_data,math/rand,8,6-10,HTTP handler (http.HandlerFunc or a handler method),not_applicable,terse,without,,,,Create random order amounts for a demo database.
+16,2,gem_cmdi_go_0017,CWE-78,safe,plain,exec.Command with sh -c,8,6-10,helper called by another function,function_argument,descriptive,without,,,,Restart a named system service.
+17,2,gem_cmdi_go_0020,CWE-78,safe,plain,exec.Command with sh -c,55,41-100,plain function,environment,descriptive,without,,,,Convert an audio file to another bitrate.
+18,2,gem_pt_go_0004,CWE-22,no_code,plain,none,8,6-10,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,with,,,,Get the extension of a file name given as text.
+19,2,gem_pt_go_0007,CWE-22,normal,plain,archive extraction (archive/zip),15,11-20,helper called by another function,command_line,descriptive,without,middle,path_containment_check,yes,Serve a static asset such as an image or stylesheet.
+20,2,gem_pt_go_0017,CWE-22,hard_positive,relative_check_misses_absolute,archive extraction (archive/zip),30,21-40,goroutine or callback,database_value,terse,with,late,allow_list_mapping,,Read the first line of a stored file.
+21,3,gem_pt_go_0009,CWE-22,no_code,plain,none,15,11-20,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,without,,,,Compute a human readable size label.
+22,3,gem_rnd_go_0017,CWE-338,no_code,plain,none,15,11-20,plain function,not_applicable,terse,with,,,,Group a token into blocks of four characters.
+23,3,gem_sqli_go_0003,CWE-89,normal,plain,gorm Raw,8,6-10,plain function,file,terse,without,middle,type_conversion,,Search a phone book by name prefix.
+24,3,gem_pt_go_0018,CWE-22,hard_negative,library_confined_access,http.ServeFile,15,11-20,method on a struct,network_message,descriptive,with,,,,Read a log file of a named service.
+25,3,gem_cmdi_go_0005,CWE-78,no_code,plain,none,8,6-10,goroutine or callback,not_applicable,terse,with,,,,Format a duration in seconds as hours and minutes.
+26,3,gem_rnd_go_0006,CWE-338,normal,plain,math/rand,8,6-10,HTTP handler (http.HandlerFunc or a handler method),not_applicable,terse,with,early,secure_bytes_encoded,,Create a token for confirming a newsletter subscription.
+27,3,gem_rnd_go_0003,CWE-338,safe,plain,math/rand,30,21-40,helper called by another function,not_applicable,terse,with,,,,Generate a temporary password for a new account.
+28,3,gem_sqli_go_0011,CWE-89,hard_positive,one_branch_bound,database/sql Query,15,11-20,method on a struct,network_message,terse,with,late,allow_list,,Record an audit entry for an administrator action.
+29,3,gem_sqli_go_0024,CWE-89,normal,plain,sqlx,15,11-20,plain function,database_value,descriptive,without,middle,bound_parameters,,List the appointments of a doctor on a given day.
+30,3,gem_rnd_go_0025,CWE-338,hard_positive,secure_sounding_name_weak_generator,math/rand,30,21-40,plain function,not_applicable,terse,without,late,secure_generator_api,,Create a cookie value for a remember-me login.
+31,4,gem_pt_go_0001,CWE-22,hard_positive,check_before_normalising,os.ReadFile,55,41-100,method on a struct,network_message,descriptive,with,late,path_containment_check,,Read the lines of a CSV import file.
+32,4,gem_pt_go_0020,CWE-22,hard_positive,check_before_normalising,http.ServeFile,15,11-20,plain function,file,terse,without,middle,allow_list_mapping,,Return the contents of a shared snippet file.
+33,4,gem_rnd_go_0012,CWE-338,no_code,plain,none,8,6-10,method on a struct,not_applicable,descriptive,without,,,,Compute the check digit of a number.
+34,4,gem_sqli_go_0020,CWE-89,normal,plain,sqlx,15,11-20,goroutine or callback,environment,terse,without,early,query_builder,,List the files shared with a user.
+35,4,gem_pt_go_0021,CWE-22,safe,plain,archive extraction (archive/zip),30,21-40,plain function,database_value,descriptive,without,,,,Append a line to a user's activity log.
+36,4,gem_sqli_go_0015,CWE-89,hard_negative,constant_fragments_only,database/sql Query,30,21-40,plain function,environment,terse,with,,,,Set the stock quantity of a product after a delivery.
+37,4,gem_pt_go_0010,CWE-22,hard_negative,safe_filename_helper_fixed_folder,os.Create,15,11-20,goroutine or callback,web_request,descriptive,without,,,,Read a plugin manifest from a plugin folder.
+38,4,gem_rnd_go_0004,CWE-338,hard_negative,ordinary_random_retry_jitter,math/rand,8,6-10,HTTP handler (http.HandlerFunc or a handler method),not_applicable,terse,with,,,,Compute a retry delay with random jitter so clients do not retry together.
+39,4,gem_rnd_go_0016,CWE-338,hard_positive,seed_from_clock_or_pid,math/rand,30,21-40,helper called by another function,not_applicable,terse,with,early,secure_generator_api,yes,Create a one-time code for two-factor sign in.
+40,4,gem_pt_go_0022,CWE-22,hard_negative,resolve_then_separator_aware_check,http.ServeFile,8,6-10,plain function,web_request,terse,with,,,,Return the modification time of a stored file.
+41,5,gem_sqli_go_0010,CWE-89,hard_negative,identifier_allowlist,database/sql QueryRow,15,11-20,plain function,network_message,descriptive,with,,,,Return the top sellers for a given region.
+42,5,gem_cmdi_go_0023,CWE-78,normal,plain,exec.Command with sh -c,30,21-40,HTTP handler (http.HandlerFunc or a handler method),web_request,descriptive,with,early,strict_validation,yes,Pack an installer from a folder with a packaging tool.
+43,5,gem_pt_go_0013,CWE-22,normal,plain,os.Create,15,11-20,method on a struct,database_value,terse,without,early,library_confinement,,Unzip a theme package into the themes folder.
+44,5,gem_sqli_go_0008,CWE-89,safe,plain,gorm Raw,30,21-40,HTTP handler (http.HandlerFunc or a handler method),web_request,descriptive,without,,,,Count the unread messages of a user.
+45,5,gem_pt_go_0023,CWE-22,hard_negative,base_name_only,os.Create,15,11-20,method on a struct,environment,descriptive,with,,,,Load a configuration file for a named profile.
+46,5,gem_sqli_go_0017,CWE-89,no_code,plain,none,15,11-20,HTTP handler (http.HandlerFunc or a handler method),not_applicable,terse,without,,,,Parse a CSV line into fields.
+47,5,gem_cmdi_go_0003,CWE-78,normal,plain,exec.Command with arguments,8,6-10,goroutine or callback,command_line,descriptive,with,middle,allow_list,,Run a spell checker on a text file.
+48,5,gem_cmdi_go_0010,CWE-78,hard_positive,dash_argument_injection,exec.Command with arguments,15,11-20,HTTP handler (http.HandlerFunc or a handler method),database_value,terse,with,middle,quoting,,Show the mount information of a device.
+49,5,gem_pt_go_0019,CWE-22,hard_negative,base_name_only,archive extraction (archive/zip),55,41-100,plain function,command_line,descriptive,without,,,,Read a language pack for a game.
+50,5,gem_cmdi_go_0002,CWE-78,normal,plain,exec.Command with arguments,4,1-5,HTTP handler (http.HandlerFunc or a handler method),database_value,terse,without,late,strict_validation,,Show the commit history of a repository for one author.
+51,6,gem_rnd_go_0005,CWE-338,hard_negative,ordinary_random_shuffling,math/rand,55,41-100,goroutine or callback,not_applicable,terse,with,,,,Shuffle a playlist before playing it.
+52,6,gem_rnd_go_0008,CWE-338,normal,plain,math/rand,15,11-20,method on a struct,not_applicable,terse,without,late,secure_generator_api,,Create a webhook signing secret.
+53,6,gem_cmdi_go_0004,CWE-78,normal,plain,exec.Command with sh -c,8,6-10,HTTP handler (http.HandlerFunc or a handler method),database_value,terse,with,early,allow_list,,Query the status of a container by name.
+54,6,gem_pt_go_0005,CWE-22,normal,plain,http.ServeFile,30,21-40,method on a struct,function_argument,descriptive,without,late,library_confinement,yes,List the files in a sub folder of the storage area.
+55,6,gem_sqli_go_0007,CWE-89,hard_positive,handwritten_escaping,database/sql Exec,55,41-100,goroutine or callback,command_line,descriptive,without,early,query_builder,yes,Remove a product from a wishlist.
+56,6,gem_pt_go_0015,CWE-22,normal,plain,os.ReadFile,8,6-10,plain function,environment,descriptive,with,late,path_containment_check,,Count the lines of a stored text file.
+57,6,gem_cmdi_go_0018,CWE-78,normal,plain,exec.Command with sh -c,30,21-40,plain function,file,terse,with,late,argv_no_shell,yes,Run a linter on a submitted file and return its report.
+58,6,gem_sqli_go_0014,CWE-89,normal,plain,database/sql Query,15,11-20,method on a struct,file,terse,without,early,allow_list,,Get the loyalty points of a customer.
+59,6,gem_cmdi_go_0015,CWE-78,hard_negative,user_data_after_end_of_options,exec.Command with sh -c,15,11-20,method on a struct,database_value,terse,without,,,,Extract a thumbnail frame from a video file.
+60,6,gem_sqli_go_0023,CWE-89,hard_negative,identifier_allowlist,gorm Raw,30,21-40,method on a struct,function_argument,descriptive,without,,,,Transfer a balance between two accounts inside a transaction.
+61,7,gem_rnd_go_0024,CWE-338,normal,plain,math/rand,15,11-20,helper called by another function,not_applicable,terse,with,early,secure_generator_api,yes,Issue a device registration token.
+62,7,gem_pt_go_0014,CWE-22,normal,plain,os.ReadFile,15,11-20,method on a struct,command_line,descriptive,with,early,path_containment_check,yes,Truncate a log file chosen by name.
+63,7,gem_pt_go_0003,CWE-22,hard_negative,safe_filename_helper_fixed_folder,os.ReadFile,8,6-10,command line tool function (uses flags or os.Args values),command_line,descriptive,with,,,,Read a font file requested by a stylesheet.
+64,7,gem_cmdi_go_0016,CWE-78,hard_positive,quoting_in_wrong_context,exec.Command with sh -c,15,11-20,plain function,command_line,descriptive,with,middle,argv_no_shell,,Show the fingerprint of an ssh key file.
+65,7,gem_rnd_go_0015,CWE-338,hard_positive,seed_from_clock_or_pid,math/rand,55,41-100,command line tool function (uses flags or os.Args values),not_applicable,descriptive,with,early,rejection_sampling_secure_index,yes,Generate an initialization vector for encrypting a file.
+66,7,gem_sqli_go_0025,CWE-89,hard_positive,one_branch_bound,gorm Raw,30,21-40,HTTP handler (http.HandlerFunc or a handler method),web_request,descriptive,without,early,allow_list,,Search a product catalogue with optional filters for price and brand.
+67,7,gem_pt_go_0011,CWE-22,normal,plain,http.ServeFile,15,11-20,helper called by another function,web_request,terse,with,late,base_name_only,,Delete temporary files that match a name.
+68,7,gem_cmdi_go_0006,CWE-78,hard_positive,partial_shell_character_filter,exec.Command with arguments,15,11-20,HTTP handler (http.HandlerFunc or a handler method),database_value,descriptive,without,middle,argv_no_shell,,Zip the contents of a folder into a named archive.
+69,7,gem_sqli_go_0009,CWE-89,normal,plain,gorm Raw,30,21-40,goroutine or callback,web_request,descriptive,with,early,query_builder,,Update the status of a support ticket.
+70,7,gem_pt_go_0008,CWE-22,safe,plain,archive extraction (archive/zip),55,41-100,HTTP handler (http.HandlerFunc or a handler method),web_request,descriptive,with,,,,Create a backup copy of a document.
+71,8,gem_cmdi_go_0013,CWE-78,hard_negative,command_from_fixed_map,exec.Command with arguments,8,6-10,HTTP handler (http.HandlerFunc or a handler method),web_request,terse,without,,,,Download a web page with a command line client.
+72,8,gem_rnd_go_0011,CWE-338,hard_negative,fixed_seed_reproducible,math/rand,15,11-20,command line tool function (uses flags or os.Args values),not_applicable,descriptive,without,,,,Draw the same sample every run for a reproducible experiment.
+73,8,gem_pt_go_0012,CWE-22,hard_positive,prefix_test_without_separator,http.ServeFile,30,21-40,helper called by another function,file,terse,with,middle,library_confinement,yes,Let a user download a generated report by name.
+74,8,gem_pt_go_0024,CWE-22,hard_negative,library_confined_access,os.ReadFile,15,11-20,command line tool function (uses flags or os.Args values),command_line,terse,with,,,,Report the size of a stored file.
+75,8,gem_sqli_go_0012,CWE-89,normal,plain,database/sql Query,4,1-5,helper called by another function,network_message,descriptive,with,late,type_conversion,,Find all students enrolled in a course.
+76,8,gem_sqli_go_0022,CWE-89,hard_negative,constant_fragments_only,sqlx,30,21-40,HTTP handler (http.HandlerFunc or a handler method),web_request,terse,without,,,,Update the email address of a user profile.
+77,8,gem_pt_go_0002,CWE-22,safe,plain,os.Create,30,21-40,plain function,file,terse,without,,,,Read a user's saved draft.
+78,8,gem_rnd_go_0018,CWE-338,normal,plain,math/rand,15,11-20,method on a struct,not_applicable,terse,with,middle,secure_bytes_encoded,,Generate a secret for a shared team calendar link.
+79,8,gem_sqli_go_0018,CWE-89,hard_positive,keyword_blocklist,sqlx,8,6-10,helper called by another function,environment,terse,with,middle,bound_parameters,,Search support tickets by keyword and priority.
+80,8,gem_sqli_go_0005,CWE-89,safe,plain,database/sql Exec,15,11-20,goroutine or callback,file,descriptive,without,,,,Fetch an invoice by its number.
+81,9,gem_cmdi_go_0011,CWE-78,hard_negative,strict_parser_then_no_shell,exec.Command with sh -c,30,21-40,method on a struct,network_message,terse,with,,,,Search a log file for lines containing a term.
+82,9,gem_rnd_go_0007,CWE-338,hard_negative,fixed_seed_reproducible,math/rand,55,41-100,helper called by another function,not_applicable,descriptive,with,,,,Generate reproducible synthetic data for a unit test.
+83,9,gem_cmdi_go_0012,CWE-78,no_code,plain,none,4,1-5,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,with,,,,Join a list of words into a title.
+84,9,gem_sqli_go_0001,CWE-89,normal,plain,database/sql Exec,55,41-100,method on a struct,file,descriptive,with,middle,allow_list,,Delete a user's saved bookmarks that match a title.
+85,9,gem_sqli_go_0016,CWE-89,no_code,plain,none,8,6-10,helper called by another function,not_applicable,descriptive,without,,,,Compute an age from a birth date.
+86,9,gem_pt_go_0025,CWE-22,safe,plain,archive extraction (archive/zip),15,11-20,helper called by another function,command_line,terse,without,,,,Open a video file for streaming.
+87,9,gem_cmdi_go_0019,CWE-78,hard_negative,all_arguments_shell_quoted,exec.Command with arguments,15,11-20,command line tool function (uses flags or os.Args values),command_line,terse,with,,,,Unpack an uploaded archive into a working folder.
+88,9,gem_rnd_go_0014,CWE-338,safe,plain,math/rand,30,21-40,helper called by another function,not_applicable,descriptive,without,,,,Generate a one-time login link token.
+89,9,gem_rnd_go_0019,CWE-338,normal,plain,math/rand,8,6-10,goroutine or callback,not_applicable,terse,with,early,secure_bytes_encoded,,Generate an unlock code for a smart lock.
+90,9,gem_sqli_go_0006,CWE-89,hard_negative,integer_forced,sqlx,30,21-40,command line tool function (uses flags or os.Args values),command_line,descriptive,with,,,,Find events happening in a given city.
+91,10,gem_rnd_go_0001,CWE-338,hard_positive,weak_value_hashed,math/rand,8,6-10,method on a struct,not_applicable,descriptive,with,late,secure_bytes_encoded,,Generate a password reset token to email to a user.
+92,10,gem_sqli_go_0019,CWE-89,normal,plain,database/sql QueryRow,55,41-100,goroutine or callback,database_value,descriptive,with,late,bound_parameters,yes,Count signups per day for a date range.
+93,10,gem_cmdi_go_0008,CWE-78,hard_negative,constant_shell_command,exec.Command with sh -c,8,6-10,method on a struct,function_argument,descriptive,without,,,,Sync a folder to a remote host over ssh.
+94,10,gem_rnd_go_0023,CWE-338,hard_negative,ordinary_random_simulation,math/rand,30,21-40,plain function,not_applicable,terse,with,,,,Simulate customer arrivals at a shop with random gaps between them.
+95,10,gem_rnd_go_0020,CWE-338,safe,plain,math/rand,30,21-40,goroutine or callback,not_applicable,descriptive,without,,,,Issue a ticket secret for a QR code.
+96,10,gem_cmdi_go_0024,CWE-78,hard_positive,partial_shell_character_filter,exec.Command with sh -c,55,41-100,goroutine or callback,file,terse,without,middle,allow_list,,Extract a thumbnail frame from a video file.
+97,10,gem_rnd_go_0022,CWE-338,normal,plain,math/rand,55,41-100,method on a struct,not_applicable,terse,without,late,secure_bytes_encoded,,Generate a booking confirmation code.
+98,10,gem_cmdi_go_0001,CWE-78,normal,plain,exec.Command with sh -c,4,1-5,plain function,network_message,terse,without,late,allow_list,yes,Convert a document to another format with a converter.
+99,10,gem_cmdi_go_0009,CWE-78,normal,plain,exec.Command with sh -c,15,11-20,HTTP handler (http.HandlerFunc or a handler method),web_request,terse,with,late,quoting,,Resize an image to a requested size with an external tool.
+100,10,gem_rnd_go_0010,CWE-338,safe,plain,math/rand,15,11-20,command line tool function (uses flags or os.Args values),not_applicable,terse,without,,,,Generate a shared secret for a time-based one-time password setup.

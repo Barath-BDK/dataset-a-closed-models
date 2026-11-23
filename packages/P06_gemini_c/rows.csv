@@ -1,0 +1,101 @@
+row_no,batch,sample_id,weakness,case_type,pattern,call_family,target_lines,band,shape,source,names,comments,flaw,fix_type,indirect,task
+1,1,gem_cmdi_c_0013,CWE-78,hard_negative,all_arguments_shell_quoted,popen,15,11-20,callback passed as a function pointer,file,descriptive,without,,,,Run a unit conversion script on a value.
+2,1,gem_cmdi_c_0010,CWE-78,normal,plain,execl through sh -c,4,1-5,command line tool function (uses argc and argv values),command_line,descriptive,without,middle,allow_list,,Show the mount information of a device.
+3,1,gem_sqli_c_0016,CWE-89,hard_positive,handwritten_escaping,PQexec,15,11-20,request handler that receives a struct or buffer,web_request,terse,with,middle,allow_list,yes,Count signups per day for a date range.
+4,1,gem_pt_c_0013,CWE-22,hard_positive,check_before_normalising,rename,8,6-10,helper called by another function,network_message,descriptive,with,late,path_containment_check,,Serve a PDF from the document library.
+5,1,gem_cmdi_c_0009,CWE-78,normal,plain,execvp,15,11-20,small embedded or library utility,network_message,descriptive,without,late,argv_no_shell,yes,Compress a log file after rotation.
+6,1,gem_rnd_c_0002,CWE-338,normal,plain,random,15,11-20,request handler that receives a struct or buffer,not_applicable,terse,without,middle,secure_bytes_encoded,,Pick the words of a recovery phrase for a wallet.
+7,1,gem_sqli_c_0007,CWE-89,normal,plain,mysql_query,4,1-5,command line tool function (uses argc and argv values),command_line,descriptive,without,late,type_conversion,,Find the members of a team by role.
+8,1,gem_cmdi_c_0006,CWE-78,safe,plain,execl through sh -c,55,41-100,callback passed as a function pointer,file,descriptive,with,,,,Restart a named system service.
+9,1,gem_sqli_c_0010,CWE-89,normal,plain,mysql_query,8,6-10,callback passed as a function pointer,environment,terse,with,middle,allow_list,yes,Insert a new product review.
+10,1,gem_pt_c_0015,CWE-22,hard_positive,relative_check_misses_absolute,rename,55,41-100,command line tool function (uses argc and argv values),command_line,descriptive,with,late,base_name_only,yes,Move a processed file to an archive folder.
+11,2,gem_rnd_c_0021,CWE-338,no_code,plain,none,15,11-20,helper called by another function,not_applicable,descriptive,with,,,,Check that a token has the expected length and characters.
+12,2,gem_cmdi_c_0017,CWE-78,hard_negative,strict_parser_then_no_shell,execvp,8,6-10,command line tool function (uses argc and argv values),command_line,terse,without,,,,Scan an uploaded file with a command line scanner.
+13,2,gem_cmdi_c_0014,CWE-78,normal,plain,execvp,4,1-5,callback passed as a function pointer,database_value,terse,without,early,quoting,,Show the owner and permissions of a file.
+14,2,gem_cmdi_c_0007,CWE-78,normal,plain,system,8,6-10,helper called by another function,network_message,terse,with,late,quoting,yes,Read the expiry date of a certificate file.
+15,2,gem_cmdi_c_0011,CWE-78,hard_negative,constant_shell_command,execvp,30,21-40,plain function,file,descriptive,with,,,,Search a log file for lines containing a term.
+16,2,gem_cmdi_c_0008,CWE-78,normal,plain,execvp,30,21-40,small embedded or library utility,environment,descriptive,with,middle,argv_no_shell,,Compute the checksum of a file.
+17,2,gem_pt_c_0020,CWE-22,hard_negative,id_mapped_to_known_file,unlink,15,11-20,helper called by another function,database_value,descriptive,without,,,,Count the lines of a stored text file.
+18,2,gem_cmdi_c_0003,CWE-78,normal,plain,execl through sh -c,30,21-40,helper called by another function,file,terse,with,middle,quoting,yes,Start a background job from a script name.
+19,2,gem_sqli_c_0020,CWE-89,hard_positive,bound_but_input_identifier,sqlite3_exec,8,6-10,plain function,environment,terse,without,middle,type_conversion,,Search support tickets by keyword and priority.
+20,2,gem_rnd_c_0011,CWE-338,safe,plain,random,8,6-10,small embedded or library utility,not_applicable,descriptive,without,,,,Issue a gift card code with a check value.
+21,3,gem_sqli_c_0006,CWE-89,safe,plain,sqlite3_exec,8,6-10,small embedded or library utility,function_argument,descriptive,with,,,,Search a phone book by name prefix.
+22,3,gem_rnd_c_0023,CWE-338,hard_negative,secure_secret_plus_ordinary_random_elsewhere,random,8,6-10,request handler that receives a struct or buffer,not_applicable,descriptive,without,,,,Create a share link secret for a document.
+23,3,gem_pt_c_0012,CWE-22,safe,plain,open,8,6-10,command line tool function (uses argc and argv values),command_line,descriptive,with,,,,Report the size of a stored file.
+24,3,gem_sqli_c_0002,CWE-89,no_code,plain,none,4,1-5,helper called by another function,not_applicable,descriptive,without,,,,Check the shape of an email address.
+25,3,gem_pt_c_0023,CWE-22,normal,plain,fopen,30,21-40,request handler that receives a struct or buffer,web_request,descriptive,without,middle,path_containment_check,yes,Read a log file of a named service.
+26,3,gem_cmdi_c_0022,CWE-78,hard_negative,command_from_fixed_map,popen,55,41-100,callback passed as a function pointer,function_argument,terse,without,,,,Run a database backup tool for one schema.
+27,3,gem_cmdi_c_0015,CWE-78,hard_negative,user_data_after_end_of_options,system,8,6-10,request handler that receives a struct or buffer,web_request,terse,with,,,,Sync a folder to a remote host over ssh.
+28,3,gem_pt_c_0024,CWE-22,safe,plain,rename,55,41-100,callback passed as a function pointer,function_argument,terse,without,,,,Save a note under a given name.
+29,3,gem_rnd_c_0008,CWE-338,safe,plain,srand,55,41-100,plain function,not_applicable,terse,with,,,,Create a deletion confirmation token.
+30,3,gem_sqli_c_0008,CWE-89,normal,plain,mysql_query,30,21-40,callback passed as a function pointer,web_request,terse,with,early,type_conversion,yes,Find articles that carry a given tag.
+31,4,gem_sqli_c_0001,CWE-89,no_code,plain,none,15,11-20,small embedded or library utility,not_applicable,descriptive,with,,,,Compute a discount tier from an amount.
+32,4,gem_pt_c_0014,CWE-22,normal,plain,unlink,4,1-5,command line tool function (uses argc and argv values),command_line,descriptive,without,middle,base_name_only,,Read a language pack for a game.
+33,4,gem_cmdi_c_0021,CWE-78,normal,plain,popen,30,21-40,request handler that receives a struct or buffer,web_request,descriptive,with,late,strict_validation,,Unpack an uploaded archive into a working folder.
+34,4,gem_rnd_c_0016,CWE-338,normal,plain,rand,4,1-5,callback passed as a function pointer,not_applicable,descriptive,without,middle,secure_generator_api,,Issue a temporary access code for a visitor badge.
+35,4,gem_pt_c_0006,CWE-22,hard_negative,library_confined_access,fopen,15,11-20,plain function,command_line,descriptive,without,,,,Open a video file for streaming.
+36,4,gem_rnd_c_0006,CWE-338,normal,plain,random,30,21-40,command line tool function (uses argc and argv values),not_applicable,terse,without,middle,secure_bytes_encoded,,Create a share link secret for a document.
+37,4,gem_pt_c_0002,CWE-22,hard_negative,base_name_only,rename,8,6-10,small embedded or library utility,function_argument,terse,without,,,,List the files in a sub folder of the storage area.
+38,4,gem_pt_c_0018,CWE-22,hard_negative,library_confined_access,open,15,11-20,plain function,network_message,terse,with,,,,Fetch a user's uploaded resume.
+39,4,gem_rnd_c_0007,CWE-338,normal,plain,random,4,1-5,command line tool function (uses argc and argv values),not_applicable,terse,without,late,rejection_sampling_secure_index,yes,Generate a PIN for a card activation.
+40,4,gem_pt_c_0021,CWE-22,safe,plain,rename,8,6-10,plain function,command_line,terse,with,,,,Extract the entries of an uploaded archive into a folder.
+41,5,gem_pt_c_0009,CWE-22,hard_negative,library_confined_access,rename,15,11-20,callback passed as a function pointer,database_value,descriptive,with,,,,Read a log file of a named service.
+42,5,gem_pt_c_0001,CWE-22,no_code,plain,none,8,6-10,callback passed as a function pointer,not_applicable,descriptive,without,,,,Count the segments of a path string.
+43,5,gem_sqli_c_0004,CWE-89,normal,plain,sqlite3_exec,4,1-5,plain function,database_value,terse,without,late,allow_list,,Transfer a balance between two accounts inside a transaction.
+44,5,gem_cmdi_c_0004,CWE-78,normal,plain,popen,30,21-40,request handler that receives a struct or buffer,web_request,descriptive,without,middle,strict_validation,,Pack an installer from a folder with a packaging tool.
+45,5,gem_cmdi_c_0018,CWE-78,no_code,plain,none,8,6-10,plain function,not_applicable,terse,with,,,,Check the shape of a host name string.
+46,5,gem_sqli_c_0021,CWE-89,normal,plain,sqlite3_exec,4,1-5,request handler that receives a struct or buffer,network_message,descriptive,without,middle,allow_list,yes,Return a page of articles sorted by a column chosen by the caller.
+47,5,gem_sqli_c_0013,CWE-89,hard_negative,identifier_allowlist,sqlite3_exec,30,21-40,plain function,command_line,terse,with,,,,Look up a city by postal code.
+48,5,gem_sqli_c_0014,CWE-89,hard_negative,placeholder_list_for_in,mysql_query,8,6-10,small embedded or library utility,web_request,descriptive,without,,,,Find all accounts created through an affiliate code.
+49,5,gem_pt_c_0003,CWE-22,hard_positive,single_pass_parent_removal,open,30,21-40,callback passed as a function pointer,web_request,terse,without,late,path_containment_check,yes,Extract the entries of an uploaded archive into a folder.
+50,5,gem_rnd_c_0014,CWE-338,normal,plain,rand,8,6-10,command line tool function (uses argc and argv values),not_applicable,descriptive,without,late,secure_generator_api,,Create a webhook signing secret.
+51,6,gem_pt_c_0007,CWE-22,hard_negative,id_mapped_to_known_file,open,55,41-100,small embedded or library utility,environment,descriptive,without,,,,Read a plugin manifest from a plugin folder.
+52,6,gem_pt_c_0025,CWE-22,normal,plain,rename,30,21-40,small embedded or library utility,environment,descriptive,with,early,allow_list_mapping,yes,Read the lines of a CSV import file.
+53,6,gem_sqli_c_0017,CWE-89,safe,plain,sqlite3_exec,8,6-10,command line tool function (uses argc and argv values),command_line,terse,with,,,,Search a phone book by name prefix.
+54,6,gem_rnd_c_0013,CWE-338,normal,plain,srand,4,1-5,helper called by another function,not_applicable,descriptive,without,early,secure_bytes_encoded,,Create a salt for hashing a password.
+55,6,gem_sqli_c_0025,CWE-89,normal,plain,sqlite3_exec,30,21-40,request handler that receives a struct or buffer,web_request,descriptive,without,early,prepared_statement_bind,yes,Look up a coupon by its code.
+56,6,gem_cmdi_c_0024,CWE-78,hard_positive,partial_shell_character_filter,system,55,41-100,plain function,function_argument,descriptive,with,early,quoting,yes,Mount a network share with given options.
+57,6,gem_pt_c_0011,CWE-22,normal,plain,fopen,30,21-40,callback passed as a function pointer,environment,descriptive,with,middle,allow_list_mapping,yes,Read a data file for a selected report.
+58,6,gem_pt_c_0004,CWE-22,hard_negative,resolve_then_separator_aware_check,open,30,21-40,small embedded or library utility,database_value,terse,without,,,,Read the first line of a stored file.
+59,6,gem_cmdi_c_0002,CWE-78,hard_positive,quoting_in_wrong_context,execl through sh -c,15,11-20,small embedded or library utility,file,descriptive,with,late,argv_no_shell,yes,Compare two files and show the differences.
+60,6,gem_rnd_c_0019,CWE-338,hard_positive,seed_from_clock_or_pid,srand,30,21-40,plain function,not_applicable,terse,without,early,rejection_sampling_secure_index,,Generate a shared secret for a time-based one-time password setup.
+61,7,gem_pt_c_0005,CWE-22,normal,plain,open,30,21-40,helper called by another function,file,descriptive,without,late,allow_list_mapping,,Load a configuration file for a named profile.
+62,7,gem_pt_c_0019,CWE-22,normal,plain,open,30,21-40,command line tool function (uses argc and argv values),command_line,terse,with,late,base_name_only,,Return the contents of a help page file.
+63,7,gem_sqli_c_0015,CWE-89,safe,plain,mysql_query,55,41-100,callback passed as a function pointer,command_line,descriptive,without,,,,Find all accounts created through an affiliate code.
+64,7,gem_cmdi_c_0019,CWE-78,hard_positive,quoting_in_wrong_context,popen,15,11-20,plain function,database_value,descriptive,with,early,strict_validation,,Show the commit history of a repository for one author.
+65,7,gem_cmdi_c_0005,CWE-78,safe,plain,execl through sh -c,30,21-40,small embedded or library utility,web_request,terse,with,,,,Stop a process by name.
+66,7,gem_cmdi_c_0020,CWE-78,hard_negative,command_from_fixed_map,popen,30,21-40,small embedded or library utility,network_message,terse,without,,,,Download a web page with a command line client.
+67,7,gem_cmdi_c_0023,CWE-78,hard_positive,validation_of_other_variable,system,8,6-10,request handler that receives a struct or buffer,network_message,descriptive,without,early,quoting,,Read the last lines of a log file.
+68,7,gem_rnd_c_0003,CWE-338,safe,plain,srand,15,11-20,command line tool function (uses argc and argv values),not_applicable,descriptive,with,,,,Create a nonce for a content security policy header.
+69,7,gem_sqli_c_0023,CWE-89,hard_negative,placeholders_only_format,sqlite3_exec,15,11-20,helper called by another function,file,terse,with,,,,Find a customer record by email address.
+70,7,gem_rnd_c_0010,CWE-338,hard_negative,fixed_seed_reproducible,random,15,11-20,plain function,not_applicable,terse,with,,,,Generate reproducible synthetic data for a unit test.
+71,8,gem_rnd_c_0001,CWE-338,hard_negative,secure_secret_plus_ordinary_random_elsewhere,random,30,21-40,helper called by another function,not_applicable,descriptive,without,,,,Generate a nonce for a signed request.
+72,8,gem_pt_c_0016,CWE-22,safe,plain,open,8,6-10,command line tool function (uses argc and argv values),command_line,terse,without,,,,Write a user's settings file.
+73,8,gem_rnd_c_0017,CWE-338,normal,plain,random,8,6-10,small embedded or library utility,not_applicable,terse,without,late,rejection_sampling_secure_index,,Create an invite code for a team.
+74,8,gem_sqli_c_0024,CWE-89,hard_positive,one_branch_bound,sqlite3_exec,15,11-20,request handler that receives a struct or buffer,web_request,descriptive,with,early,prepared_statement_bind,yes,Update the email address of a user profile.
+75,8,gem_pt_c_0010,CWE-22,normal,plain,fopen,30,21-40,helper called by another function,environment,descriptive,with,middle,path_containment_check,,Return the modification time of a stored file.
+76,8,gem_rnd_c_0015,CWE-338,normal,plain,srand,8,6-10,helper called by another function,not_applicable,descriptive,with,early,rejection_sampling_secure_index,yes,Generate a one-time voucher for a refund.
+77,8,gem_rnd_c_0012,CWE-338,hard_negative,ordinary_random_games,random,55,41-100,plain function,not_applicable,terse,without,,,,Roll dice for a board game.
+78,8,gem_sqli_c_0009,CWE-89,hard_negative,constant_fragments_only,mysql_query,8,6-10,command line tool function (uses argc and argv values),command_line,descriptive,without,,,,Find the members of a team by role.
+79,8,gem_cmdi_c_0016,CWE-78,hard_negative,command_from_fixed_map,execvp,15,11-20,callback passed as a function pointer,command_line,terse,with,,,,Add a user to a group with the system tool.
+80,8,gem_sqli_c_0005,CWE-89,normal,plain,PQexec,30,21-40,command line tool function (uses argc and argv values),command_line,terse,without,middle,prepared_statement_bind,,List reservations for a room between two dates.
+81,9,gem_cmdi_c_0012,CWE-78,no_code,plain,none,15,11-20,request handler that receives a struct or buffer,not_applicable,terse,without,,,,Join a list of words into a title.
+82,9,gem_pt_c_0008,CWE-22,hard_positive,relative_check_misses_absolute,fopen,15,11-20,callback passed as a function pointer,database_value,descriptive,without,early,allow_list_mapping,,Write a user's settings file.
+83,9,gem_rnd_c_0004,CWE-338,no_code,plain,none,4,1-5,plain function,not_applicable,descriptive,with,,,,Convert a token to uppercase for display.
+84,9,gem_rnd_c_0009,CWE-338,hard_negative,ordinary_random_simulation,rand,30,21-40,command line tool function (uses argc and argv values),not_applicable,terse,without,,,,Simulate customer arrivals at a shop with random gaps between them.
+85,9,gem_rnd_c_0025,CWE-338,hard_negative,ordinary_random_sampling,srand,15,11-20,callback passed as a function pointer,not_applicable,terse,without,,,,Pick a random sample of users for a satisfaction survey.
+86,9,gem_pt_c_0022,CWE-22,normal,plain,unlink,15,11-20,command line tool function (uses argc and argv values),command_line,terse,with,late,allow_list_mapping,,Delete a user's attachment.
+87,9,gem_sqli_c_0019,CWE-89,hard_positive,handwritten_escaping,PQexec,30,21-40,helper called by another function,network_message,terse,without,middle,prepared_statement_bind,,Delete expired sessions older than a number of days.
+88,9,gem_rnd_c_0005,CWE-338,hard_positive,seed_from_clock_or_pid,srand,15,11-20,helper called by another function,not_applicable,descriptive,with,early,secure_generator_api,yes,Create an unguessable id for a private upload.
+89,9,gem_pt_c_0017,CWE-22,no_code,plain,none,8,6-10,helper called by another function,not_applicable,descriptive,with,,,,Build a numbered report name from a prefix.
+90,9,gem_rnd_c_0024,CWE-338,safe,plain,srand,8,6-10,small embedded or library utility,not_applicable,descriptive,with,,,,Issue a ticket secret for a QR code.
+91,10,gem_rnd_c_0020,CWE-338,normal,plain,rand,8,6-10,helper called by another function,not_applicable,descriptive,with,early,rejection_sampling_secure_index,,Generate a secret for a shared team calendar link.
+92,10,gem_sqli_c_0003,CWE-89,normal,plain,PQexec,4,1-5,command line tool function (uses argc and argv values),command_line,descriptive,with,early,prepared_statement_bind,,List recent transactions for an account sorted by amount or date.
+93,10,gem_sqli_c_0022,CWE-89,hard_negative,identifier_allowlist,sqlite3_exec,55,41-100,small embedded or library utility,web_request,descriptive,without,,,,Export the orders of a given month.
+94,10,gem_sqli_c_0011,CWE-89,safe,plain,sqlite3_exec,15,11-20,callback passed as a function pointer,function_argument,descriptive,with,,,,Mark a notification as read for a user.
+95,10,gem_cmdi_c_0001,CWE-78,safe,plain,execl through sh -c,15,11-20,small embedded or library utility,database_value,descriptive,with,,,,Query the status of a container by name.
+96,10,gem_sqli_c_0012,CWE-89,normal,plain,PQexec,30,21-40,small embedded or library utility,network_message,descriptive,without,middle,prepared_statement_bind,yes,Get the loyalty points of a customer.
+97,10,gem_rnd_c_0022,CWE-338,hard_positive,secure_sounding_name_weak_generator,random,30,21-40,plain function,not_applicable,terse,with,early,rejection_sampling_secure_index,,Issue an email confirmation token.
+98,10,gem_cmdi_c_0025,CWE-78,safe,plain,execl through sh -c,15,11-20,command line tool function (uses argc and argv values),command_line,terse,with,,,,Trace the network route to a host.
+99,10,gem_sqli_c_0018,CWE-89,hard_negative,placeholders_only_format,mysql_query,8,6-10,plain function,function_argument,terse,with,,,,List a user's orders with a given status.
+100,10,gem_rnd_c_0018,CWE-338,hard_positive,weak_generator_behind_helper,rand,55,41-100,small embedded or library utility,not_applicable,terse,with,middle,rejection_sampling_secure_index,,Generate a pairing code for a device.

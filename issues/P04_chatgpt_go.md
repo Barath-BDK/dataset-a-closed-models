@@ -1,0 +1,154 @@
+## Assignment
+
+Write **100 rows** with **ChatGPT** in **Go** (CWE-22, CWE-338, CWE-78, CWE-89). Package folder: `packages/P04_chatgpt_go/`. Your files go to `submissions/P04_chatgpt_go/`.
+
+Read `README.md` first (setup, branches, pull request) and `docs/Dataset_A_Closed_Models.docx` (the specification).
+
+### Settings
+
+- Model: **ChatGPT**, the newest version your account offers. Use one fixed version for all rows and write its exact name in the `generator` column.
+- Web chat or API. API: temperature 0.7.
+- **A new chat for every 10 rows.** Paste `prompts/MASTER_PROMPT.md` at the start of each chat and wait for `ready`.
+- One row per prompt. Do not ask the model to repair another model's rows.
+
+### What you will produce
+
+Case types in this package: normal 34, hard_positive 16, safe 16, hard_negative 26, no_code 8. Lengths: 1-5: 10, 6-10: 20, 11-20: 30, 21-40: 33, 41-100: 7.
+
+The full list of rows (case type, pattern, call, length, shape, input source, names, comments, flaw position, fix type, task) is in `packages/P04_chatgpt_go/rows.csv` and in the table below. The ready-to-paste prompts are in `packages/P04_chatgpt_go/batch_01.md` ... `batch_10.md`.
+
+### Prompt template (already filled in for every row in the batch files)
+
+```text
+Write one [LANGUAGE] function for this task: [TASK].
+It must be [CASE DESCRIPTION] for [WEAKNESS] ([CWE]).
+Use this pattern: [PATTERN]. Input comes from: [SOURCE].
+Make it about [N] lines long, written as [SHAPE].
+Call family, names, comments, flaw position, fix type: as in the row's line.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+### Steps (tick them in your pull request)
+
+- [ ] Batch 01: rows 001-010 generated and saved as replies (`packages/P04_chatgpt_go/batch_01.md`)
+- [ ] Batch 02: rows 011-020 generated and saved as replies (`packages/P04_chatgpt_go/batch_02.md`)
+- [ ] Batch 03: rows 021-030 generated and saved as replies (`packages/P04_chatgpt_go/batch_03.md`)
+- [ ] Batch 04: rows 031-040 generated and saved as replies (`packages/P04_chatgpt_go/batch_04.md`)
+- [ ] Batch 05: rows 041-050 generated and saved as replies (`packages/P04_chatgpt_go/batch_05.md`)
+- [ ] Batch 06: rows 051-060 generated and saved as replies (`packages/P04_chatgpt_go/batch_06.md`)
+- [ ] Batch 07: rows 061-070 generated and saved as replies (`packages/P04_chatgpt_go/batch_07.md`)
+- [ ] Batch 08: rows 071-080 generated and saved as replies (`packages/P04_chatgpt_go/batch_08.md`)
+- [ ] Batch 09: rows 081-090 generated and saved as replies (`packages/P04_chatgpt_go/batch_09.md`)
+- [ ] Batch 10: rows 091-100 generated and saved as replies (`packages/P04_chatgpt_go/batch_10.md`)
+- [ ] `python tools/assemble.py P04_chatgpt_go --generator "<exact model name>"` runs; every row passes the QA report or was regenerated
+- [ ] Labels checked (section 8 of the specification): run the code with a harmless attack where possible, two reviewers otherwise; `label_source` set for every row
+- [ ] Final Claude pass done (`prompts/CLAUDE_JUDGE_PROMPT.md`, `tools/make_judge_prompts.py`, `tools/apply_judge.py`); `label_confidence` set
+- [ ] `python tools/validate.py P04_chatgpt_go` shows no errors
+- [ ] Pull request from your issue branch into your personal branch, with `submissions/P04_chatgpt_go/P04_chatgpt_go.xlsx`, `submissions/P04_chatgpt_go/P04_chatgpt_go.jsonl` and the QA and validation reports
+
+### Rows
+
+| # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 001 | `gpt_sqli_go_0006` | CWE-89 | hard_negative | `placeholder_list_for_in` | database/sql QueryRow | 11-20 | method on a struct | web_request | terse | with | - | - | Search products whose name contains a keyword. |
+| 002 | `gpt_sqli_go_0016` | CWE-89 | safe | `plain` | gorm Raw | 6-10 | HTTP handler | web_request | descriptive | without | - | - | Report order totals grouped by a chosen category. |
+| 003 | `gpt_pt_go_0020` | CWE-22 | normal | `plain` | os.Create | 1-5 | plain function | command_line | terse | without | early | path_containment_check | Move a processed file to an archive folder. |
+| 004 | `gpt_rnd_go_0024` | CWE-338 | normal | `plain` | math/rand | 6-10 | helper called by another function | not_applicable | descriptive | without | late | secure_bytes_encoded | Create a share link secret for a document. |
+| 005 | `gpt_pt_go_0001` | CWE-22 | hard_positive | `check_before_normalising` | os.ReadFile | 6-10 | plain function | database_value | descriptive | without | early | library_confinement | Return a preview of a stored image. |
+| 006 | `gpt_pt_go_0019` | CWE-22 | hard_positive | `single_pass_parent_removal` | http.ServeFile | 11-20 | plain function | environment | descriptive | without | middle | base_name_only | Extract the entries of an uploaded archive into a folder. |
+| 007 | `gpt_pt_go_0003` | CWE-22 | hard_negative | `library_confined_access` | os.ReadFile | 21-40 | helper called by another function | function_argument | terse | with | - | - | Load a configuration file for a named profile. |
+| 008 | `gpt_pt_go_0022` | CWE-22 | safe | `plain` | archive extraction (archive/zip) | 6-10 | HTTP handler | database_value | terse | with | - | - | Fetch a user's uploaded resume. |
+| 009 | `gpt_rnd_go_0023` | CWE-338 | hard_positive | `weak_value_hashed` | math/rand | 21-40 | HTTP handler | not_applicable | descriptive | with | early | rejection_sampling_secure_index | Issue a short-lived upload key. |
+| 010 | `gpt_pt_go_0025` | CWE-22 | hard_positive | `extension_check_only` | os.Open | 11-20 | method on a struct | function_argument | terse | without | late | allow_list_mapping | Return the modification time of a stored file. |
+| 011 | `gpt_sqli_go_0025` | CWE-89 | safe | `plain` | database/sql Exec | 6-10 | command line tool function | command_line | descriptive | without | - | - | Find a customer record by email address. |
+| 012 | `gpt_sqli_go_0003` | CWE-89 | hard_positive | `keyword_blocklist` | gorm Raw | 11-20 | method on a struct | web_request | descriptive | without | early | bound_parameters | Find the members of a team by role. |
+| 013 | `gpt_cmdi_go_0008` | CWE-78 | hard_negative | `argument_list_with_user_data` | exec.Command with sh -c | 11-20 | command line tool function | command_line | descriptive | with | - | - | Add a user to a group with the system tool. |
+| 014 | `gpt_pt_go_0010` | CWE-22 | normal | `plain` | archive extraction (archive/zip) | 11-20 | helper called by another function | web_request | descriptive | without | middle | allow_list_mapping | Return the text of an uploaded file. |
+| 015 | `gpt_cmdi_go_0010` | CWE-78 | no_code | `plain` | none | 6-10 | command line tool function | not_applicable | descriptive | with | - | - | Read the average time out of a ping summary text. |
+| 016 | `gpt_cmdi_go_0021` | CWE-78 | hard_negative | `user_data_after_end_of_options` | exec.Command with arguments | 11-20 | helper called by another function | environment | terse | without | - | - | Run a code formatter on a source file. |
+| 017 | `gpt_cmdi_go_0002` | CWE-78 | normal | `plain` | exec.Command with arguments | 11-20 | plain function | database_value | descriptive | with | late | strict_validation | Run a code formatter on a source file. |
+| 018 | `gpt_sqli_go_0023` | CWE-89 | normal | `plain` | gorm Raw | 21-40 | command line tool function | command_line | terse | without | late | type_conversion | Find books by author name. |
+| 019 | `gpt_rnd_go_0007` | CWE-338 | normal | `plain` | math/rand | 11-20 | HTTP handler | not_applicable | terse | with | middle | secure_generator_api | Create a challenge string for a login handshake. |
+| 020 | `gpt_rnd_go_0021` | CWE-338 | hard_negative | `ordinary_random_test_data` | math/rand | 21-40 | method on a struct | not_applicable | descriptive | without | - | - | Generate random names for test fixtures. |
+| 021 | `gpt_sqli_go_0013` | CWE-89 | no_code | `plain` | none | 1-5 | plain function | not_applicable | terse | with | - | - | Compute a discount tier from an amount. |
+| 022 | `gpt_cmdi_go_0017` | CWE-78 | hard_negative | `user_data_after_end_of_options` | exec.Command with sh -c | 21-40 | command line tool function | command_line | terse | without | - | - | Rotate the logs of one application. |
+| 023 | `gpt_rnd_go_0019` | CWE-338 | hard_negative | `ordinary_random_simulation` | math/rand | 21-40 | goroutine or callback | not_applicable | descriptive | with | - | - | Estimate pi with a Monte Carlo simulation. |
+| 024 | `gpt_pt_go_0005` | CWE-22 | no_code | `plain` | none | 1-5 | method on a struct | not_applicable | terse | with | - | - | Split a path string into its parts. |
+| 025 | `gpt_pt_go_0017` | CWE-22 | no_code | `plain` | none | 11-20 | method on a struct | not_applicable | descriptive | with | - | - | Count the segments of a path string. |
+| 026 | `gpt_rnd_go_0016` | CWE-338 | normal | `plain` | math/rand | 21-40 | command line tool function | not_applicable | terse | with | early | rejection_sampling_secure_index | Create a challenge string for a login handshake. |
+| 027 | `gpt_rnd_go_0006` | CWE-338 | hard_positive | `weak_generator_behind_helper` | math/rand | 11-20 | plain function | not_applicable | descriptive | without | early | secure_bytes_encoded | Create an encryption key for a local vault. |
+| 028 | `gpt_cmdi_go_0018` | CWE-78 | safe | `plain` | exec.Command with arguments | 6-10 | method on a struct | database_value | terse | with | - | - | Compress a log file after rotation. |
+| 029 | `gpt_pt_go_0015` | CWE-22 | normal | `plain` | os.ReadFile | 21-40 | HTTP handler | web_request | descriptive | without | middle | base_name_only | Serve a PDF from the document library. |
+| 030 | `gpt_sqli_go_0011` | CWE-89 | normal | `plain` | sqlx | 6-10 | HTTP handler | web_request | terse | with | middle | bound_parameters | Fetch the configuration value for a given key and environment. |
+| 031 | `gpt_rnd_go_0003` | CWE-338 | safe | `plain` | math/rand | 11-20 | goroutine or callback | not_applicable | terse | without | - | - | Generate a one-time voucher for a refund. |
+| 032 | `gpt_rnd_go_0009` | CWE-338 | hard_negative | `ordinary_random_retry_jitter` | math/rand | 11-20 | goroutine or callback | not_applicable | descriptive | with | - | - | Compute a retry delay with random jitter so clients do not retry together. |
+| 033 | `gpt_rnd_go_0025` | CWE-338 | normal | `plain` | math/rand | 11-20 | goroutine or callback | not_applicable | descriptive | without | middle | rejection_sampling_secure_index | Create a key for a private download link. |
+| 034 | `gpt_cmdi_go_0022` | CWE-78 | hard_negative | `all_arguments_shell_quoted` | exec.Command with arguments | 41-100 | plain function | environment | terse | with | - | - | Back up a directory to another location with a sync tool. |
+| 035 | `gpt_rnd_go_0010` | CWE-338 | hard_negative | `ordinary_random_test_data` | math/rand | 6-10 | method on a struct | not_applicable | terse | without | - | - | Generate random names for test fixtures. |
+| 036 | `gpt_pt_go_0023` | CWE-22 | normal | `plain` | os.Create | 21-40 | goroutine or callback | database_value | terse | without | early | path_containment_check | Remove an old export file. |
+| 037 | `gpt_cmdi_go_0024` | CWE-78 | hard_positive | `validator_accepts_too_much` | exec.Command with arguments | 21-40 | method on a struct | web_request | descriptive | without | middle | quoting | Run a database backup tool for one schema. |
+| 038 | `gpt_pt_go_0016` | CWE-22 | hard_negative | `resolve_then_separator_aware_check` | archive extraction (archive/zip) | 21-40 | goroutine or callback | network_message | terse | without | - | - | Let a user download a generated report by name. |
+| 039 | `gpt_sqli_go_0019` | CWE-89 | safe | `plain` | database/sql Exec | 11-20 | helper called by another function | function_argument | descriptive | without | - | - | Count the unread messages of a user. |
+| 040 | `gpt_sqli_go_0024` | CWE-89 | hard_negative | `integer_forced` | database/sql Query | 11-20 | HTTP handler | web_request | terse | with | - | - | Record an audit entry for an administrator action. |
+| 041 | `gpt_pt_go_0014` | CWE-22 | hard_negative | `id_mapped_to_known_file` | os.ReadFile | 11-20 | HTTP handler | web_request | descriptive | without | - | - | Restore a document from a version folder. |
+| 042 | `gpt_cmdi_go_0016` | CWE-78 | hard_positive | `partial_shell_character_filter` | exec.Command with sh -c | 21-40 | helper called by another function | web_request | descriptive | with | middle | strict_validation | Look up the DNS records of a host name. |
+| 043 | `gpt_rnd_go_0020` | CWE-338 | hard_negative | `ordinary_random_shuffling` | math/rand | 6-10 | goroutine or callback | not_applicable | terse | without | - | - | Deal a shuffled deck of cards to four players. |
+| 044 | `gpt_pt_go_0008` | CWE-22 | normal | `plain` | os.Open | 1-5 | goroutine or callback | environment | terse | with | early | library_confinement | Restore a document from a version folder. |
+| 045 | `gpt_cmdi_go_0025` | CWE-78 | hard_negative | `strict_parser_then_no_shell` | exec.Command with sh -c | 6-10 | helper called by another function | file | descriptive | without | - | - | Run a database backup tool for one schema. |
+| 046 | `gpt_sqli_go_0010` | CWE-89 | hard_positive | `handwritten_escaping` | database/sql Exec | 11-20 | plain function | function_argument | descriptive | with | late | query_builder | List the employees of a department. |
+| 047 | `gpt_cmdi_go_0011` | CWE-78 | hard_positive | `validator_accepts_too_much` | exec.Command with arguments | 11-20 | goroutine or callback | command_line | descriptive | with | early | allow_list | Compute the checksum of a file. |
+| 048 | `gpt_sqli_go_0022` | CWE-89 | hard_negative | `bound_via_builder` | database/sql Query | 6-10 | HTTP handler | web_request | descriptive | without | - | - | Fetch an invoice by its number. |
+| 049 | `gpt_cmdi_go_0006` | CWE-78 | safe | `plain` | exec.Command with arguments | 21-40 | HTTP handler | web_request | descriptive | without | - | - | Send a document to a named printer. |
+| 050 | `gpt_rnd_go_0014` | CWE-338 | normal | `plain` | math/rand | 21-40 | method on a struct | not_applicable | descriptive | with | middle | rejection_sampling_secure_index | Issue an email confirmation token. |
+| 051 | `gpt_sqli_go_0009` | CWE-89 | hard_positive | `bound_but_input_identifier` | gorm Raw | 11-20 | method on a struct | network_message | descriptive | without | early | type_conversion | List the appointments of a doctor on a given day. |
+| 052 | `gpt_pt_go_0013` | CWE-22 | hard_negative | `resolve_then_separator_aware_check` | archive extraction (archive/zip) | 21-40 | helper called by another function | environment | terse | without | - | - | Create a thumbnail file next to the original image. |
+| 053 | `gpt_rnd_go_0022` | CWE-338 | safe | `plain` | math/rand | 21-40 | HTTP handler | not_applicable | descriptive | with | - | - | Generate a pairing code for a device. |
+| 054 | `gpt_cmdi_go_0007` | CWE-78 | normal | `plain` | exec.Command with sh -c | 21-40 | helper called by another function | database_value | terse | without | middle | quoting | Create a snapshot of a virtual machine by name. |
+| 055 | `gpt_pt_go_0002` | CWE-22 | normal | `plain` | os.ReadFile | 6-10 | plain function | command_line | terse | without | middle | path_containment_check | Count the lines of a stored text file. |
+| 056 | `gpt_pt_go_0021` | CWE-22 | hard_negative | `id_mapped_to_known_file` | os.Create | 11-20 | goroutine or callback | file | descriptive | with | - | - | Open a certificate file by name. |
+| 057 | `gpt_cmdi_go_0013` | CWE-78 | normal | `plain` | exec.Command with sh -c | 1-5 | command line tool function | command_line | descriptive | with | late | argv_no_shell | Convert a document to another format with a converter. |
+| 058 | `gpt_sqli_go_0002` | CWE-89 | normal | `plain` | database/sql QueryRow | 6-10 | goroutine or callback | database_value | terse | without | early | bound_parameters | Insert a new product review. |
+| 059 | `gpt_pt_go_0018` | CWE-22 | safe | `plain` | os.Open | 11-20 | method on a struct | file | descriptive | without | - | - | Rename a document inside the storage folder. |
+| 060 | `gpt_pt_go_0011` | CWE-22 | safe | `plain` | os.ReadFile | 21-40 | HTTP handler | web_request | descriptive | without | - | - | Write an exported spreadsheet under a requested name. |
+| 061 | `gpt_sqli_go_0014` | CWE-89 | hard_positive | `keyword_blocklist` | gorm Raw | 11-20 | plain function | network_message | terse | with | middle | bound_parameters | Search support tickets by keyword and priority. |
+| 062 | `gpt_cmdi_go_0020` | CWE-78 | hard_positive | `validator_accepts_too_much` | exec.Command with arguments | 21-40 | HTTP handler | web_request | terse | without | late | strict_validation | Report the disk usage of a folder. |
+| 063 | `gpt_pt_go_0006` | CWE-22 | hard_negative | `id_mapped_to_known_file` | os.Create | 41-100 | goroutine or callback | command_line | terse | with | - | - | Read the first line of a stored file. |
+| 064 | `gpt_cmdi_go_0012` | CWE-78 | normal | `plain` | exec.Command with sh -c | 21-40 | plain function | web_request | descriptive | without | early | allow_list | Run a linter on a submitted file and return its report. |
+| 065 | `gpt_cmdi_go_0001` | CWE-78 | normal | `plain` | exec.Command with arguments | 11-20 | method on a struct | file | terse | without | early | argv_no_shell | Report the disk usage of a folder. |
+| 066 | `gpt_rnd_go_0013` | CWE-338 | hard_positive | `secure_sounding_name_weak_generator` | math/rand | 11-20 | plain function | not_applicable | terse | with | middle | rejection_sampling_secure_index | Issue a temporary access code for a visitor badge. |
+| 067 | `gpt_pt_go_0009` | CWE-22 | normal | `plain` | os.Open | 1-5 | HTTP handler | web_request | descriptive | with | late | library_confinement | Read a plugin manifest from a plugin folder. |
+| 068 | `gpt_sqli_go_0007` | CWE-89 | no_code | `plain` | none | 6-10 | command line tool function | not_applicable | terse | with | - | - | Build a display name from first and last name. |
+| 069 | `gpt_cmdi_go_0019` | CWE-78 | hard_negative | `all_arguments_shell_quoted` | exec.Command with sh -c | 21-40 | command line tool function | command_line | descriptive | without | - | - | Unpack an uploaded archive into a working folder. |
+| 070 | `gpt_cmdi_go_0005` | CWE-78 | no_code | `plain` | none | 11-20 | method on a struct | not_applicable | terse | with | - | - | Turn a byte count into a short size label. |
+| 071 | `gpt_rnd_go_0012` | CWE-338 | normal | `plain` | math/rand | 1-5 | helper called by another function | not_applicable | descriptive | with | late | secure_bytes_encoded | Create a deletion confirmation token. |
+| 072 | `gpt_sqli_go_0005` | CWE-89 | hard_negative | `constant_fragments_only` | database/sql Query | 41-100 | HTTP handler | web_request | terse | without | - | - | Find a vehicle by its registration number. |
+| 073 | `gpt_cmdi_go_0009` | CWE-78 | normal | `plain` | exec.Command with sh -c | 6-10 | plain function | function_argument | terse | without | early | argv_no_shell | Show the owner and permissions of a file. |
+| 074 | `gpt_sqli_go_0021` | CWE-89 | normal | `plain` | database/sql QueryRow | 1-5 | goroutine or callback | database_value | descriptive | with | late | bound_parameters | Return a page of articles sorted by a column chosen by the caller. |
+| 075 | `gpt_rnd_go_0011` | CWE-338 | safe | `plain` | math/rand | 11-20 | goroutine or callback | not_applicable | descriptive | with | - | - | Create an unguessable id for a private upload. |
+| 076 | `gpt_sqli_go_0008` | CWE-89 | hard_negative | `placeholders_only_format` | database/sql Query | 21-40 | goroutine or callback | database_value | terse | with | - | - | Return the latest comments on a post. |
+| 077 | `gpt_rnd_go_0002` | CWE-338 | normal | `plain` | math/rand | 1-5 | method on a struct | not_applicable | terse | with | early | rejection_sampling_secure_index | Pick the words of a recovery phrase for a wallet. |
+| 078 | `gpt_pt_go_0004` | CWE-22 | safe | `plain` | os.Open | 21-40 | command line tool function | command_line | terse | with | - | - | Move a processed file to an archive folder. |
+| 079 | `gpt_pt_go_0007` | CWE-22 | hard_positive | `relative_check_misses_absolute` | http.ServeFile | 11-20 | goroutine or callback | web_request | descriptive | without | early | library_confinement | Read a font file requested by a stylesheet. |
+| 080 | `gpt_cmdi_go_0014` | CWE-78 | normal | `plain` | exec.Command with arguments | 41-100 | goroutine or callback | network_message | terse | with | middle | quoting | Check whether a port is open on a host. |
+| 081 | `gpt_rnd_go_0004` | CWE-338 | safe | `plain` | math/rand | 21-40 | command line tool function | not_applicable | descriptive | without | - | - | Create an invite code for a team. |
+| 082 | `gpt_cmdi_go_0023` | CWE-78 | normal | `plain` | exec.Command with sh -c | 41-100 | goroutine or callback | function_argument | descriptive | with | late | strict_validation | Read the expiry date of a certificate file. |
+| 083 | `gpt_rnd_go_0005` | CWE-338 | normal | `plain` | math/rand | 21-40 | HTTP handler | not_applicable | descriptive | without | late | secure_generator_api | Create a list of recovery codes for an account. |
+| 084 | `gpt_sqli_go_0015` | CWE-89 | normal | `plain` | database/sql QueryRow | 21-40 | method on a struct | environment | terse | with | late | type_conversion | Look up the shipping address of an order. |
+| 085 | `gpt_sqli_go_0012` | CWE-89 | normal | `plain` | database/sql QueryRow | 6-10 | command line tool function | command_line | terse | without | late | query_builder | Find patients by surname. |
+| 086 | `gpt_cmdi_go_0004` | CWE-78 | safe | `plain` | exec.Command with arguments | 41-100 | helper called by another function | file | terse | with | - | - | Mount a network share with given options. |
+| 087 | `gpt_rnd_go_0018` | CWE-338 | hard_positive | `seed_from_clock_or_pid` | math/rand | 21-40 | helper called by another function | not_applicable | descriptive | with | middle | secure_bytes_encoded | Generate a bearer token for a service account. |
+| 088 | `gpt_rnd_go_0001` | CWE-338 | no_code | `plain` | none | 1-5 | goroutine or callback | not_applicable | terse | without | - | - | Mask a token for display in a log line. |
+| 089 | `gpt_sqli_go_0001` | CWE-89 | normal | `plain` | database/sql Exec | 21-40 | helper called by another function | function_argument | descriptive | with | early | allow_list | Look up a coupon by its code. |
+| 090 | `gpt_rnd_go_0017` | CWE-338 | hard_negative | `ordinary_random_retry_jitter` | math/rand | 21-40 | method on a struct | not_applicable | terse | without | - | - | Choose a polling interval spread between workers. |
+| 091 | `gpt_pt_go_0024` | CWE-22 | hard_negative | `base_name_only` | os.ReadFile | 6-10 | HTTP handler | network_message | descriptive | without | - | - | Write a crash report file under a given id. |
+| 092 | `gpt_cmdi_go_0015` | CWE-78 | safe | `plain` | exec.Command with arguments | 41-100 | goroutine or callback | command_line | descriptive | without | - | - | Read the expiry date of a certificate file. |
+| 093 | `gpt_sqli_go_0018` | CWE-89 | safe | `plain` | database/sql QueryRow | 21-40 | helper called by another function | command_line | terse | with | - | - | List reservations for a room between two dates. |
+| 094 | `gpt_cmdi_go_0003` | CWE-78 | hard_negative | `constant_shell_command` | exec.Command with arguments | 21-40 | goroutine or callback | web_request | descriptive | without | - | - | Start a background job from a script name. |
+| 095 | `gpt_sqli_go_0004` | CWE-89 | normal | `plain` | database/sql QueryRow | 21-40 | goroutine or callback | command_line | descriptive | without | early | allow_list | Transfer a balance between two accounts inside a transaction. |
+| 096 | `gpt_pt_go_0012` | CWE-22 | normal | `plain` | os.Create | 21-40 | HTTP handler | database_value | terse | with | early | allow_list_mapping | Write a user's settings file. |
+| 097 | `gpt_sqli_go_0020` | CWE-89 | hard_negative | `bound_via_builder` | database/sql Exec | 11-20 | HTTP handler | web_request | descriptive | without | - | - | List the most recent log entries of a service. |
+| 098 | `gpt_sqli_go_0017` | CWE-89 | normal | `plain` | sqlx | 6-10 | command line tool function | command_line | descriptive | with | late | allow_list | List a user's orders with a given status. |
+| 099 | `gpt_rnd_go_0015` | CWE-338 | normal | `plain` | math/rand | 11-20 | HTTP handler | not_applicable | descriptive | without | middle | secure_generator_api | Generate a CSRF token for a form. |
+| 100 | `gpt_rnd_go_0008` | CWE-338 | no_code | `plain` | none | 6-10 | helper called by another function | not_applicable | descriptive | without | - | - | Compare the lengths of two tokens. |

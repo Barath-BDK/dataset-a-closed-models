@@ -1,0 +1,101 @@
+row_no,batch,sample_id,weakness,case_type,pattern,call_family,target_lines,band,shape,source,names,comments,flaw,fix_type,indirect,task
+1,1,cla_cmdi_c_0021,CWE-78,normal,plain,system,8,6-10,request handler that receives a struct or buffer,network_message,terse,without,early,strict_validation,,Report the disk usage of a folder.
+2,1,cla_rnd_c_0008,CWE-338,hard_negative,ordinary_random_test_data,rand,30,21-40,request handler that receives a struct or buffer,not_applicable,descriptive,with,,,,Generate random names for test fixtures.
+3,1,cla_cmdi_c_0009,CWE-78,safe,plain,execl through sh -c,8,6-10,helper called by another function,database_value,descriptive,without,,,,Rotate the logs of one application.
+4,1,cla_rnd_c_0025,CWE-338,hard_negative,ordinary_random_shuffling,random,15,11-20,small embedded or library utility,not_applicable,descriptive,with,,,,Deal a shuffled deck of cards to four players.
+5,1,cla_sqli_c_0014,CWE-89,hard_negative,integer_forced,mysql_query,30,21-40,small embedded or library utility,database_value,descriptive,with,,,,List the most recent log entries of a service.
+6,1,cla_sqli_c_0021,CWE-89,normal,plain,sqlite3_exec,30,21-40,request handler that receives a struct or buffer,database_value,terse,without,late,allow_list,,Record an audit entry for an administrator action.
+7,1,cla_pt_c_0011,CWE-22,hard_negative,base_name_only,unlink,15,11-20,plain function,function_argument,terse,with,,,,Store a user's avatar image.
+8,1,cla_cmdi_c_0012,CWE-78,normal,plain,execl through sh -c,30,21-40,request handler that receives a struct or buffer,database_value,descriptive,without,middle,allow_list,,Create a snapshot of a virtual machine by name.
+9,1,cla_cmdi_c_0001,CWE-78,safe,plain,execvp,8,6-10,plain function,web_request,descriptive,with,,,,Sync a folder to a remote host over ssh.
+10,1,cla_cmdi_c_0016,CWE-78,no_code,plain,none,8,6-10,helper called by another function,not_applicable,descriptive,without,,,,Pick the larger of two version strings.
+11,2,cla_sqli_c_0015,CWE-89,hard_positive,bound_but_input_identifier,mysql_query,15,11-20,helper called by another function,network_message,descriptive,with,early,allow_list,,Fetch an invoice by its number.
+12,2,cla_pt_c_0010,CWE-22,hard_negative,base_name_only,unlink,55,41-100,request handler that receives a struct or buffer,web_request,descriptive,with,,,,Delete temporary files that match a name.
+13,2,cla_cmdi_c_0022,CWE-78,safe,plain,execl through sh -c,15,11-20,small embedded or library utility,database_value,descriptive,with,,,,Check whether a host answers a network ping.
+14,2,cla_pt_c_0009,CWE-22,normal,plain,open,4,1-5,helper called by another function,web_request,terse,with,early,allow_list_mapping,,Load the translation file for a locale.
+15,2,cla_rnd_c_0005,CWE-338,hard_negative,ordinary_random_games,rand,30,21-40,request handler that receives a struct or buffer,not_applicable,descriptive,without,,,,Pick a random spawn position for an enemy in a game.
+16,2,cla_cmdi_c_0007,CWE-78,normal,plain,execl through sh -c,8,6-10,helper called by another function,network_message,terse,with,middle,strict_validation,,Count the lines of a file with a standard tool.
+17,2,cla_cmdi_c_0011,CWE-78,hard_negative,command_from_fixed_map,popen,15,11-20,plain function,function_argument,terse,with,,,,Run a unit conversion script on a value.
+18,2,cla_pt_c_0024,CWE-22,safe,plain,rename,8,6-10,plain function,command_line,terse,without,,,,Delete temporary files that match a name.
+19,2,cla_cmdi_c_0017,CWE-78,hard_negative,strict_parser_then_no_shell,execl through sh -c,15,11-20,small embedded or library utility,function_argument,terse,with,,,,Run a spell checker on a text file.
+20,2,cla_rnd_c_0007,CWE-338,hard_negative,ordinary_random_retry_jitter,rand,15,11-20,small embedded or library utility,not_applicable,terse,with,,,,Choose a polling interval spread between workers.
+21,3,cla_sqli_c_0009,CWE-89,hard_negative,bound_via_builder,PQexec,8,6-10,request handler that receives a struct or buffer,web_request,descriptive,with,,,,List the employees of a department.
+22,3,cla_pt_c_0014,CWE-22,no_code,plain,none,15,11-20,helper called by another function,not_applicable,terse,without,,,,Return the parent part of a path string.
+23,3,cla_sqli_c_0012,CWE-89,hard_negative,placeholder_list_for_in,PQexec,30,21-40,callback passed as a function pointer,database_value,descriptive,with,,,,Search products whose name contains a keyword.
+24,3,cla_sqli_c_0002,CWE-89,normal,plain,mysql_query,8,6-10,command line tool function (uses argc and argv values),command_line,terse,without,middle,prepared_statement_bind,,Look up the shipping address of an order.
+25,3,cla_pt_c_0019,CWE-22,normal,plain,unlink,55,41-100,plain function,network_message,terse,without,late,path_containment_check,yes,Check whether a named file exists in the storage area.
+26,3,cla_rnd_c_0016,CWE-338,no_code,plain,none,4,1-5,plain function,not_applicable,terse,with,,,,Mask a token for display in a log line.
+27,3,cla_pt_c_0013,CWE-22,hard_positive,single_pass_parent_removal,rename,15,11-20,callback passed as a function pointer,file,terse,with,late,base_name_only,,Restore a document from a version folder.
+28,3,cla_sqli_c_0019,CWE-89,normal,plain,PQexec,55,41-100,helper called by another function,environment,descriptive,with,early,allow_list,,List recent transactions for an account sorted by amount or date.
+29,3,cla_rnd_c_0006,CWE-338,normal,plain,rand,30,21-40,command line tool function (uses argc and argv values),not_applicable,terse,with,middle,secure_generator_api,,Generate an access token for a mobile app.
+30,3,cla_sqli_c_0022,CWE-89,no_code,plain,none,8,6-10,command line tool function (uses argc and argv values),not_applicable,terse,without,,,,Compute the average rating from a list.
+31,4,cla_rnd_c_0012,CWE-338,hard_positive,weak_generator_behind_helper,random,15,11-20,helper called by another function,not_applicable,terse,without,middle,secure_generator_api,yes,Create an OAuth state value for a login redirect.
+32,4,cla_pt_c_0012,CWE-22,normal,plain,unlink,15,11-20,command line tool function (uses argc and argv values),command_line,terse,without,early,path_containment_check,,List the files in a sub folder of the storage area.
+33,4,cla_pt_c_0007,CWE-22,hard_positive,relative_check_misses_absolute,fopen,8,6-10,callback passed as a function pointer,function_argument,descriptive,with,late,path_containment_check,,Fetch a user's uploaded resume.
+34,4,cla_sqli_c_0024,CWE-89,hard_negative,placeholders_only_format,PQexec,15,11-20,request handler that receives a struct or buffer,web_request,terse,with,,,,Find a customer record by email address.
+35,4,cla_pt_c_0002,CWE-22,hard_negative,id_mapped_to_known_file,open,30,21-40,callback passed as a function pointer,file,terse,without,,,,Unzip a theme package into the themes folder.
+36,4,cla_cmdi_c_0008,CWE-78,hard_positive,partial_shell_character_filter,system,15,11-20,command line tool function (uses argc and argv values),command_line,descriptive,with,middle,allow_list,yes,Mount a network share with given options.
+37,4,cla_pt_c_0025,CWE-22,safe,plain,fopen,15,11-20,command line tool function (uses argc and argv values),command_line,terse,with,,,,Remove an old export file.
+38,4,cla_sqli_c_0017,CWE-89,hard_positive,keyword_blocklist,mysql_query,15,11-20,command line tool function (uses argc and argv values),command_line,terse,without,early,prepared_statement_bind,yes,Search a product catalogue with optional filters for price and brand.
+39,4,cla_sqli_c_0006,CWE-89,normal,plain,mysql_query,15,11-20,helper called by another function,database_value,terse,with,middle,prepared_statement_bind,,Delete a user's saved bookmarks that match a title.
+40,4,cla_pt_c_0005,CWE-22,safe,plain,rename,15,11-20,request handler that receives a struct or buffer,web_request,terse,with,,,,Return the text of an uploaded file.
+41,5,cla_rnd_c_0009,CWE-338,normal,plain,random,8,6-10,request handler that receives a struct or buffer,not_applicable,terse,without,early,secure_generator_api,yes,Generate a password reset token to email to a user.
+42,5,cla_pt_c_0006,CWE-22,hard_negative,safe_filename_helper_fixed_folder,rename,55,41-100,small embedded or library utility,network_message,terse,with,,,,Create a backup copy of a document.
+43,5,cla_sqli_c_0004,CWE-89,safe,plain,sqlite3_exec,15,11-20,command line tool function (uses argc and argv values),command_line,descriptive,without,,,,Count the unread messages of a user.
+44,5,cla_pt_c_0016,CWE-22,normal,plain,unlink,8,6-10,helper called by another function,function_argument,descriptive,without,middle,path_containment_check,yes,Save a note under a given name.
+45,5,cla_cmdi_c_0024,CWE-78,normal,plain,system,30,21-40,callback passed as a function pointer,file,descriptive,with,late,allow_list,,Query the status of a container by name.
+46,5,cla_cmdi_c_0020,CWE-78,hard_positive,dash_argument_injection,popen,30,21-40,request handler that receives a struct or buffer,web_request,terse,with,middle,quoting,,Start a background job from a script name.
+47,5,cla_rnd_c_0001,CWE-338,hard_negative,ordinary_random_simulation,rand,15,11-20,callback passed as a function pointer,not_applicable,descriptive,without,,,,Estimate pi with a Monte Carlo simulation.
+48,5,cla_pt_c_0004,CWE-22,hard_positive,check_before_normalising,fopen,8,6-10,helper called by another function,web_request,descriptive,with,middle,allow_list_mapping,,Append a line to a user's activity log.
+49,5,cla_pt_c_0020,CWE-22,normal,plain,fopen,4,1-5,request handler that receives a struct or buffer,database_value,descriptive,with,early,base_name_only,,Append a line to a user's activity log.
+50,5,cla_rnd_c_0024,CWE-338,hard_positive,weak_generator_behind_helper,random,30,21-40,callback passed as a function pointer,not_applicable,terse,without,late,secure_bytes_encoded,yes,Create a verification code for a phone number.
+51,6,cla_rnd_c_0022,CWE-338,safe,plain,rand,8,6-10,request handler that receives a struct or buffer,not_applicable,descriptive,without,,,,Create a password for a guest Wi-Fi voucher.
+52,6,cla_rnd_c_0021,CWE-338,normal,plain,rand,30,21-40,helper called by another function,not_applicable,terse,with,late,rejection_sampling_secure_index,,Create a key for a private download link.
+53,6,cla_pt_c_0017,CWE-22,safe,plain,open,8,6-10,small embedded or library utility,web_request,descriptive,without,,,,Truncate a log file chosen by name.
+54,6,cla_sqli_c_0010,CWE-89,hard_positive,one_branch_bound,PQexec,30,21-40,request handler that receives a struct or buffer,web_request,terse,without,late,allow_list,,Update the status of a support ticket.
+55,6,cla_sqli_c_0008,CWE-89,no_code,plain,none,4,1-5,small embedded or library utility,not_applicable,descriptive,with,,,,Merge two lists without duplicates.
+56,6,cla_cmdi_c_0003,CWE-78,normal,plain,popen,30,21-40,callback passed as a function pointer,command_line,descriptive,with,middle,quoting,,Report the disk usage of a folder.
+57,6,cla_sqli_c_0018,CWE-89,safe,plain,sqlite3_exec,15,11-20,callback passed as a function pointer,command_line,terse,with,,,,Find patients by surname.
+58,6,cla_sqli_c_0011,CWE-89,hard_negative,constant_fragments_only,mysql_query,8,6-10,small embedded or library utility,file,descriptive,with,,,,Fetch the configuration value for a given key and environment.
+59,6,cla_rnd_c_0019,CWE-338,safe,plain,rand,8,6-10,request handler that receives a struct or buffer,not_applicable,descriptive,with,,,,Generate a PIN for a card activation.
+60,6,cla_rnd_c_0014,CWE-338,normal,plain,rand,15,11-20,callback passed as a function pointer,not_applicable,descriptive,with,late,rejection_sampling_secure_index,,Create a one-time code for two-factor sign in.
+61,7,cla_rnd_c_0002,CWE-338,normal,plain,srand,8,6-10,callback passed as a function pointer,not_applicable,terse,with,early,rejection_sampling_secure_index,yes,Issue an API key for a new client.
+62,7,cla_rnd_c_0017,CWE-338,normal,plain,srand,8,6-10,small embedded or library utility,not_applicable,terse,without,early,rejection_sampling_secure_index,,Issue a short-lived upload key.
+63,7,cla_pt_c_0001,CWE-22,hard_negative,id_mapped_to_known_file,open,30,21-40,small embedded or library utility,network_message,descriptive,with,,,,Let a user download a generated report by name.
+64,7,cla_rnd_c_0011,CWE-338,hard_negative,ordinary_random_games,srand,55,41-100,request handler that receives a struct or buffer,not_applicable,descriptive,with,,,,Roll dice for a board game.
+65,7,cla_cmdi_c_0006,CWE-78,normal,plain,execl through sh -c,30,21-40,small embedded or library utility,network_message,descriptive,without,late,argv_no_shell,,Run a spell checker on a text file.
+66,7,cla_sqli_c_0007,CWE-89,normal,plain,sqlite3_exec,55,41-100,callback passed as a function pointer,network_message,terse,without,late,type_conversion,yes,List the files shared with a user.
+67,7,cla_cmdi_c_0015,CWE-78,normal,plain,execvp,4,1-5,command line tool function (uses argc and argv values),command_line,terse,without,early,argv_no_shell,yes,Extract a thumbnail frame from a video file.
+68,7,cla_cmdi_c_0002,CWE-78,hard_positive,validator_accepts_too_much,execvp,55,41-100,command line tool function (uses argc and argv values),command_line,descriptive,without,middle,strict_validation,,Look up the DNS records of a host name.
+69,7,cla_cmdi_c_0013,CWE-78,safe,plain,system,15,11-20,request handler that receives a struct or buffer,database_value,terse,without,,,,Execute a report generator with a chosen template.
+70,7,cla_pt_c_0021,CWE-22,hard_negative,safe_filename_helper_fixed_folder,fopen,30,21-40,plain function,command_line,descriptive,without,,,,Return a preview of a stored image.
+71,8,cla_rnd_c_0023,CWE-338,no_code,plain,none,8,6-10,request handler that receives a struct or buffer,not_applicable,descriptive,with,,,,Compute the entropy of a value from its length and alphabet size.
+72,8,cla_sqli_c_0001,CWE-89,normal,plain,mysql_query,30,21-40,helper called by another function,function_argument,terse,with,late,prepared_statement_bind,,Report order totals grouped by a chosen category.
+73,8,cla_cmdi_c_0023,CWE-78,hard_negative,strict_parser_then_no_shell,system,8,6-10,helper called by another function,file,terse,without,,,,Convert an audio file to another bitrate.
+74,8,cla_cmdi_c_0018,CWE-78,normal,plain,execl through sh -c,30,21-40,command line tool function (uses argc and argv values),command_line,terse,without,early,allow_list,,Print the version of a tool chosen from a list.
+75,8,cla_cmdi_c_0004,CWE-78,hard_negative,all_arguments_shell_quoted,system,8,6-10,request handler that receives a struct or buffer,web_request,descriptive,with,,,,Run a code formatter on a source file.
+76,8,cla_rnd_c_0003,CWE-338,hard_positive,weak_value_hashed,rand,8,6-10,command line tool function (uses argc and argv values),not_applicable,terse,without,middle,rejection_sampling_secure_index,yes,Generate a booking confirmation code.
+77,8,cla_pt_c_0022,CWE-22,hard_positive,prefix_test_without_separator,unlink,15,11-20,request handler that receives a struct or buffer,web_request,terse,without,late,base_name_only,,Read a font file requested by a stylesheet.
+78,8,cla_sqli_c_0013,CWE-89,safe,plain,sqlite3_exec,15,11-20,helper called by another function,file,terse,with,,,,Search a product catalogue with optional filters for price and brand.
+79,8,cla_sqli_c_0023,CWE-89,hard_negative,identifier_allowlist,sqlite3_exec,15,11-20,request handler that receives a struct or buffer,database_value,descriptive,with,,,,Export the orders of a given month.
+80,8,cla_pt_c_0003,CWE-22,normal,plain,fopen,15,11-20,plain function,function_argument,descriptive,with,middle,allow_list_mapping,,Open a certificate file by name.
+81,9,cla_rnd_c_0010,CWE-338,hard_negative,ordinary_random_shuffling,srand,8,6-10,request handler that receives a struct or buffer,not_applicable,descriptive,without,,,,Shuffle a playlist before playing it.
+82,9,cla_pt_c_0023,CWE-22,normal,plain,fopen,30,21-40,request handler that receives a struct or buffer,web_request,descriptive,without,middle,path_containment_check,yes,Restore a document from a version folder.
+83,9,cla_rnd_c_0004,CWE-338,hard_positive,seed_from_clock_or_pid,srand,30,21-40,callback passed as a function pointer,not_applicable,terse,without,early,secure_bytes_encoded,,Issue a ticket secret for a QR code.
+84,9,cla_pt_c_0008,CWE-22,normal,plain,unlink,15,11-20,plain function,command_line,terse,without,early,path_containment_check,,Read a font file requested by a stylesheet.
+85,9,cla_rnd_c_0015,CWE-338,safe,plain,random,15,11-20,helper called by another function,not_applicable,terse,without,,,,Generate a license key for a software installation.
+86,9,cla_cmdi_c_0010,CWE-78,hard_negative,constant_shell_command,execvp,15,11-20,request handler that receives a struct or buffer,web_request,descriptive,with,,,,Convert a document to another format with a converter.
+87,9,cla_sqli_c_0016,CWE-89,hard_negative,placeholder_list_for_in,mysql_query,8,6-10,plain function,file,descriptive,with,,,,List a user's orders with a given status.
+88,9,cla_cmdi_c_0019,CWE-78,hard_negative,argument_list_with_user_data,system,15,11-20,plain function,function_argument,descriptive,with,,,,Show the owner and permissions of a file.
+89,9,cla_cmdi_c_0014,CWE-78,no_code,plain,none,15,11-20,helper called by another function,not_applicable,terse,without,,,,Turn a byte count into a short size label.
+90,9,cla_cmdi_c_0005,CWE-78,hard_positive,dash_argument_injection,popen,55,41-100,small embedded or library utility,command_line,terse,with,late,allow_list,,Back up a directory to another location with a sync tool.
+91,10,cla_sqli_c_0005,CWE-89,normal,plain,mysql_query,8,6-10,plain function,web_request,terse,without,middle,type_conversion,,Count the unread messages of a user.
+92,10,cla_rnd_c_0020,CWE-338,normal,plain,rand,15,11-20,command line tool function (uses argc and argv values),not_applicable,descriptive,with,late,secure_generator_api,,Pick the words of a recovery phrase for a wallet.
+93,10,cla_sqli_c_0020,CWE-89,normal,plain,PQexec,8,6-10,helper called by another function,environment,terse,without,middle,prepared_statement_bind,,Return the top sellers for a given region.
+94,10,cla_rnd_c_0013,CWE-338,safe,plain,srand,55,41-100,small embedded or library utility,not_applicable,descriptive,with,,,,Generate an unlock code for a smart lock.
+95,10,cla_rnd_c_0018,CWE-338,normal,plain,random,15,11-20,plain function,not_applicable,terse,without,late,secure_bytes_encoded,,Issue an invitation link token.
+96,10,cla_pt_c_0018,CWE-22,no_code,plain,none,4,1-5,small embedded or library utility,not_applicable,terse,with,,,,Split a path string into its parts.
+97,10,cla_pt_c_0015,CWE-22,hard_negative,resolve_then_separator_aware_check,unlink,8,6-10,small embedded or library utility,network_message,descriptive,with,,,,Write an exported spreadsheet under a requested name.
+98,10,cla_cmdi_c_0025,CWE-78,normal,plain,execl through sh -c,55,41-100,callback passed as a function pointer,file,terse,with,early,quoting,,Zip the contents of a folder into a named archive.
+99,10,cla_sqli_c_0003,CWE-89,hard_positive,one_branch_bound,PQexec,30,21-40,plain function,file,terse,without,middle,type_conversion,,Return the top sellers for a given region.
+100,10,cla_sqli_c_0025,CWE-89,safe,plain,mysql_query,30,21-40,plain function,environment,terse,with,,,,Return the latest comments on a post.

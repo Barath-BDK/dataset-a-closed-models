@@ -1,0 +1,146 @@
+# P09_claude_python · batch 4 of 10 (10 rows)
+
+**Model:** Claude (use the same exact version for all batches). **New chat for this batch.** Paste `prompts/MASTER_PROMPT.md` first, wait for `ready`, then paste the prompts below one at a time. Save each reply as `submissions/P09_claude_python/replies/<row_no>.json` (for example `001.json`).
+
+## Row 031 · `cla_cmdi_py_0022` · CWE-78 · normal
+
+```text
+Write one Python function for this task: Stop a process by name.
+It must be plainly vulnerable for OS command injection (CWE-78).
+Use this pattern: plain (an ordinary row without a special pattern). Input comes from: a command-line argument.
+Make it about 15 lines long (target band 11-20 lines), written as command line tool function (reads argparse values or sys.argv).
+Preferred call family: subprocess.Popen with shell=True. If it does not fit the task, use the closest natural call of the same kind.
+Names: terse (short names). Comments: none, and no docstring.
+The flaw should sit in the early part of the function. For fixed_code use this fix type: allow_list. The untrusted input must pass through a variable or a small helper step before it reaches the dangerous call.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 032 · `cla_sqli_py_0009` · CWE-89 · hard_negative
+
+```text
+Write one Python function for this task: Find articles that carry a given tag.
+It must be completely safe, while using the dangerous call or looking like the vulnerable form for SQL injection (CWE-89).
+Use this pattern: placeholder_list_for_in (a placeholder list generated to match the length of a list, values bound). Input comes from: a network message.
+Make it about 30 lines long (target band 21-40 lines), written as class method (write the method alone, with self).
+Preferred call family: psycopg2. If it does not fit the task, use the closest natural call of the same kind.
+Names: terse (short names). Comments: a few plain explanatory comment lines or a docstring.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 033 · `cla_sqli_py_0017` · CWE-89 · safe
+
+```text
+Write one Python function for this task: Find events happening in a given city.
+It must be safe, written the standard way for SQL injection (CWE-89).
+Use this pattern: plain (an ordinary row without a special pattern). Input comes from: a web request.
+Make it about 15 lines long (target band 11-20 lines), written as web request handler (Flask, Django or FastAPI style).
+Preferred call family: sqlite3 (written the safe, standard way). If it does not fit the task, use the closest natural call of the same kind.
+Names: descriptive (full words). Comments: a few plain explanatory comment lines or a docstring.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 034 · `cla_sqli_py_0022` · CWE-89 · no_code
+
+```text
+Write one Python function for this task: Convert a status code into a label.
+It must be ordinary code from the same kind of program that does not use any dangerous call for this weakness for SQL injection (CWE-89).
+Use this pattern: plain (an ordinary row without a special pattern). Input comes from: not applicable: the function takes no untrusted input.
+Make it about 8 lines long (target band 6-10 lines), written as plain function.
+Preferred call family: none. If it does not fit the task, use the closest natural call of the same kind.
+Names: descriptive (full words). Comments: none, and no docstring.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 035 · `cla_rnd_py_0007` · CWE-338 · safe
+
+```text
+Write one Python function for this task: Create a private link token for a quiz.
+It must be safe, written the standard way for Weak random generator (CWE-338).
+Use this pattern: plain (an ordinary row without a special pattern). Input comes from: not applicable: the function takes no untrusted input.
+Make it about 15 lines long (target band 11-20 lines), written as helper called by another function.
+Preferred call family: the secure source of the language (secrets, os.urandom or random.SystemRandom). If it does not fit the task, use the closest natural call of the same kind.
+Names: descriptive (full words). Comments: none, and no docstring.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 036 · `cla_sqli_py_0015` · CWE-89 · normal
+
+```text
+Write one Python function for this task: Return the stock quantity for a product code.
+It must be plainly vulnerable for SQL injection (CWE-89).
+Use this pattern: plain (an ordinary row without a special pattern). Input comes from: a command-line argument.
+Make it about 30 lines long (target band 21-40 lines), written as helper called by another function.
+Preferred call family: sqlite3. If it does not fit the task, use the closest natural call of the same kind.
+Names: terse (short names). Comments: a few plain explanatory comment lines or a docstring.
+The flaw should sit in the late part of the function. For fixed_code use this fix type: allow_list. The untrusted input must pass through a variable or a small helper step before it reaches the dangerous call.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 037 · `cla_sqli_py_0010` · CWE-89 · hard_negative
+
+```text
+Write one Python function for this task: Fetch the configuration value for a given key and environment.
+It must be completely safe, while using the dangerous call or looking like the vulnerable form for SQL injection (CWE-89).
+Use this pattern: integer_forced (a number forced to an integer before it is formatted into the query). Input comes from: a command-line argument.
+Make it about 15 lines long (target band 11-20 lines), written as command line tool function (reads argparse values or sys.argv).
+Preferred call family: sqlite3. If it does not fit the task, use the closest natural call of the same kind.
+Names: terse (short names). Comments: none, and no docstring.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 038 · `cla_sqli_py_0005` · CWE-89 · no_code
+
+```text
+Write one Python function for this task: Group a list of records by a key.
+It must be ordinary code from the same kind of program that does not use any dangerous call for this weakness for SQL injection (CWE-89).
+Use this pattern: plain (an ordinary row without a special pattern). Input comes from: not applicable: the function takes no untrusted input.
+Make it about 15 lines long (target band 11-20 lines), written as async function or callback.
+Preferred call family: none. If it does not fit the task, use the closest natural call of the same kind.
+Names: terse (short names). Comments: none, and no docstring.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 039 · `cla_rnd_py_0001` · CWE-338 · hard_negative
+
+```text
+Write one Python function for this task: Roll dice for a board game.
+It must be completely safe, while using the dangerous call or looking like the vulnerable form for Weak random generator (CWE-338).
+Use this pattern: ordinary_random_games (ordinary random used in a game (harmless use)). Input comes from: not applicable: the function takes no untrusted input.
+Make it about 15 lines long (target band 11-20 lines), written as async function or callback.
+Preferred call family: random.choices. If it does not fit the task, use the closest natural call of the same kind.
+Names: descriptive (full words). Comments: a few plain explanatory comment lines or a docstring.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```
+
+## Row 040 · `cla_pt_py_0022` · CWE-22 · normal
+
+```text
+Write one Python function for this task: Rename a document inside the storage folder.
+It must be plainly vulnerable for Path traversal (CWE-22).
+Use this pattern: plain (an ordinary row without a special pattern). Input comes from: a web request.
+Make it about 8 lines long (target band 6-10 lines), written as class method (write the method alone, with self).
+Preferred call family: os.remove. If it does not fit the task, use the closest natural call of the same kind.
+Names: descriptive (full words). Comments: none, and no docstring.
+The flaw should sit in the late part of the function. For fixed_code use this fix type: base_name_only.
+Do not write any comment, name or string that says whether the code is safe or vulnerable.
+Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
+fixed_code and vulnerable_lines are empty for safe code.
+```

@@ -1,0 +1,26 @@
+row_no,batch,sample_id,weakness,case_type,pattern,call_family,target_lines,band,shape,source,names,comments,flaw,fix_type,indirect,task
+1,1,cla_pt_go_0018,CWE-22,normal,plain,os.Create,30,21-40,helper called by another function,database_value,descriptive,with,early,base_name_only,,Unzip a theme package into the themes folder.
+2,1,cla_pt_go_0005,CWE-22,hard_negative,resolve_then_separator_aware_check,http.ServeFile,8,6-10,helper called by another function,file,terse,without,,,,Store a user's avatar image.
+3,1,cla_pt_go_0001,CWE-22,normal,plain,os.Open,8,6-10,method on a struct,web_request,terse,without,middle,path_containment_check,yes,Return a preview of a stored image.
+4,1,cla_pt_go_0023,CWE-22,no_code,plain,none,8,6-10,goroutine or callback,not_applicable,descriptive,with,,,,Format a timestamp for a file listing.
+5,1,cla_pt_go_0008,CWE-22,hard_positive,prefix_test_without_separator,os.ReadFile,8,6-10,method on a struct,function_argument,terse,with,late,path_containment_check,,Read a language pack for a game.
+6,1,cla_pt_go_0010,CWE-22,hard_negative,id_mapped_to_known_file,os.Open,8,6-10,command line tool function (uses flags or os.Args values),command_line,descriptive,without,,,,Read an email template by name.
+7,1,cla_pt_go_0016,CWE-22,normal,plain,os.Create,30,21-40,goroutine or callback,file,terse,without,late,allow_list_mapping,,Read a data file for a selected report.
+8,1,cla_pt_go_0014,CWE-22,safe,plain,archive extraction (archive/zip),8,6-10,HTTP handler (http.HandlerFunc or a handler method),database_value,terse,without,,,,Return the contents of a help page file.
+9,1,cla_pt_go_0006,CWE-22,safe,plain,archive extraction (archive/zip),55,41-100,HTTP handler (http.HandlerFunc or a handler method),web_request,descriptive,without,,,,List the files in a sub folder of the storage area.
+10,1,cla_pt_go_0021,CWE-22,hard_positive,extension_check_only,http.ServeFile,8,6-10,goroutine or callback,command_line,terse,with,middle,base_name_only,yes,Return the text of an uploaded file.
+11,2,cla_pt_go_0019,CWE-22,normal,plain,os.Create,30,21-40,HTTP handler (http.HandlerFunc or a handler method),network_message,terse,with,middle,allow_list_mapping,,Serve a static asset such as an image or stylesheet.
+12,2,cla_pt_go_0012,CWE-22,normal,plain,os.Open,55,41-100,command line tool function (uses flags or os.Args values),command_line,descriptive,without,middle,library_confinement,yes,Save a note under a given name.
+13,2,cla_pt_go_0003,CWE-22,hard_positive,relative_check_misses_absolute,http.ServeFile,8,6-10,command line tool function (uses flags or os.Args values),command_line,terse,without,early,base_name_only,yes,Read the lines of a CSV import file.
+14,2,cla_pt_go_0024,CWE-22,hard_negative,safe_filename_helper_fixed_folder,os.Create,15,11-20,helper called by another function,command_line,descriptive,with,,,,Copy a template file into a user's workspace.
+15,2,cla_pt_go_0017,CWE-22,normal,plain,os.Open,4,1-5,command line tool function (uses flags or os.Args values),command_line,descriptive,with,middle,library_confinement,yes,Load the translation file for a locale.
+16,2,cla_pt_go_0002,CWE-22,normal,plain,os.Open,8,6-10,command line tool function (uses flags or os.Args values),command_line,terse,with,late,base_name_only,yes,Append a line to a user's activity log.
+17,2,cla_pt_go_0013,CWE-22,safe,plain,archive extraction (archive/zip),8,6-10,helper called by another function,web_request,terse,without,,,,Fetch a user's uploaded resume.
+18,2,cla_pt_go_0011,CWE-22,hard_negative,library_confined_access,os.Open,15,11-20,command line tool function (uses flags or os.Args values),command_line,terse,with,,,,Serve a PDF from the document library.
+19,2,cla_pt_go_0022,CWE-22,hard_negative,base_name_only,archive extraction (archive/zip),30,21-40,helper called by another function,network_message,descriptive,with,,,,Hash the contents of a stored file.
+20,2,cla_pt_go_0020,CWE-22,normal,plain,os.Open,8,6-10,command line tool function (uses flags or os.Args values),command_line,terse,with,early,allow_list_mapping,yes,Delete a user's attachment.
+21,3,cla_pt_go_0004,CWE-22,normal,plain,http.ServeFile,55,41-100,goroutine or callback,web_request,descriptive,without,middle,base_name_only,yes,Check whether a named file exists in the storage area.
+22,3,cla_pt_go_0009,CWE-22,hard_negative,safe_filename_helper_fixed_folder,os.ReadFile,30,21-40,plain function,file,descriptive,with,,,,Create a thumbnail file next to the original image.
+23,3,cla_pt_go_0007,CWE-22,safe,plain,os.Open,15,11-20,command line tool function (uses flags or os.Args values),command_line,terse,with,,,,Remove an old export file.
+24,3,cla_pt_go_0025,CWE-22,hard_positive,single_pass_parent_removal,http.ServeFile,30,21-40,plain function,function_argument,terse,without,late,path_containment_check,,Delete a user's attachment.
+25,3,cla_pt_go_0015,CWE-22,no_code,plain,none,4,1-5,command line tool function (uses flags or os.Args values),not_applicable,descriptive,without,,,,Shorten a long name with an ellipsis.

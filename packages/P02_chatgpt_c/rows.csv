@@ -1,0 +1,101 @@
+row_no,batch,sample_id,weakness,case_type,pattern,call_family,target_lines,band,shape,source,names,comments,flaw,fix_type,indirect,task
+1,1,gpt_pt_c_0018,CWE-22,hard_positive,extension_check_only,rename,30,21-40,helper called by another function,command_line,terse,without,late,allow_list_mapping,,Rename a document inside the storage folder.
+2,1,gpt_rnd_c_0002,CWE-338,safe,plain,rand,15,11-20,callback passed as a function pointer,not_applicable,descriptive,with,,,,Create a key for a private download link.
+3,1,gpt_sqli_c_0022,CWE-89,normal,plain,mysql_query,15,11-20,small embedded or library utility,web_request,terse,without,middle,type_conversion,,Check a username and password hash for a login.
+4,1,gpt_sqli_c_0016,CWE-89,no_code,plain,none,15,11-20,request handler that receives a struct or buffer,not_applicable,descriptive,with,,,,Paginate a list in memory.
+5,1,gpt_rnd_c_0011,CWE-338,normal,plain,srand,4,1-5,plain function,not_applicable,descriptive,with,early,secure_generator_api,yes,Create an OAuth state value for a login redirect.
+6,1,gpt_rnd_c_0016,CWE-338,normal,plain,rand,55,41-100,small embedded or library utility,not_applicable,terse,without,late,secure_generator_api,yes,Issue a temporary access code for a visitor badge.
+7,1,gpt_pt_c_0017,CWE-22,normal,plain,rename,30,21-40,request handler that receives a struct or buffer,database_value,descriptive,with,middle,base_name_only,,Return the contents of a help page file.
+8,1,gpt_cmdi_c_0005,CWE-78,hard_positive,validator_accepts_too_much,popen,8,6-10,small embedded or library utility,environment,terse,without,early,allow_list,yes,Send a document to a named printer.
+9,1,gpt_pt_c_0007,CWE-22,safe,plain,rename,8,6-10,small embedded or library utility,web_request,descriptive,with,,,,Return a preview of a stored image.
+10,1,gpt_pt_c_0001,CWE-22,hard_negative,safe_filename_helper_fixed_folder,fopen,55,41-100,helper called by another function,environment,descriptive,without,,,,Count the lines of a stored text file.
+11,2,gpt_rnd_c_0015,CWE-338,hard_negative,ordinary_random_sampling,srand,30,21-40,small embedded or library utility,not_applicable,descriptive,without,,,,Choose which products to feature on the home page.
+12,2,gpt_pt_c_0008,CWE-22,safe,plain,open,30,21-40,request handler that receives a struct or buffer,web_request,terse,with,,,,Rename a document inside the storage folder.
+13,2,gpt_sqli_c_0006,CWE-89,hard_positive,handwritten_escaping,mysql_query,15,11-20,plain function,function_argument,descriptive,with,late,type_conversion,yes,Return the stock quantity for a product code.
+14,2,gpt_pt_c_0022,CWE-22,hard_negative,base_name_only,open,8,6-10,request handler that receives a struct or buffer,web_request,terse,without,,,,Read an email template by name.
+15,2,gpt_pt_c_0025,CWE-22,normal,plain,fopen,4,1-5,command line tool function (uses argc and argv values),command_line,descriptive,without,early,path_containment_check,,Copy a template file into a user's workspace.
+16,2,gpt_pt_c_0010,CWE-22,hard_negative,resolve_then_separator_aware_check,rename,15,11-20,helper called by another function,function_argument,descriptive,with,,,,Read an email template by name.
+17,2,gpt_sqli_c_0021,CWE-89,hard_negative,constant_fragments_only,sqlite3_exec,55,41-100,command line tool function (uses argc and argv values),command_line,descriptive,without,,,,Fetch an invoice by its number.
+18,2,gpt_sqli_c_0002,CWE-89,hard_negative,placeholders_only_format,PQexec,15,11-20,plain function,function_argument,descriptive,without,,,,Find all students enrolled in a course.
+19,2,gpt_cmdi_c_0008,CWE-78,normal,plain,execl through sh -c,4,1-5,callback passed as a function pointer,web_request,descriptive,without,late,strict_validation,,Send a document to a named printer.
+20,2,gpt_sqli_c_0005,CWE-89,normal,plain,PQexec,55,41-100,small embedded or library utility,command_line,descriptive,without,late,type_conversion,yes,Report order totals grouped by a chosen category.
+21,3,gpt_cmdi_c_0009,CWE-78,normal,plain,execvp,55,41-100,command line tool function (uses argc and argv values),command_line,terse,with,late,strict_validation,,Check whether a port is open on a host.
+22,3,gpt_cmdi_c_0004,CWE-78,normal,plain,popen,15,11-20,callback passed as a function pointer,database_value,terse,without,early,argv_no_shell,yes,Print the version of a tool chosen from a list.
+23,3,gpt_sqli_c_0023,CWE-89,normal,plain,sqlite3_exec,30,21-40,command line tool function (uses argc and argv values),command_line,descriptive,with,late,allow_list,,Find events happening in a given city.
+24,3,gpt_pt_c_0009,CWE-22,hard_positive,check_before_normalising,fopen,15,11-20,command line tool function (uses argc and argv values),command_line,terse,without,middle,base_name_only,,Create a thumbnail file next to the original image.
+25,3,gpt_sqli_c_0020,CWE-89,safe,plain,mysql_query,15,11-20,small embedded or library utility,database_value,terse,without,,,,Set the stock quantity of a product after a delivery.
+26,3,gpt_rnd_c_0013,CWE-338,hard_negative,ordinary_random_sampling,rand,30,21-40,command line tool function (uses argc and argv values),not_applicable,descriptive,without,,,,Pick a random sample of users for a satisfaction survey.
+27,3,gpt_rnd_c_0023,CWE-338,hard_negative,ordinary_random_shuffling,srand,30,21-40,command line tool function (uses argc and argv values),not_applicable,terse,with,,,,Shuffle a playlist before playing it.
+28,3,gpt_cmdi_c_0006,CWE-78,hard_negative,user_data_after_end_of_options,system,8,6-10,helper called by another function,environment,descriptive,with,,,,Look up the registration data of a domain.
+29,3,gpt_cmdi_c_0016,CWE-78,hard_negative,argument_list_with_user_data,execvp,8,6-10,helper called by another function,command_line,terse,without,,,,Look up the DNS records of a host name.
+30,3,gpt_rnd_c_0003,CWE-338,normal,plain,rand,55,41-100,plain function,not_applicable,descriptive,with,middle,secure_bytes_encoded,,Generate a bearer token for a service account.
+31,4,gpt_cmdi_c_0017,CWE-78,normal,plain,execvp,30,21-40,request handler that receives a struct or buffer,database_value,terse,with,early,allow_list,,Resize an image to a requested size with an external tool.
+32,4,gpt_sqli_c_0011,CWE-89,hard_negative,bound_via_builder,mysql_query,30,21-40,callback passed as a function pointer,function_argument,descriptive,with,,,,List the most recent log entries of a service.
+33,4,gpt_sqli_c_0012,CWE-89,safe,plain,PQexec,30,21-40,command line tool function (uses argc and argv values),command_line,descriptive,with,,,,Mark a notification as read for a user.
+34,4,gpt_rnd_c_0017,CWE-338,hard_negative,secure_secret_plus_ordinary_random_elsewhere,srand,30,21-40,command line tool function (uses argc and argv values),not_applicable,descriptive,with,,,,Generate an initialization vector for encrypting a file.
+35,4,gpt_cmdi_c_0014,CWE-78,hard_positive,validator_accepts_too_much,execl through sh -c,55,41-100,command line tool function (uses argc and argv values),command_line,terse,with,late,argv_no_shell,,Convert an audio file to another bitrate.
+36,4,gpt_sqli_c_0010,CWE-89,safe,plain,sqlite3_exec,8,6-10,plain function,environment,terse,with,,,,Remove a product from a wishlist.
+37,4,gpt_sqli_c_0008,CWE-89,normal,plain,sqlite3_exec,4,1-5,helper called by another function,file,terse,without,middle,prepared_statement_bind,,Search products whose name contains a keyword.
+38,4,gpt_rnd_c_0001,CWE-338,hard_positive,secure_sounding_name_weak_generator,random,30,21-40,plain function,not_applicable,terse,without,early,secure_bytes_encoded,,Issue a device registration token.
+39,4,gpt_pt_c_0004,CWE-22,normal,plain,open,30,21-40,callback passed as a function pointer,web_request,terse,with,late,base_name_only,,Read the first line of a stored file.
+40,4,gpt_sqli_c_0009,CWE-89,hard_positive,keyword_blocklist,PQexec,15,11-20,callback passed as a function pointer,command_line,descriptive,with,early,allow_list,yes,Look up the shipping address of an order.
+41,5,gpt_cmdi_c_0021,CWE-78,hard_negative,constant_shell_command,execvp,15,11-20,plain function,command_line,descriptive,without,,,,Search a log file for lines containing a term.
+42,5,gpt_rnd_c_0008,CWE-338,normal,plain,rand,55,41-100,callback passed as a function pointer,not_applicable,descriptive,without,late,secure_generator_api,,Generate a one-time login link token.
+43,5,gpt_cmdi_c_0019,CWE-78,normal,plain,popen,4,1-5,plain function,web_request,descriptive,with,early,allow_list,yes,Back up a directory to another location with a sync tool.
+44,5,gpt_pt_c_0002,CWE-22,normal,plain,unlink,15,11-20,callback passed as a function pointer,network_message,descriptive,without,early,base_name_only,yes,Read a user's saved draft.
+45,5,gpt_sqli_c_0019,CWE-89,hard_negative,integer_forced,PQexec,15,11-20,callback passed as a function pointer,web_request,terse,without,,,,List the appointments of a doctor on a given day.
+46,5,gpt_cmdi_c_0010,CWE-78,safe,plain,popen,30,21-40,small embedded or library utility,command_line,descriptive,without,,,,Run a linter on a submitted file and return its report.
+47,5,gpt_cmdi_c_0018,CWE-78,no_code,plain,none,4,1-5,command line tool function (uses argc and argv values),not_applicable,terse,with,,,,Format a duration in seconds as hours and minutes.
+48,5,gpt_rnd_c_0007,CWE-338,safe,plain,rand,15,11-20,small embedded or library utility,not_applicable,descriptive,without,,,,Create a list of recovery codes for an account.
+49,5,gpt_pt_c_0020,CWE-22,no_code,plain,none,4,1-5,plain function,not_applicable,terse,without,,,,Normalize repeated slashes in a path string.
+50,5,gpt_cmdi_c_0001,CWE-78,hard_negative,argument_list_with_user_data,system,30,21-40,callback passed as a function pointer,web_request,descriptive,without,,,,Query a package manager for the version of a package.
+51,6,gpt_sqli_c_0024,CWE-89,hard_positive,bound_but_input_identifier,PQexec,55,41-100,callback passed as a function pointer,web_request,terse,with,early,prepared_statement_bind,,Find a vehicle by its registration number.
+52,6,gpt_pt_c_0016,CWE-22,normal,plain,unlink,8,6-10,request handler that receives a struct or buffer,web_request,descriptive,without,early,allow_list_mapping,,Load a configuration file for a named profile.
+53,6,gpt_pt_c_0011,CWE-22,normal,plain,rename,55,41-100,request handler that receives a struct or buffer,web_request,descriptive,without,early,path_containment_check,yes,Check whether a named file exists in the storage area.
+54,6,gpt_rnd_c_0018,CWE-338,no_code,plain,none,8,6-10,request handler that receives a struct or buffer,not_applicable,terse,with,,,,Compute the check digit of a number.
+55,6,gpt_rnd_c_0022,CWE-338,normal,plain,srand,4,1-5,helper called by another function,not_applicable,terse,without,early,secure_bytes_encoded,,Create a token for confirming a newsletter subscription.
+56,6,gpt_rnd_c_0004,CWE-338,normal,plain,rand,30,21-40,request handler that receives a struct or buffer,not_applicable,descriptive,without,middle,secure_bytes_encoded,yes,Generate a temporary password for a new account.
+57,6,gpt_rnd_c_0010,CWE-338,normal,plain,srand,15,11-20,command line tool function (uses argc and argv values),not_applicable,terse,without,late,secure_bytes_encoded,,Create a challenge string for a login handshake.
+58,6,gpt_pt_c_0005,CWE-22,hard_positive,prefix_test_without_separator,open,15,11-20,request handler that receives a struct or buffer,web_request,terse,without,early,allow_list_mapping,,Hash the contents of a stored file.
+59,6,gpt_cmdi_c_0007,CWE-78,normal,plain,popen,15,11-20,command line tool function (uses argc and argv values),command_line,descriptive,with,late,argv_no_shell,yes,Add a user to a group with the system tool.
+60,6,gpt_cmdi_c_0002,CWE-78,hard_positive,validation_of_other_variable,system,30,21-40,plain function,database_value,terse,without,middle,argv_no_shell,,Run a database backup tool for one schema.
+61,7,gpt_pt_c_0023,CWE-22,hard_negative,library_confined_access,unlink,15,11-20,request handler that receives a struct or buffer,web_request,descriptive,with,,,,Return the contents of a shared snippet file.
+62,7,gpt_cmdi_c_0003,CWE-78,safe,plain,execvp,8,6-10,command line tool function (uses argc and argv values),command_line,descriptive,without,,,,Show the commit history of a repository for one author.
+63,7,gpt_rnd_c_0021,CWE-338,no_code,plain,none,15,11-20,callback passed as a function pointer,not_applicable,terse,with,,,,Format a recovery code list for printing.
+64,7,gpt_rnd_c_0024,CWE-338,hard_positive,secure_sounding_name_weak_generator,random,15,11-20,callback passed as a function pointer,not_applicable,descriptive,with,late,secure_generator_api,,Create a cookie value for a remember-me login.
+65,7,gpt_rnd_c_0019,CWE-338,hard_positive,weak_value_hashed,random,15,11-20,helper called by another function,not_applicable,terse,without,early,secure_generator_api,yes,Create a private link token for a quiz.
+66,7,gpt_cmdi_c_0022,CWE-78,hard_negative,user_data_after_end_of_options,popen,8,6-10,request handler that receives a struct or buffer,web_request,terse,without,,,,Compute the checksum of a file.
+67,7,gpt_cmdi_c_0025,CWE-78,no_code,plain,none,4,1-5,plain function,not_applicable,terse,without,,,,Compute a percentage of a total.
+68,7,gpt_cmdi_c_0020,CWE-78,hard_negative,argument_list_with_user_data,popen,30,21-40,plain function,environment,descriptive,with,,,,Check whether a host answers a network ping.
+69,7,gpt_rnd_c_0025,CWE-338,hard_negative,fixed_seed_reproducible,random,8,6-10,helper called by another function,not_applicable,terse,with,,,,Draw the same sample every run for a reproducible experiment.
+70,7,gpt_cmdi_c_0011,CWE-78,normal,plain,execl through sh -c,30,21-40,helper called by another function,command_line,terse,without,early,argv_no_shell,,Show the fingerprint of an ssh key file.
+71,8,gpt_cmdi_c_0013,CWE-78,safe,plain,execvp,15,11-20,helper called by another function,environment,descriptive,without,,,,Pack an installer from a folder with a packaging tool.
+72,8,gpt_pt_c_0003,CWE-22,safe,plain,unlink,30,21-40,plain function,network_message,descriptive,with,,,,Serve a static asset such as an image or stylesheet.
+73,8,gpt_pt_c_0006,CWE-22,hard_negative,resolve_then_separator_aware_check,unlink,30,21-40,small embedded or library utility,database_value,descriptive,with,,,,Open a video file for streaming.
+74,8,gpt_sqli_c_0018,CWE-89,no_code,plain,none,8,6-10,request handler that receives a struct or buffer,not_applicable,descriptive,without,,,,Compute an age from a birth date.
+75,8,gpt_sqli_c_0003,CWE-89,hard_positive,keyword_blocklist,PQexec,55,41-100,small embedded or library utility,file,terse,with,late,type_conversion,,Find books by author name.
+76,8,gpt_cmdi_c_0012,CWE-78,safe,plain,system,8,6-10,plain function,network_message,descriptive,without,,,,Compress a log file after rotation.
+77,8,gpt_cmdi_c_0024,CWE-78,normal,plain,popen,15,11-20,command line tool function (uses argc and argv values),command_line,terse,without,middle,quoting,,Resize an image to a requested size with an external tool.
+78,8,gpt_pt_c_0024,CWE-22,no_code,plain,none,15,11-20,plain function,not_applicable,terse,without,,,,Compute a human readable size label.
+79,8,gpt_sqli_c_0015,CWE-89,normal,plain,mysql_query,8,6-10,command line tool function (uses argc and argv values),command_line,terse,without,early,type_conversion,,Delete expired sessions older than a number of days.
+80,8,gpt_sqli_c_0025,CWE-89,hard_negative,bound_via_builder,PQexec,30,21-40,request handler that receives a struct or buffer,web_request,descriptive,without,,,,Get the loyalty points of a customer.
+81,9,gpt_rnd_c_0005,CWE-338,normal,plain,random,15,11-20,callback passed as a function pointer,not_applicable,terse,with,early,secure_generator_api,,Create an encryption key for a local vault.
+82,9,gpt_pt_c_0012,CWE-22,hard_positive,extension_check_only,unlink,8,6-10,plain function,command_line,terse,with,early,path_containment_check,yes,Delete a user's attachment.
+83,9,gpt_rnd_c_0012,CWE-338,hard_negative,ordinary_random_retry_jitter,srand,30,21-40,plain function,not_applicable,terse,with,,,,Compute a retry delay with random jitter so clients do not retry together.
+84,9,gpt_sqli_c_0007,CWE-89,normal,plain,PQexec,8,6-10,helper called by another function,network_message,descriptive,with,middle,type_conversion,,Look up a city by postal code.
+85,9,gpt_rnd_c_0020,CWE-338,safe,plain,random,30,21-40,command line tool function (uses argc and argv values),not_applicable,descriptive,with,,,,Generate a CSRF token for a form.
+86,9,gpt_sqli_c_0017,CWE-89,normal,plain,sqlite3_exec,30,21-40,request handler that receives a struct or buffer,database_value,descriptive,without,early,allow_list,,Return a page of articles sorted by a column chosen by the caller.
+87,9,gpt_pt_c_0021,CWE-22,normal,plain,rename,4,1-5,command line tool function (uses argc and argv values),command_line,terse,with,late,base_name_only,,Load the translation file for a locale.
+88,9,gpt_sqli_c_0001,CWE-89,hard_negative,integer_forced,PQexec,30,21-40,plain function,web_request,descriptive,without,,,,Set the stock quantity of a product after a delivery.
+89,9,gpt_cmdi_c_0023,CWE-78,hard_positive,dash_argument_injection,system,15,11-20,callback passed as a function pointer,command_line,terse,with,early,strict_validation,yes,Run a linter on a submitted file and return its report.
+90,9,gpt_pt_c_0014,CWE-22,hard_negative,safe_filename_helper_fixed_folder,fopen,8,6-10,small embedded or library utility,file,terse,with,,,,Read a plugin manifest from a plugin folder.
+91,10,gpt_cmdi_c_0015,CWE-78,hard_negative,all_arguments_shell_quoted,execl through sh -c,8,6-10,helper called by another function,file,descriptive,without,,,,Unpack an uploaded archive into a working folder.
+92,10,gpt_pt_c_0013,CWE-22,safe,plain,open,8,6-10,callback passed as a function pointer,web_request,terse,without,,,,Write a crash report file under a given id.
+93,10,gpt_rnd_c_0014,CWE-338,hard_negative,ordinary_random_test_data,rand,8,6-10,plain function,not_applicable,descriptive,with,,,,Create random order amounts for a demo database.
+94,10,gpt_pt_c_0015,CWE-22,normal,plain,open,15,11-20,command line tool function (uses argc and argv values),command_line,terse,without,middle,allow_list_mapping,,Create a thumbnail file next to the original image.
+95,10,gpt_sqli_c_0014,CWE-89,normal,plain,sqlite3_exec,15,11-20,plain function,network_message,terse,without,middle,allow_list,,Find all students enrolled in a course.
+96,10,gpt_sqli_c_0013,CWE-89,safe,plain,sqlite3_exec,15,11-20,helper called by another function,network_message,terse,without,,,,Find events happening in a given city.
+97,10,gpt_pt_c_0019,CWE-22,normal,plain,rename,30,21-40,command line tool function (uses argc and argv values),command_line,terse,with,early,base_name_only,yes,Unzip a theme package into the themes folder.
+98,10,gpt_sqli_c_0004,CWE-89,hard_negative,identifier_allowlist,sqlite3_exec,8,6-10,callback passed as a function pointer,function_argument,terse,with,,,,Fetch the configuration value for a given key and environment.
+99,10,gpt_rnd_c_0009,CWE-338,hard_positive,weak_value_hashed,random,15,11-20,small embedded or library utility,not_applicable,terse,without,early,secure_bytes_encoded,,Generate a session key for an encrypted chat.
+100,10,gpt_rnd_c_0006,CWE-338,safe,plain,random,8,6-10,request handler that receives a struct or buffer,not_applicable,descriptive,with,,,,Create a session identifier for a signed-in user.

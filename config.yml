@@ -1,0 +1,9 @@
+# Fixed settings for the whole dataset. The lead fills in the exact versions before work starts.
+models:
+  chatgpt: "TBD (exact name as shown in the model picker)"
+  gemini: "TBD (exact name)"
+  claude: "TBD (exact name)"
+judge_model: "TBD (one fixed Claude version for the final label pass)"
+temperature_api: 0.7
+rows_per_chat: 10
+prompt_id: "P1-t0.7"

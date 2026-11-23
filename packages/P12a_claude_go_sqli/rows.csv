@@ -1,0 +1,26 @@
+row_no,batch,sample_id,weakness,case_type,pattern,call_family,target_lines,band,shape,source,names,comments,flaw,fix_type,indirect,task
+1,1,cla_sqli_go_0019,CWE-89,normal,plain,gorm Raw,55,41-100,helper called by another function,web_request,descriptive,without,early,query_builder,yes,Look up a city by postal code.
+2,1,cla_sqli_go_0001,CWE-89,normal,plain,database/sql QueryRow,4,1-5,method on a struct,database_value,terse,with,middle,bound_parameters,,Insert a new product review.
+3,1,cla_sqli_go_0015,CWE-89,normal,plain,database/sql Exec,8,6-10,goroutine or callback,web_request,terse,with,late,allow_list,yes,Find books by author name.
+4,1,cla_sqli_go_0011,CWE-89,hard_positive,bound_but_input_identifier,database/sql Query,8,6-10,method on a struct,network_message,descriptive,without,late,type_conversion,yes,Get the loyalty points of a customer.
+5,1,cla_sqli_go_0023,CWE-89,hard_positive,handwritten_escaping,gorm Raw,30,21-40,helper called by another function,network_message,descriptive,with,middle,query_builder,yes,Count signups per day for a date range.
+6,1,cla_sqli_go_0004,CWE-89,hard_positive,bound_but_input_identifier,database/sql QueryRow,8,6-10,method on a struct,command_line,descriptive,with,late,type_conversion,,Mark a notification as read for a user.
+7,1,cla_sqli_go_0018,CWE-89,hard_negative,integer_forced,database/sql QueryRow,8,6-10,command line tool function (uses flags or os.Args values),command_line,descriptive,without,,,,Delete expired sessions older than a number of days.
+8,1,cla_sqli_go_0016,CWE-89,no_code,plain,none,15,11-20,HTTP handler (http.HandlerFunc or a handler method),not_applicable,descriptive,with,,,,Merge two lists without duplicates.
+9,1,cla_sqli_go_0013,CWE-89,normal,plain,sqlx,15,11-20,HTTP handler (http.HandlerFunc or a handler method),web_request,descriptive,with,early,type_conversion,,Find a customer record by email address.
+10,1,cla_sqli_go_0008,CWE-89,normal,plain,sqlx,8,6-10,command line tool function (uses flags or os.Args values),command_line,descriptive,with,middle,bound_parameters,yes,Find a vehicle by its registration number.
+11,2,cla_sqli_go_0017,CWE-89,normal,plain,sqlx,4,1-5,plain function,web_request,terse,without,early,type_conversion,,Return the stock quantity for a product code.
+12,2,cla_sqli_go_0022,CWE-89,hard_negative,bound_via_builder,sqlx,8,6-10,helper called by another function,web_request,terse,without,,,,List recent transactions for an account sorted by amount or date.
+13,2,cla_sqli_go_0009,CWE-89,normal,plain,gorm Raw,15,11-20,method on a struct,web_request,terse,with,early,query_builder,,Find all accounts created through an affiliate code.
+14,2,cla_sqli_go_0020,CWE-89,no_code,plain,none,4,1-5,command line tool function (uses flags or os.Args values),not_applicable,terse,without,,,,Format an order total with tax and currency.
+15,2,cla_sqli_go_0002,CWE-89,safe,plain,gorm Raw,30,21-40,plain function,function_argument,terse,with,,,,Check a username and password hash for a login.
+16,2,cla_sqli_go_0014,CWE-89,hard_negative,placeholder_list_for_in,database/sql Query,30,21-40,helper called by another function,file,terse,without,,,,Find all accounts created through an affiliate code.
+17,2,cla_sqli_go_0010,CWE-89,hard_negative,placeholders_only_format,database/sql Query,8,6-10,plain function,command_line,terse,with,,,,Find articles that carry a given tag.
+18,2,cla_sqli_go_0012,CWE-89,normal,plain,sqlx,4,1-5,plain function,command_line,descriptive,without,early,query_builder,,Find events happening in a given city.
+19,2,cla_sqli_go_0005,CWE-89,hard_negative,placeholder_list_for_in,sqlx,30,21-40,plain function,function_argument,terse,with,,,,List the most recent log entries of a service.
+20,2,cla_sqli_go_0025,CWE-89,hard_negative,bound_via_builder,database/sql Exec,55,41-100,method on a struct,command_line,descriptive,without,,,,Export the orders of a given month.
+21,3,cla_sqli_go_0021,CWE-89,hard_negative,constant_fragments_only,database/sql Exec,15,11-20,helper called by another function,function_argument,terse,with,,,,Find patients by surname.
+22,3,cla_sqli_go_0003,CWE-89,safe,plain,sqlx,15,11-20,command line tool function (uses flags or os.Args values),command_line,terse,without,,,,List the employees of a department.
+23,3,cla_sqli_go_0007,CWE-89,safe,plain,sqlx,55,41-100,goroutine or callback,network_message,terse,with,,,,Find articles that carry a given tag.
+24,3,cla_sqli_go_0006,CWE-89,hard_positive,one_branch_bound,database/sql Query,30,21-40,command line tool function (uses flags or os.Args values),command_line,terse,without,middle,allow_list,yes,List recent transactions for an account sorted by amount or date.
+25,3,cla_sqli_go_0024,CWE-89,safe,plain,database/sql QueryRow,15,11-20,HTTP handler (http.HandlerFunc or a handler method),web_request,terse,without,,,,Search a phone book by name prefix.
