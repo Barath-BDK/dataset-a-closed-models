@@ -63,5 +63,3 @@ Reply with JSON only:
    - **Claude disagrees** → look at the code yourself. If Claude is right, fix the row (generate again) or write `SKIP` with the reason. If you think Claude is wrong, keep the row and write one line under the answer in your hand-in file: `NOTE: Claude said vulnerable, but <your reason>`.
 
 Weakness names: CWE-89 SQL injection · CWE-78 OS command injection · CWE-22 Path traversal · CWE-338 Weak random generator.
-
-If you want to use the ready-made command-line version of Check B instead (for the lead): `python tools/make_judge_prompts.py <package>`.

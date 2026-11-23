@@ -124,19 +124,6 @@ You can do everything on the website: open `submissions/<package>.txt` on GitHub
 
 ---
 
-## 6. For the lead (after everyone has handed in)
-
-The checking of the labels with scripts is done once by the lead, not by each person:
-
-```bash
-python tools/assemble.py <package> --generator "<exact model name>"   # builds the 30-column file + qa_report.md from the .txt
-python tools/make_judge_prompts.py <package>                          # Claude label pass prompts (see prompts/CLAUDE_JUDGE_PROMPT.md)
-python tools/apply_judge.py <package> --judge-version "<claude version>"
-python tools/validate.py <package>                                    # counts and format check
-```
-
-Also: fill `config.yml`; the packages merge into one Excel or JSON Lines file per model (see section 10 of the specification: pilot of 48 rows, then batches of about 200, then the final files and count table). Where possible the labels should also be tested by running the code with a harmless attack (section 8 of the specification).
-
 ## Where is what
 
 ```
@@ -144,8 +131,7 @@ your GitHub issues              the instructions, the master prompt and the prom
 submissions/<package>.txt      your hand-in file (the only file you hand in)
 prompts/MASTER_PROMPT.md       the master prompt (also at the top of every issue)
 prompts/CLAUDE_CHECK_PROMPT.md the two checks to do in the browser with Claude
-docs/Dataset_A_Closed_Models.docx   the full specification (read it once if you like)
-packages/, data/, issues/, tools/    material of the lead; you can ignore these
+everything else                 internal project files; you can ignore them
 ```
 
 ## Rules of a good row (the master prompt already tells the AI these)
