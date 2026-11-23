@@ -1,9 +1,10 @@
-# Fixed settings for the whole dataset. The lead fills in the exact versions before work starts.
+﻿# Fixed settings for the whole dataset.
+# Everyone uses the base free model of each service. Write the exact name the chat window shows in the "generator" column.
 models:
-  chatgpt: "TBD (exact name as shown in the model picker)"
-  gemini: "TBD (exact name)"
-  claude: "TBD (exact name)"
-judge_model: "TBD (one fixed Claude version for the final label pass)"
+  chatgpt: "base free model (write the exact name shown in the chat window)"
+  gemini: "base free model (write the exact name shown in the chat window)"
+  claude: "base free model (write the exact name shown in the chat window)"
+judge_model: "Claude base free model (the same one for the whole final label pass)"
 temperature_api: 0.7
 rows_per_chat: 10
 prompt_id: "P1-t0.7"
