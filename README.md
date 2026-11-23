@@ -46,7 +46,7 @@ git checkout -b dev/<your-github-username>
 git push -u origin dev/<your-github-username>
 ```
 
-This makes your **personal branch** `dev/<your-github-username>` (a copy of `main` that is only yours). Never work on `main` directly: it is locked and only accepts pull requests.
+This makes your **personal branch** `dev/<your-github-username>` (a copy of `main` that is only yours). Never work on `main` directly.
 
 ---
 

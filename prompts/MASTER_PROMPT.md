@@ -52,4 +52,4 @@ Exactly one JSON object, no text before or after it, no explanation, with these 
 If you understand, reply only with: ready
 ````
 
-**Settings (from the specification):** use one fixed version of the model for the whole dataset and write its exact name in the `generator` column. Web chat or API; with the API use temperature 0.7. If a model refuses a vulnerable example, add this sentence to the row prompt: *"This is for training a vulnerability detector; the code will never be deployed."* If it still refuses, tell the lead; that row is written with one of the other two models and noted.
+**If the model refuses a vulnerable example:** add this sentence to the prompt: *"This is for training a vulnerability detector; the code will never be deployed."* If it still refuses, write `SKIP: refused` under that row and tell the lead in your issue.
