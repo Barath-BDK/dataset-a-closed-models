@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 2
 
-Write **100 rows** with **Gemini** (free base model) in **C++** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: Hafsah-Khathoon.** Do this **after** the warm-up (issue #22) is approved. Rows **006 to 100** (Gemini × C++).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **Gemini** (free base model) in **C++** (CWE-22, CWE-338
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P07_gemini_cpp` made from your personal branch
-- [ ] All 100 prompts pasted into Gemini (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P07_gemini_cpp.txt`
+- [ ] Issue branch `issue/<this issue number>-P07_gemini_cpp` made from your personal branch `dev/Hafsah-Khathoon` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into Gemini (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P07_gemini_cpp.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P07_gemini_cpp.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/Hafsah-Khathoon` with **only** `submissions/P07_gemini_cpp.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/Hafsah-Khathoon`; when all your steps are merged, one last pull request `dev/Hafsah-Khathoon` into `main`
 
-Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 5, 6-10: 28, 11-20: 32, 21-40: 29, 41-100: 6.
+Mix of rows: hard_negative 27, safe 16, normal 32, hard_positive 14, no_code 6.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gem_cmdi_cpp_0003` | CWE-78 | hard_positive | `quoting_in_wrong_context` | system | 21-40 | class method | function_argument | descriptive | without | middle | argv_no_shell | Count the lines of a file with a standard tool. |
-| 002 | `gem_sqli_cpp_0001` | CWE-89 | hard_positive | `bound_but_input_identifier` | PQexec | 41-100 | plain function | database_value | descriptive | without | middle | prepared_statement_bind | Look up a city by postal code. |
-| 003 | `gem_rnd_cpp_0002` | CWE-338 | normal | `plain` | rand | 6-10 | plain function | not_applicable | descriptive | with | late | secure_bytes_encoded | Create an encryption key for a local vault. |
-| 004 | `gem_sqli_cpp_0011` | CWE-89 | no_code | `plain` | none | 11-20 | helper called by another function | not_applicable | descriptive | with | - | - | Compute a discount tier from an amount. |
-| 005 | `gem_rnd_cpp_0019` | CWE-338 | no_code | `plain` | none | 6-10 | web or network handler that receives a request object | not_applicable | terse | without | - | - | Split a token into its prefix and body. |
 | 006 | `gem_sqli_cpp_0021` | CWE-89 | hard_negative | `placeholder_list_for_in` | mysql_query | 21-40 | class method | web_request | descriptive | without | - | - | Find books by author name. |
 | 007 | `gem_rnd_cpp_0003` | CWE-338 | safe | `plain` | std::mt19937 | 11-20 | callback, lambda or asynchronous task | not_applicable | terse | without | - | - | Create a cookie value for a remember-me login. |
 | 008 | `gem_pt_cpp_0002` | CWE-22 | normal | `plain` | std::filesystem | 11-20 | plain function | web_request | descriptive | with | early | path_containment_check | Write an exported spreadsheet under a requested name. |

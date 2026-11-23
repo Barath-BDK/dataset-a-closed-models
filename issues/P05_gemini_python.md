@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 3
 
-Write **100 rows** with **Gemini** (free base model) in **Python** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: dHEENA0644.** Do this **after** the warm-up (issue #20) is approved. Rows **006 to 100** (Gemini × Python).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **Gemini** (free base model) in **Python** (CWE-22, CWE-
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P05_gemini_python` made from your personal branch
-- [ ] All 100 prompts pasted into Gemini (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P05_gemini_python.txt`
+- [ ] Issue branch `issue/<this issue number>-P05_gemini_python` made from your personal branch `dev/dHEENA0644` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into Gemini (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P05_gemini_python.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P05_gemini_python.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/dHEENA0644` with **only** `submissions/P05_gemini_python.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/dHEENA0644`; when all your steps are merged, one last pull request `dev/dHEENA0644` into `main`
 
-Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 11, 6-10: 26, 11-20: 34, 21-40: 21, 41-100: 8.
+Mix of rows: normal 32, hard_negative 25, hard_positive 16, safe 14, no_code 8.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gem_pt_py_0022` | CWE-22 | hard_negative | `library_confined_access` | archive extraction (zipfile or tarfile) | 11-20 | web request handler | web_request | terse | with | - | - | Remove an old export file. |
-| 002 | `gem_rnd_py_0017` | CWE-338 | safe | `plain` | random.choices | 21-40 | class method | not_applicable | descriptive | without | - | - | Issue an API key for a new client. |
-| 003 | `gem_pt_py_0024` | CWE-22 | safe | `plain` | os.remove | 41-100 | web request handler | web_request | terse | with | - | - | Report the size of a stored file. |
-| 004 | `gem_sqli_py_0010` | CWE-89 | normal | `plain` | MySQL driver (PyMySQL or mysql-connector) | 11-20 | class method | network_message | terse | without | late | allow_list | Count signups per day for a date range. |
-| 005 | `gem_sqli_py_0016` | CWE-89 | hard_negative | `constant_fragments_only` | Django raw() | 21-40 | class method | function_argument | descriptive | without | - | - | Find all students enrolled in a course. |
 | 006 | `gem_sqli_py_0001` | CWE-89 | normal | `plain` | sqlite3 | 21-40 | async function or callback | function_argument | terse | with | early | bound_parameters | Export the orders of a given month. |
 | 007 | `gem_sqli_py_0013` | CWE-89 | hard_negative | `bound_via_builder` | sqlite3 | 21-40 | plain function | web_request | terse | with | - | - | Find events happening in a given city. |
 | 008 | `gem_cmdi_py_0004` | CWE-78 | hard_positive | `quoting_in_wrong_context` | subprocess.Popen with shell=True | 21-40 | web request handler | web_request | descriptive | without | late | strict_validation | Run a unit conversion script on a value. |

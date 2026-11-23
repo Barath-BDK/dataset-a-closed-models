@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 3
 
-Write **100 rows** with **Claude** (free base model) in **Python** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: kanishkagopiramanan-ai.** Do this **after** the warm-up (issue #24) is approved. Rows **006 to 100** (Claude × Python).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **Claude** (free base model) in **Python** (CWE-22, CWE-
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P09_claude_python` made from your personal branch
-- [ ] All 100 prompts pasted into Claude (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P09_claude_python.txt`
+- [ ] Issue branch `issue/<this issue number>-P09_claude_python` made from your personal branch `dev/kanishkagopiramanan-ai` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into Claude (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P09_claude_python.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P09_claude_python.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/kanishkagopiramanan-ai` with **only** `submissions/P09_claude_python.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/kanishkagopiramanan-ai`; when all your steps are merged, one last pull request `dev/kanishkagopiramanan-ai` into `main`
 
-Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 11, 6-10: 21, 11-20: 29, 21-40: 27, 41-100: 12.
+Mix of rows: hard_positive 16, hard_negative 26, normal 31, no_code 8, safe 14.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `cla_rnd_py_0023` | CWE-338 | normal | `plain` | random.choices | 11-20 | command line tool function | not_applicable | descriptive | with | late | rejection_sampling_secure_index | Create an unguessable id for a private upload. |
-| 002 | `cla_cmdi_py_0012` | CWE-78 | hard_negative | `command_from_fixed_map` | subprocess.check_output | 21-40 | plain function | web_request | terse | without | - | - | Read the expiry date of a certificate file. |
-| 003 | `cla_cmdi_py_0021` | CWE-78 | normal | `plain` | subprocess.Popen with shell=True | 11-20 | command line tool function | command_line | terse | with | middle | strict_validation | Convert an audio file to another bitrate. |
-| 004 | `cla_pt_py_0019` | CWE-22 | safe | `plain` | shutil.copy | 21-40 | helper called by another function | environment | descriptive | without | - | - | Rename a document inside the storage folder. |
-| 005 | `cla_pt_py_0025` | CWE-22 | safe | `plain` | os.remove | 21-40 | class method | web_request | terse | without | - | - | Move a processed file to an archive folder. |
 | 006 | `cla_pt_py_0006` | CWE-22 | hard_positive | `relative_check_misses_absolute` | open | 11-20 | web request handler | web_request | descriptive | with | late | base_name_only | Return the contents of a help page file. |
 | 007 | `cla_pt_py_0024` | CWE-22 | hard_positive | `extension_check_only` | open | 21-40 | async function or callback | web_request | descriptive | with | middle | base_name_only | Store a user's avatar image. |
 | 008 | `cla_cmdi_py_0009` | CWE-78 | hard_negative | `strict_parser_then_no_shell` | os.popen | 6-10 | helper called by another function | command_line | descriptive | with | - | - | Run a spell checker on a text file. |

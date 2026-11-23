@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 3 of 3: extra package
 
-Write **25 rows** with **Claude** (free base model) in **Go** (CWE-22).
+**Assigned to: kanishkagopiramanan-ai.** Do this after your other steps. All 25 rows (Claude × Go × CWE-22).
 
 | | |
 |---|---|
@@ -11,16 +11,16 @@ Write **25 rows** with **Claude** (free base model) in **Go** (CWE-22).
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P12c_claude_go_pt` made from your personal branch
-- [ ] All 25 prompts pasted into Claude (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P12c_claude_go_pt.txt`
+- [ ] Issue branch `issue/<this issue number>-P12c_claude_go_pt` made from your personal branch `dev/kanishkagopiramanan-ai` (after the earlier steps are merged)
+- [ ] Prompts for rows 001-025 pasted into Claude (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P12c_claude_go_pt.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P12c_claude_go_pt.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/kanishkagopiramanan-ai` with **only** `submissions/P12c_claude_go_pt.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/kanishkagopiramanan-ai`; when all your steps are merged, one last pull request `dev/kanishkagopiramanan-ai` into `main`
 
-Mix of rows in this package: normal 9, hard_positive 4, safe 4, hard_negative 6, no_code 2. Lengths: 1-5: 2, 6-10: 11, 11-20: 3, 21-40: 6, 41-100: 3.
+Mix of rows: normal 9, hard_negative 6, no_code 2, hard_positive 4, safe 4.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|

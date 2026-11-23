@@ -9,6 +9,8 @@
 3. Copy **ROW 001**, paste it into the chat. The model answers with a block of JSON.
 4. Copy the whole answer and paste it into `submissions/P04_chatgpt_go.txt` **under the line `=== 001`**.
 5. Do the same for the next rows. **After 10 rows, start a new chat** and paste the MASTER PROMPT again (the file tells you where).
+
+**Order:** first do the **STEP 1 warm-up (rows 001 to 005, five prompts)** and hand it in, so the lead can tell you if you are doing it right. Only then do the rest (STEP 2).
 6. When you finish, check your answers with Claude (see the README, step 5) and hand in the one file.
 
 Do not change the model's answer. Do not leave out rows. If a row goes wrong, ask the same row again in a new chat and replace the answer.
@@ -69,9 +71,9 @@ If you understand, reply only with: ready
 
 ---
 
-# 🟦 CHAT 1 of 10: rows 001 to 010
+# 🟩 STEP 1: WARM-UP CHAT. DO THIS FIRST (rows 001 to 005, only 5 prompts)
 
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → paste these 5 rows one by one → paste each answer into your hand-in file.** Then do the warm-up pull request (README, section 3) and wait for the lead's reply before you continue with CHAT 2.
 
 ### ▶ ROW 001 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; hard_negative
 Save the answer under `=== 001`
@@ -151,6 +153,12 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
+---
+
+# 🟦 STEP 2: CHAT 1 of 10: rows 006 to 015
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
+
 ### ▶ ROW 006 &nbsp;·&nbsp; CWE-22 &nbsp;·&nbsp; hard_positive
 Save the answer under `=== 006`
 
@@ -229,12 +237,6 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
----
-
-# 🟦 CHAT 2 of 10: rows 011 to 020
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
-
 ### ▶ ROW 011 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; safe
 Save the answer under `=== 011`
 
@@ -311,6 +313,12 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
+
+---
+
+# 🟦 STEP 2: CHAT 2 of 10: rows 016 to 025
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 016 &nbsp;·&nbsp; CWE-78 &nbsp;·&nbsp; hard_negative
 Save the answer under `=== 016`
@@ -390,12 +398,6 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
----
-
-# 🟦 CHAT 3 of 10: rows 021 to 030
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
-
 ### ▶ ROW 021 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; no_code
 Save the answer under `=== 021`
 
@@ -470,6 +472,12 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
+
+---
+
+# 🟦 STEP 2: CHAT 3 of 10: rows 026 to 035
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 026 &nbsp;·&nbsp; CWE-338 &nbsp;·&nbsp; normal
 Save the answer under `=== 026`
@@ -550,12 +558,6 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
----
-
-# 🟦 CHAT 4 of 10: rows 031 to 040
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
-
 ### ▶ ROW 031 &nbsp;·&nbsp; CWE-338 &nbsp;·&nbsp; safe
 Save the answer under `=== 031`
 
@@ -631,6 +633,12 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
+
+---
+
+# 🟦 STEP 2: CHAT 4 of 10: rows 036 to 045
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 036 &nbsp;·&nbsp; CWE-22 &nbsp;·&nbsp; normal
 Save the answer under `=== 036`
@@ -709,12 +717,6 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
----
-
-# 🟦 CHAT 5 of 10: rows 041 to 050
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
-
 ### ▶ ROW 041 &nbsp;·&nbsp; CWE-22 &nbsp;·&nbsp; hard_negative
 Save the answer under `=== 041`
 
@@ -791,6 +793,12 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
+
+---
+
+# 🟦 STEP 2: CHAT 5 of 10: rows 046 to 055
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 046 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; hard_positive
 Save the answer under `=== 046`
@@ -870,12 +878,6 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
----
-
-# 🟦 CHAT 6 of 10: rows 051 to 060
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
-
 ### ▶ ROW 051 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; hard_positive
 Save the answer under `=== 051`
 
@@ -954,6 +956,12 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
+---
+
+# 🟦 STEP 2: CHAT 6 of 10: rows 056 to 065
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
+
 ### ▶ ROW 056 &nbsp;·&nbsp; CWE-22 &nbsp;·&nbsp; hard_negative
 Save the answer under `=== 056`
 
@@ -1030,12 +1038,6 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
-
----
-
-# 🟦 CHAT 7 of 10: rows 061 to 070
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 061 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; hard_positive
 Save the answer under `=== 061`
@@ -1116,6 +1118,12 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
+---
+
+# 🟦 STEP 2: CHAT 7 of 10: rows 066 to 075
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
+
 ### ▶ ROW 066 &nbsp;·&nbsp; CWE-338 &nbsp;·&nbsp; hard_positive
 Save the answer under `=== 066`
 
@@ -1192,12 +1200,6 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
-
----
-
-# 🟦 CHAT 8 of 10: rows 071 to 080
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 071 &nbsp;·&nbsp; CWE-338 &nbsp;·&nbsp; normal
 Save the answer under `=== 071`
@@ -1277,6 +1279,12 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
+---
+
+# 🟦 STEP 2: CHAT 8 of 10: rows 076 to 085
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
+
 ### ▶ ROW 076 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; hard_negative
 Save the answer under `=== 076`
 
@@ -1354,12 +1362,6 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
-
----
-
-# 🟦 CHAT 9 of 10: rows 081 to 090
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 081 &nbsp;·&nbsp; CWE-338 &nbsp;·&nbsp; safe
 Save the answer under `=== 081`
@@ -1440,6 +1442,12 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
+---
+
+# 🟦 STEP 2: CHAT 9 of 10: rows 086 to 095
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
+
 ### ▶ ROW 086 &nbsp;·&nbsp; CWE-78 &nbsp;·&nbsp; safe
 Save the answer under `=== 086`
 
@@ -1517,12 +1525,6 @@ Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_
 fixed_code and vulnerable_lines are empty for safe code.
 ```
 
----
-
-# 🟦 CHAT 10 of 10: rows 091 to 100
-
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
-
 ### ▶ ROW 091 &nbsp;·&nbsp; CWE-22 &nbsp;·&nbsp; hard_negative
 Save the answer under `=== 091`
 
@@ -1598,6 +1600,12 @@ Do not write any comment, name or string that says whether the code is safe or v
 Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
 fixed_code and vulnerable_lines are empty for safe code.
 ```
+
+---
+
+# 🟦 STEP 2: CHAT 10 of 10: rows 096 to 100
+
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**
 
 ### ▶ ROW 096 &nbsp;·&nbsp; CWE-22 &nbsp;·&nbsp; normal
 Save the answer under `=== 096`

@@ -14,6 +14,14 @@ ISEA Phase 3 project *Dynamic Security Testing of LLM-Generated Code*. Eleven pe
 
 That is all you work with: **one prompts file, one hand-in file.**
 
+### Your issues come in steps: do them in this order
+Each person has numbered issues, named `[your-github-name · Step 1 of N] ...`:
+- **Step 1: warm-up (DO THIS FIRST).** Only **5 prompts** (rows 001 to 005) to learn the routine. Hand them in with a pull request and wait for the lead's OK.
+- **Step 2:** the rest of your package (rows 006 to 100).
+- **Step 3** (only four people): an extra small package of 25 rows.
+
+All steps use the same two files. The warm-up rows are the first rows of the same hand-in file, so nothing is wasted.
+
 | Package | Model | Language | Rows |
 |---|---|---|---|
 | P01 – P04 | ChatGPT | Python, C, C++, Go | 100 each |
@@ -42,7 +50,7 @@ This makes your **personal branch** `dev/<your-github-username>` (a copy of `mai
 
 ---
 
-## 3. Do the work: for every issue assigned to you
+## 3. Do the work: step by step, for every issue assigned to you (start with Step 1)
 
 **Make a branch for the issue, starting from your personal branch** (`<number>` is the issue number, `<package>` your package name):
 
@@ -54,7 +62,7 @@ git checkout -b issue/<number>-<package>
 
 Now open `MY_PROMPTS/<package>.md`. It is built like this:
 
-1. **A short how-to** at the top.
+1. **A short how-to** at the top. The green block **STEP 1: WARM-UP** (5 prompts) comes first; the blue blocks are Step 2.
 2. **The MASTER PROMPT** in a grey box. It tells the AI what to answer and which rules to follow. Copy it with the copy button in the corner of the box.
 3. **CHAT 1, CHAT 2 ... CHAT 10**: ten blocks of 10 prompts each (the 25-row packages have 3). Every prompt is in its own grey box with a **▶ ROW 001** heading.
 

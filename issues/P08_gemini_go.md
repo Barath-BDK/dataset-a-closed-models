@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 2
 
-Write **100 rows** with **Gemini** (free base model) in **Go** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: rohisara.** Do this **after** the warm-up (issue #23) is approved. Rows **006 to 100** (Gemini × Go).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **Gemini** (free base model) in **Go** (CWE-22, CWE-338,
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P08_gemini_go` made from your personal branch
-- [ ] All 100 prompts pasted into Gemini (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P08_gemini_go.txt`
+- [ ] Issue branch `issue/<this issue number>-P08_gemini_go` made from your personal branch `dev/rohisara` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into Gemini (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P08_gemini_go.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P08_gemini_go.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/rohisara` with **only** `submissions/P08_gemini_go.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/rohisara`; when all your steps are merged, one last pull request `dev/rohisara` into `main`
 
-Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 5, 6-10: 23, 11-20: 32, 21-40: 25, 41-100: 15.
+Mix of rows: normal 31, hard_negative 26, safe 14, no_code 8, hard_positive 16.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gem_rnd_go_0013` | CWE-338 | normal | `plain` | math/rand | 21-40 | helper called by another function | not_applicable | descriptive | without | late | secure_generator_api | Create a token for confirming a newsletter subscription. |
-| 002 | `gem_sqli_go_0021` | CWE-89 | safe | `plain` | database/sql Query | 21-40 | goroutine or callback | command_line | terse | with | - | - | Return the stock quantity for a product code. |
-| 003 | `gem_cmdi_go_0021` | CWE-78 | safe | `plain` | exec.Command with sh -c | 41-100 | method on a struct | function_argument | terse | with | - | - | Start a background job from a script name. |
-| 004 | `gem_cmdi_go_0014` | CWE-78 | hard_negative | `argument_list_with_user_data` | exec.Command with arguments | 21-40 | helper called by another function | web_request | terse | with | - | - | Print the version of a tool chosen from a list. |
-| 005 | `gem_rnd_go_0002` | CWE-338 | normal | `plain` | math/rand | 6-10 | plain function | not_applicable | terse | with | late | secure_bytes_encoded | Generate a session key for an encrypted chat. |
 | 006 | `gem_pt_go_0006` | CWE-22 | normal | `plain` | http.ServeFile | 1-5 | method on a struct | environment | terse | with | late | allow_list_mapping | Return the contents of a help page file. |
 | 007 | `gem_rnd_go_0009` | CWE-338 | hard_negative | `ordinary_random_shuffling` | math/rand | 6-10 | helper called by another function | not_applicable | descriptive | without | - | - | Shuffle a playlist before playing it. |
 | 008 | `gem_cmdi_go_0022` | CWE-78 | safe | `plain` | exec.Command with sh -c | 11-20 | helper called by another function | web_request | descriptive | without | - | - | Mount a network share with given options. |

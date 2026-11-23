@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 2
 
-Write **100 rows** with **Gemini** (free base model) in **C** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: maheera-b.** Do this **after** the warm-up (issue #21) is approved. Rows **006 to 100** (Gemini × C).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **Gemini** (free base model) in **C** (CWE-22, CWE-338, 
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P06_gemini_c` made from your personal branch
-- [ ] All 100 prompts pasted into Gemini (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P06_gemini_c.txt`
+- [ ] Issue branch `issue/<this issue number>-P06_gemini_c` made from your personal branch `dev/maheera-b` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into Gemini (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P06_gemini_c.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P06_gemini_c.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/maheera-b` with **only** `submissions/P06_gemini_c.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/maheera-b`; when all your steps are merged, one last pull request `dev/maheera-b` into `main`
 
-Mix of rows in this package: normal 34, hard_positive 16, safe 16, hard_negative 26, no_code 8. Lengths: 1-5: 12, 6-10: 26, 11-20: 25, 21-40: 26, 41-100: 11.
+Mix of rows: normal 32, safe 16, hard_positive 14, no_code 8, hard_negative 25.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gem_cmdi_c_0013` | CWE-78 | hard_negative | `all_arguments_shell_quoted` | popen | 11-20 | callback passed as a function pointer | file | descriptive | without | - | - | Run a unit conversion script on a value. |
-| 002 | `gem_cmdi_c_0010` | CWE-78 | normal | `plain` | execl through sh -c | 1-5 | command line tool function | command_line | descriptive | without | middle | allow_list | Show the mount information of a device. |
-| 003 | `gem_sqli_c_0016` | CWE-89 | hard_positive | `handwritten_escaping` | PQexec | 11-20 | request handler that receives a struct or buffer | web_request | terse | with | middle | allow_list | Count signups per day for a date range. |
-| 004 | `gem_pt_c_0013` | CWE-22 | hard_positive | `check_before_normalising` | rename | 6-10 | helper called by another function | network_message | descriptive | with | late | path_containment_check | Serve a PDF from the document library. |
-| 005 | `gem_cmdi_c_0009` | CWE-78 | normal | `plain` | execvp | 11-20 | small embedded or library utility | network_message | descriptive | without | late | argv_no_shell | Compress a log file after rotation. |
 | 006 | `gem_rnd_c_0002` | CWE-338 | normal | `plain` | random | 11-20 | request handler that receives a struct or buffer | not_applicable | terse | without | middle | secure_bytes_encoded | Pick the words of a recovery phrase for a wallet. |
 | 007 | `gem_sqli_c_0007` | CWE-89 | normal | `plain` | mysql_query | 1-5 | command line tool function | command_line | descriptive | without | late | type_conversion | Find the members of a team by role. |
 | 008 | `gem_cmdi_c_0006` | CWE-78 | safe | `plain` | execl through sh -c | 41-100 | callback passed as a function pointer | file | descriptive | with | - | - | Restart a named system service. |

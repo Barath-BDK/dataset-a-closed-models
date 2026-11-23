@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 2
 
-Write **100 rows** with **ChatGPT** (free base model) in **Go** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: Puneeth-2428.** Do this **after** the warm-up (issue #19) is approved. Rows **006 to 100** (ChatGPT × Go).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **ChatGPT** (free base model) in **Go** (CWE-22, CWE-338
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P04_chatgpt_go` made from your personal branch
-- [ ] All 100 prompts pasted into ChatGPT (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P04_chatgpt_go.txt`
+- [ ] Issue branch `issue/<this issue number>-P04_chatgpt_go` made from your personal branch `dev/Puneeth-2428` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into ChatGPT (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P04_chatgpt_go.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P04_chatgpt_go.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/Puneeth-2428` with **only** `submissions/P04_chatgpt_go.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/Puneeth-2428`; when all your steps are merged, one last pull request `dev/Puneeth-2428` into `main`
 
-Mix of rows in this package: normal 34, hard_positive 16, safe 16, hard_negative 26, no_code 8. Lengths: 1-5: 10, 6-10: 20, 11-20: 30, 21-40: 33, 41-100: 7.
+Mix of rows: hard_positive 15, hard_negative 25, safe 15, normal 32, no_code 8.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gpt_sqli_go_0006` | CWE-89 | hard_negative | `placeholder_list_for_in` | database/sql QueryRow | 11-20 | method on a struct | web_request | terse | with | - | - | Search products whose name contains a keyword. |
-| 002 | `gpt_sqli_go_0016` | CWE-89 | safe | `plain` | gorm Raw | 6-10 | HTTP handler | web_request | descriptive | without | - | - | Report order totals grouped by a chosen category. |
-| 003 | `gpt_pt_go_0020` | CWE-22 | normal | `plain` | os.Create | 1-5 | plain function | command_line | terse | without | early | path_containment_check | Move a processed file to an archive folder. |
-| 004 | `gpt_rnd_go_0024` | CWE-338 | normal | `plain` | math/rand | 6-10 | helper called by another function | not_applicable | descriptive | without | late | secure_bytes_encoded | Create a share link secret for a document. |
-| 005 | `gpt_pt_go_0001` | CWE-22 | hard_positive | `check_before_normalising` | os.ReadFile | 6-10 | plain function | database_value | descriptive | without | early | library_confinement | Return a preview of a stored image. |
 | 006 | `gpt_pt_go_0019` | CWE-22 | hard_positive | `single_pass_parent_removal` | http.ServeFile | 11-20 | plain function | environment | descriptive | without | middle | base_name_only | Extract the entries of an uploaded archive into a folder. |
 | 007 | `gpt_pt_go_0003` | CWE-22 | hard_negative | `library_confined_access` | os.ReadFile | 21-40 | helper called by another function | function_argument | terse | with | - | - | Load a configuration file for a named profile. |
 | 008 | `gpt_pt_go_0022` | CWE-22 | safe | `plain` | archive extraction (archive/zip) | 6-10 | HTTP handler | database_value | terse | with | - | - | Fetch a user's uploaded resume. |

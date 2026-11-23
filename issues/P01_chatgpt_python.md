@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 3
 
-Write **100 rows** with **ChatGPT** (free base model) in **Python** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: vinoth96-hub.** Do this **after** the warm-up (issue #16) is approved. Rows **006 to 100** (ChatGPT × Python).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **ChatGPT** (free base model) in **Python** (CWE-22, CWE
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P01_chatgpt_python` made from your personal branch
-- [ ] All 100 prompts pasted into ChatGPT (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P01_chatgpt_python.txt`
+- [ ] Issue branch `issue/<this issue number>-P01_chatgpt_python` made from your personal branch `dev/vinoth96-hub` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into ChatGPT (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P01_chatgpt_python.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P01_chatgpt_python.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/vinoth96-hub` with **only** `submissions/P01_chatgpt_python.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/vinoth96-hub`; when all your steps are merged, one last pull request `dev/vinoth96-hub` into `main`
 
-Mix of rows in this package: normal 34, hard_positive 16, safe 16, hard_negative 26, no_code 8. Lengths: 1-5: 6, 6-10: 29, 11-20: 25, 21-40: 28, 41-100: 12.
+Mix of rows: hard_negative 25, normal 32, safe 14, hard_positive 16, no_code 8.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gpt_rnd_py_0001` | CWE-338 | hard_negative | `ordinary_random_shuffling` | random.getrandbits | 6-10 | web request handler | not_applicable | terse | without | - | - | Deal a shuffled deck of cards to four players. |
-| 002 | `gpt_pt_py_0022` | CWE-22 | safe | `plain` | send_file | 6-10 | class method | command_line | descriptive | without | - | - | Truncate a log file chosen by name. |
-| 003 | `gpt_sqli_py_0016` | CWE-89 | normal | `plain` | MySQL driver (PyMySQL or mysql-connector) | 1-5 | web request handler | web_request | descriptive | with | late | orm_query_builder | Get the loyalty points of a customer. |
-| 004 | `gpt_pt_py_0014` | CWE-22 | safe | `plain` | os.remove | 11-20 | command line tool function | command_line | terse | with | - | - | Check whether a named file exists in the storage area. |
-| 005 | `gpt_cmdi_py_0025` | CWE-78 | normal | `plain` | os.popen | 21-40 | class method | network_message | descriptive | with | late | strict_validation | Show the mount information of a device. |
 | 006 | `gpt_pt_py_0006` | CWE-22 | hard_negative | `id_mapped_to_known_file` | os.remove | 11-20 | class method | database_value | terse | with | - | - | Delete a user's attachment. |
 | 007 | `gpt_rnd_py_0004` | CWE-338 | normal | `plain` | random.randint | 6-10 | class method | not_applicable | terse | with | early | secure_bytes_encoded | Generate a session key for an encrypted chat. |
 | 008 | `gpt_rnd_py_0015` | CWE-338 | normal | `plain` | random.choices | 41-100 | class method | not_applicable | terse | with | middle | secure_bytes_encoded | Generate a temporary password for a new account. |

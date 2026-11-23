@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 2
 
-Write **100 rows** with **ChatGPT** (free base model) in **C** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: bkvishal28.** Do this **after** the warm-up (issue #17) is approved. Rows **006 to 100** (ChatGPT × C).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **ChatGPT** (free base model) in **C** (CWE-22, CWE-338,
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P02_chatgpt_c` made from your personal branch
-- [ ] All 100 prompts pasted into ChatGPT (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P02_chatgpt_c.txt`
+- [ ] Issue branch `issue/<this issue number>-P02_chatgpt_c` made from your personal branch `dev/bkvishal28` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into ChatGPT (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P02_chatgpt_c.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P02_chatgpt_c.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/bkvishal28` with **only** `submissions/P02_chatgpt_c.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/bkvishal28`; when all your steps are merged, one last pull request `dev/bkvishal28` into `main`
 
-Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 10, 6-10: 22, 11-20: 30, 21-40: 27, 41-100: 11.
+Mix of rows: normal 31, hard_positive 15, safe 15, hard_negative 27, no_code 7.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gpt_pt_c_0018` | CWE-22 | hard_positive | `extension_check_only` | rename | 21-40 | helper called by another function | command_line | terse | without | late | allow_list_mapping | Rename a document inside the storage folder. |
-| 002 | `gpt_rnd_c_0002` | CWE-338 | safe | `plain` | rand | 11-20 | callback passed as a function pointer | not_applicable | descriptive | with | - | - | Create a key for a private download link. |
-| 003 | `gpt_sqli_c_0022` | CWE-89 | normal | `plain` | mysql_query | 11-20 | small embedded or library utility | web_request | terse | without | middle | type_conversion | Check a username and password hash for a login. |
-| 004 | `gpt_sqli_c_0016` | CWE-89 | no_code | `plain` | none | 11-20 | request handler that receives a struct or buffer | not_applicable | descriptive | with | - | - | Paginate a list in memory. |
-| 005 | `gpt_rnd_c_0011` | CWE-338 | normal | `plain` | srand | 1-5 | plain function | not_applicable | descriptive | with | early | secure_generator_api | Create an OAuth state value for a login redirect. |
 | 006 | `gpt_rnd_c_0016` | CWE-338 | normal | `plain` | rand | 41-100 | small embedded or library utility | not_applicable | terse | without | late | secure_generator_api | Issue a temporary access code for a visitor badge. |
 | 007 | `gpt_pt_c_0017` | CWE-22 | normal | `plain` | rename | 21-40 | request handler that receives a struct or buffer | database_value | descriptive | with | middle | base_name_only | Return the contents of a help page file. |
 | 008 | `gpt_cmdi_c_0005` | CWE-78 | hard_positive | `validator_accepts_too_much` | popen | 6-10 | small embedded or library utility | environment | terse | without | early | allow_list | Send a document to a named printer. |

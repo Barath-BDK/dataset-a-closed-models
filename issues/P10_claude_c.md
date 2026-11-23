@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 2
 
-Write **100 rows** with **Claude** (free base model) in **C** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: yuvasreejagadeesan05.** Do this **after** the warm-up (issue #25) is approved. Rows **006 to 100** (Claude × C).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **Claude** (free base model) in **C** (CWE-22, CWE-338, 
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P10_claude_c` made from your personal branch
-- [ ] All 100 prompts pasted into Claude (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P10_claude_c.txt`
+- [ ] Issue branch `issue/<this issue number>-P10_claude_c` made from your personal branch `dev/yuvasreejagadeesan05` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into Claude (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P10_claude_c.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P10_claude_c.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/yuvasreejagadeesan05` with **only** `submissions/P10_claude_c.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/yuvasreejagadeesan05`; when all your steps are merged, one last pull request `dev/yuvasreejagadeesan05` into `main`
 
-Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 6, 6-10: 28, 11-20: 33, 21-40: 23, 41-100: 10.
+Mix of rows: normal 32, hard_negative 24, safe 15, no_code 8, hard_positive 16.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `cla_cmdi_c_0021` | CWE-78 | normal | `plain` | system | 6-10 | request handler that receives a struct or buffer | network_message | terse | without | early | strict_validation | Report the disk usage of a folder. |
-| 002 | `cla_rnd_c_0008` | CWE-338 | hard_negative | `ordinary_random_test_data` | rand | 21-40 | request handler that receives a struct or buffer | not_applicable | descriptive | with | - | - | Generate random names for test fixtures. |
-| 003 | `cla_cmdi_c_0009` | CWE-78 | safe | `plain` | execl through sh -c | 6-10 | helper called by another function | database_value | descriptive | without | - | - | Rotate the logs of one application. |
-| 004 | `cla_rnd_c_0025` | CWE-338 | hard_negative | `ordinary_random_shuffling` | random | 11-20 | small embedded or library utility | not_applicable | descriptive | with | - | - | Deal a shuffled deck of cards to four players. |
-| 005 | `cla_sqli_c_0014` | CWE-89 | hard_negative | `integer_forced` | mysql_query | 21-40 | small embedded or library utility | database_value | descriptive | with | - | - | List the most recent log entries of a service. |
 | 006 | `cla_sqli_c_0021` | CWE-89 | normal | `plain` | sqlite3_exec | 21-40 | request handler that receives a struct or buffer | database_value | terse | without | late | allow_list | Record an audit entry for an administrator action. |
 | 007 | `cla_pt_c_0011` | CWE-22 | hard_negative | `base_name_only` | unlink | 11-20 | plain function | function_argument | terse | with | - | - | Store a user's avatar image. |
 | 008 | `cla_cmdi_c_0012` | CWE-78 | normal | `plain` | execl through sh -c | 21-40 | request handler that receives a struct or buffer | database_value | descriptive | without | middle | allow_list | Create a snapshot of a virtual machine by name. |

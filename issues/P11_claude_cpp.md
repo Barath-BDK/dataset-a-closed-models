@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 2
 
-Write **100 rows** with **Claude** (free base model) in **C++** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: jeevikaar.** Do this **after** the warm-up (issue #26) is approved. Rows **006 to 100** (Claude × C++).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **Claude** (free base model) in **C++** (CWE-22, CWE-338
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P11_claude_cpp` made from your personal branch
-- [ ] All 100 prompts pasted into Claude (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P11_claude_cpp.txt`
+- [ ] Issue branch `issue/<this issue number>-P11_claude_cpp` made from your personal branch `dev/jeevikaar` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into Claude (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P11_claude_cpp.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P11_claude_cpp.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/jeevikaar` with **only** `submissions/P11_claude_cpp.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/jeevikaar`; when all your steps are merged, one last pull request `dev/jeevikaar` into `main`
 
-Mix of rows in this package: normal 34, hard_positive 16, safe 16, hard_negative 26, no_code 8. Lengths: 1-5: 14, 6-10: 22, 11-20: 25, 21-40: 25, 41-100: 14.
+Mix of rows: hard_negative 25, no_code 7, normal 33, safe 14, hard_positive 16.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `cla_cmdi_cpp_0020` | CWE-78 | safe | `plain` | popen | 11-20 | web or network handler that receives a request object | web_request | descriptive | without | - | - | Run a linter on a submitted file and return its report. |
-| 002 | `cla_rnd_cpp_0008` | CWE-338 | hard_negative | `ordinary_random_test_data` | rand | 11-20 | helper called by another function | not_applicable | descriptive | with | - | - | Create random order amounts for a demo database. |
-| 003 | `cla_pt_cpp_0002` | CWE-22 | safe | `plain` | fopen | 6-10 | command line tool function | command_line | terse | without | - | - | Read a plugin manifest from a plugin folder. |
-| 004 | `cla_cmdi_cpp_0018` | CWE-78 | normal | `plain` | QProcess | 6-10 | web or network handler that receives a request object | web_request | terse | with | early | strict_validation | Look up the DNS records of a host name. |
-| 005 | `cla_cmdi_cpp_0009` | CWE-78 | no_code | `plain` | none | 11-20 | callback, lambda or asynchronous task | not_applicable | terse | without | - | - | Build the text of a report header. |
 | 006 | `cla_rnd_cpp_0002` | CWE-338 | hard_negative | `secure_secret_plus_ordinary_random_elsewhere` | std::default_random_engine | 41-100 | command line tool function | not_applicable | descriptive | without | - | - | Issue a gift card code with a check value. |
 | 007 | `cla_sqli_cpp_0024` | CWE-89 | hard_negative | `placeholders_only_format` | mysql_query | 21-40 | command line tool function | command_line | descriptive | with | - | - | Find articles that carry a given tag. |
 | 008 | `cla_sqli_cpp_0018` | CWE-89 | no_code | `plain` | none | 11-20 | class method | not_applicable | descriptive | with | - | - | Compute an age from a birth date. |

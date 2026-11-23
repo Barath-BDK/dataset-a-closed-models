@@ -40,16 +40,26 @@ def main():
              "3. Copy **ROW 001**, paste it into the chat. The model answers with a block of JSON.",
              f"4. Copy the whole answer and paste it into `submissions/{pkg}.txt` **under the line `=== 001`**.",
              "5. Do the same for the next rows. **After 10 rows, start a new chat** and paste the MASTER PROMPT again (the file tells you where).",
+             "",
+             "**Order:** first do the **STEP 1 warm-up (rows 001 to 005, five prompts)** and hand it in, so the lead can tell you if you are doing it right. Only then do the rest (STEP 2)." if n == 100 else "",
              "6. When you finish, check your answers with Claude (see the README, step 5) and hand in the one file.", "",
              "Do not change the model's answer. Do not leave out rows. If a row goes wrong, ask the same row again in a new chat and replace the answer.", "",
              "---", "",
              "## MASTER PROMPT (paste this first in every new chat)", "",
              "````text", mp, "````", "", "---", ""]
-        for b in range(1, nb + 1):
-            chunk = [r for r in rs if r["batch"] == b]
+        warm = n == 100
+        groups = ([rs[:5]] if warm else []) + [rs[i:i + 10] for i in range(5 if warm else 0, n, 10)]
+        for gi, chunk in enumerate(groups, 1):
             a, z = chunk[0]["row_no"], chunk[-1]["row_no"]
-            L += [f"# 🟦 CHAT {b} of {nb}: rows {a:03d} to {z:03d}", "",
-                  f"**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**", ""]
+            if warm and gi == 1:
+                L += [f"# 🟩 STEP 1: WARM-UP CHAT. DO THIS FIRST (rows {a:03d} to {z:03d}, only 5 prompts)", "",
+                      "**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → paste these 5 rows one by one → paste each answer into your hand-in file.** "
+                      "Then do the warm-up pull request (README, section 3) and wait for the lead's reply before you continue with CHAT 2.", ""]
+            else:
+                k = gi - 1 if warm else gi
+                tot = len(groups) - 1 if warm else len(groups)
+                L += [f"# 🟦 STEP 2: CHAT {k} of {tot}: rows {a:03d} to {z:03d}" if warm else f"# 🟦 CHAT {k} of {tot}: rows {a:03d} to {z:03d}", "",
+                      "**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → then paste the rows below one by one.**", ""]
             for r in chunk:
                 L += [f"### ▶ ROW {r['row_no']:03d} &nbsp;·&nbsp; {r['cwe']} &nbsp;·&nbsp; {r['case_type']}",
                       f"Save the answer under `=== {r['row_no']:03d}`", "", "```text", r["prompt"], "```", ""]

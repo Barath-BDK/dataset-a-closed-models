@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 3 of 3: extra package
 
-Write **25 rows** with **Claude** (free base model) in **Go** (CWE-78).
+**Assigned to: dHEENA0644.** Do this after your other steps. All 25 rows (Claude × Go × CWE-78).
 
 | | |
 |---|---|
@@ -11,16 +11,16 @@ Write **25 rows** with **Claude** (free base model) in **Go** (CWE-78).
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P12b_claude_go_cmdi` made from your personal branch
-- [ ] All 25 prompts pasted into Claude (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P12b_claude_go_cmdi.txt`
+- [ ] Issue branch `issue/<this issue number>-P12b_claude_go_cmdi` made from your personal branch `dev/dHEENA0644` (after the earlier steps are merged)
+- [ ] Prompts for rows 001-025 pasted into Claude (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P12b_claude_go_cmdi.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P12b_claude_go_cmdi.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/dHEENA0644` with **only** `submissions/P12b_claude_go_cmdi.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/dHEENA0644`; when all your steps are merged, one last pull request `dev/dHEENA0644` into `main`
 
-Mix of rows in this package: normal 8, hard_positive 4, safe 4, hard_negative 7, no_code 2. Lengths: 1-5: 3, 6-10: 8, 11-20: 9, 21-40: 5, 41-100: 0.
+Mix of rows: hard_positive 4, normal 8, safe 4, no_code 2, hard_negative 7.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|

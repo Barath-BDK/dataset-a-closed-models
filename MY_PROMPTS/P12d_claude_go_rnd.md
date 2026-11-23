@@ -9,6 +9,8 @@
 3. Copy **ROW 001**, paste it into the chat. The model answers with a block of JSON.
 4. Copy the whole answer and paste it into `submissions/P12d_claude_go_rnd.txt` **under the line `=== 001`**.
 5. Do the same for the next rows. **After 10 rows, start a new chat** and paste the MASTER PROMPT again (the file tells you where).
+
+
 6. When you finish, check your answers with Claude (see the README, step 5) and hand in the one file.
 
 Do not change the model's answer. Do not leave out rows. If a row goes wrong, ask the same row again in a new chat and replace the answer.

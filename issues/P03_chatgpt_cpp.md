@@ -1,6 +1,6 @@
-## Your job
+## 🟦 STEP 2 of 3
 
-Write **100 rows** with **ChatGPT** (free base model) in **C++** (CWE-22, CWE-338, CWE-78, CWE-89).
+**Assigned to: gokulnathan301g.** Do this **after** the warm-up (issue #18) is approved. Rows **006 to 100** (ChatGPT × C++).
 
 | | |
 |---|---|
@@ -11,24 +11,19 @@ Write **100 rows** with **ChatGPT** (free base model) in **C++** (CWE-22, CWE-33
 
 ### Steps (tick them in your pull request)
 
-- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P03_chatgpt_cpp` made from your personal branch
-- [ ] All 100 prompts pasted into ChatGPT (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P03_chatgpt_cpp.txt`
+- [ ] Issue branch `issue/<this issue number>-P03_chatgpt_cpp` made from your personal branch `dev/gokulnathan301g` (after the earlier steps are merged)
+- [ ] Prompts for rows 006-100 pasted into ChatGPT (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P03_chatgpt_cpp.txt`
 - [ ] Check A done with Claude (rules); every REDO row generated again
 - [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P03_chatgpt_cpp.txt`; the exact model name written in the description
-- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
+- [ ] Pull request from the issue branch into `dev/gokulnathan301g` with **only** `submissions/P03_chatgpt_cpp.txt`; the exact model name in the description
+- [ ] After approval: merged into `dev/gokulnathan301g`; when all your steps are merged, one last pull request `dev/gokulnathan301g` into `main`
 
-Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 9, 6-10: 26, 11-20: 31, 21-40: 22, 41-100: 12.
+Mix of rows: hard_positive 15, normal 33, hard_negative 25, safe 14, no_code 8.
 
-<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
+<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `gpt_sqli_cpp_0012` | CWE-89 | safe | `plain` | Qt QSqlQuery | 21-40 | web or network handler that receives a request object | database_value | terse | without | - | - | Find a vehicle by its registration number. |
-| 002 | `gpt_sqli_cpp_0018` | CWE-89 | hard_negative | `identifier_allowlist` | Qt QSqlQuery | 6-10 | helper called by another function | network_message | descriptive | with | - | - | List the most recent log entries of a service. |
-| 003 | `gpt_sqli_cpp_0015` | CWE-89 | hard_negative | `bound_via_builder` | PQexec | 6-10 | helper called by another function | command_line | descriptive | without | - | - | Update the status of a support ticket. |
-| 004 | `gpt_sqli_cpp_0010` | CWE-89 | safe | `plain` | mysql_query | 6-10 | callback, lambda or asynchronous task | environment | terse | without | - | - | Find all students enrolled in a course. |
-| 005 | `gpt_pt_cpp_0001` | CWE-22 | hard_positive | `check_before_normalising` | std::remove | 11-20 | class method | function_argument | descriptive | with | early | allow_list_mapping | Fetch a user's uploaded resume. |
 | 006 | `gpt_sqli_cpp_0016` | CWE-89 | hard_positive | `one_branch_bound` | sqlite3 C API | 11-20 | helper called by another function | environment | terse | with | middle | query_builder_bind | Return the stock quantity for a product code. |
 | 007 | `gpt_pt_cpp_0019` | CWE-22 | normal | `plain` | ifstream or ofstream | 21-40 | helper called by another function | environment | descriptive | with | middle | base_name_only | Read a user's saved draft. |
 | 008 | `gpt_sqli_cpp_0006` | CWE-89 | normal | `plain` | PQexec | 11-20 | web or network handler that receives a request object | web_request | descriptive | with | middle | allow_list | List the files shared with a user. |
