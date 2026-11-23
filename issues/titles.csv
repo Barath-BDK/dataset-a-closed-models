@@ -14,14 +14,14 @@ number,title,file,labels,assignee
 13,[dHEENA0644 · Step 3 of 3] P12b Claude x Go x CWE-78: 25 rows,P12b_claude_go_cmdi.md,"package,model:claude,lang:go",dHEENA0644
 14,[kanishkagopiramanan-ai · Step 3 of 3] P12c Claude x Go x CWE-22: 25 rows,P12c_claude_go_pt.md,"package,model:claude,lang:go",kanishkagopiramanan-ai
 15,[gokulnathan301g · Step 3 of 3] P12d Claude x Go x CWE-338: 25 rows,P12d_claude_go_rnd.md,"package,model:claude,lang:go",gokulnathan301g
-16,"[vinoth96-hub · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P01 ChatGPT x Python: rows 001-005 (5 rows)",P01_chatgpt_python_warmup.md,"first-issue,model:chatgpt,lang:python",vinoth96-hub
-17,"[bkvishal28 · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P02 ChatGPT x C: rows 001-005 (5 rows)",P02_chatgpt_c_warmup.md,"first-issue,model:chatgpt,lang:c",bkvishal28
-18,"[gokulnathan301g · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P03 ChatGPT x C++: rows 001-005 (5 rows)",P03_chatgpt_cpp_warmup.md,"first-issue,model:chatgpt,lang:cpp",gokulnathan301g
-19,"[Puneeth-2428 · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P04 ChatGPT x Go: rows 001-005 (5 rows)",P04_chatgpt_go_warmup.md,"first-issue,model:chatgpt,lang:go",Puneeth-2428
-20,"[dHEENA0644 · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P05 Gemini x Python: rows 001-005 (5 rows)",P05_gemini_python_warmup.md,"first-issue,model:gemini,lang:python",dHEENA0644
-21,"[maheera-b · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P06 Gemini x C: rows 001-005 (5 rows)",P06_gemini_c_warmup.md,"first-issue,model:gemini,lang:c",maheera-b
-22,"[Hafsah-Khathoon · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P07 Gemini x C++: rows 001-005 (5 rows)",P07_gemini_cpp_warmup.md,"first-issue,model:gemini,lang:cpp",Hafsah-Khathoon
-23,"[rohisara · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P08 Gemini x Go: rows 001-005 (5 rows)",P08_gemini_go_warmup.md,"first-issue,model:gemini,lang:go",rohisara
-24,"[kanishkagopiramanan-ai · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P09 Claude x Python: rows 001-005 (5 rows)",P09_claude_python_warmup.md,"first-issue,model:claude,lang:python",kanishkagopiramanan-ai
-25,"[yuvasreejagadeesan05 · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P10 Claude x C: rows 001-005 (5 rows)",P10_claude_c_warmup.md,"first-issue,model:claude,lang:c",yuvasreejagadeesan05
-26,"[jeevikaar · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P11 Claude x C++: rows 001-005 (5 rows)",P11_claude_cpp_warmup.md,"first-issue,model:claude,lang:cpp",jeevikaar
+16,"[vinoth96-hub · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P01 ChatGPT x Python: rows 001-005 (5 rows)",P01_chatgpt_python_first.md,"first-issue,model:chatgpt,lang:python",vinoth96-hub
+17,"[bkvishal28 · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P02 ChatGPT x C: rows 001-005 (5 rows)",P02_chatgpt_c_first.md,"first-issue,model:chatgpt,lang:c",bkvishal28
+18,"[gokulnathan301g · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P03 ChatGPT x C++: rows 001-005 (5 rows)",P03_chatgpt_cpp_first.md,"first-issue,model:chatgpt,lang:cpp",gokulnathan301g
+19,"[Puneeth-2428 · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P04 ChatGPT x Go: rows 001-005 (5 rows)",P04_chatgpt_go_first.md,"first-issue,model:chatgpt,lang:go",Puneeth-2428
+20,"[dHEENA0644 · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P05 Gemini x Python: rows 001-005 (5 rows)",P05_gemini_python_first.md,"first-issue,model:gemini,lang:python",dHEENA0644
+21,"[maheera-b · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P06 Gemini x C: rows 001-005 (5 rows)",P06_gemini_c_first.md,"first-issue,model:gemini,lang:c",maheera-b
+22,"[Hafsah-Khathoon · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P07 Gemini x C++: rows 001-005 (5 rows)",P07_gemini_cpp_first.md,"first-issue,model:gemini,lang:cpp",Hafsah-Khathoon
+23,"[rohisara · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P08 Gemini x Go: rows 001-005 (5 rows)",P08_gemini_go_first.md,"first-issue,model:gemini,lang:go",rohisara
+24,"[kanishkagopiramanan-ai · Step 1 of 3 · FIRST ISSUE, DO THIS FIRST] P09 Claude x Python: rows 001-005 (5 rows)",P09_claude_python_first.md,"first-issue,model:claude,lang:python",kanishkagopiramanan-ai
+25,"[yuvasreejagadeesan05 · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P10 Claude x C: rows 001-005 (5 rows)",P10_claude_c_first.md,"first-issue,model:claude,lang:c",yuvasreejagadeesan05
+26,"[jeevikaar · Step 1 of 2 · FIRST ISSUE, DO THIS FIRST] P11 Claude x C++: rows 001-005 (5 rows)",P11_claude_cpp_first.md,"first-issue,model:claude,lang:cpp",jeevikaar

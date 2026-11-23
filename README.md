@@ -9,10 +9,10 @@ ISEA Phase 3 project *Dynamic Security Testing of LLM-Generated Code*. Eleven pe
 ## 1. Find your job
 
 1. Open the **Issues** tab of this repository. Your issue is the one **assigned to you** (it names your model and language, for example `[P05] Gemini x Python: 100 rows`). Note your package name, for example `P05_gemini_python`.
-2. Your **prompts** are in one file: **`MY_PROMPTS/<your package>.md`** (for example `MY_PROMPTS/P05_gemini_python.md`).
+2. **The prompts are inside the issue itself.** The issue text has the instructions and the **master prompt**; the prompts you paste into the AI are in the issue (Step 1: 5 prompts in the text) or in the **comments of the issue** (Step 2: **10 prompts per comment, one comment = one chat**).
 3. Your **hand-in file** is one file: **`submissions/<your package>.txt`** (for example `submissions/P05_gemini_python.txt`). It already exists and is empty; you fill it in.
 
-That is all you work with: **one prompts file, one hand-in file.**
+That is all you work with: **your issues (with the prompts) and one hand-in file.**
 
 ### Your issues come in steps: do them in this order
 Each person has numbered issues, named `[your-github-name · Step 1 of N] ...`:
@@ -60,13 +60,13 @@ git pull
 git checkout -b issue/<number>-<package>
 ```
 
-Now open `MY_PROMPTS/<package>.md`. It is built like this:
+Now open your issue (start with Step 1). It is built like this:
 
-1. **A short how-to** at the top. The green block **STEP 1: YOUR FIRST ISSUE** (5 prompts) comes first; the blue blocks are Step 2.
+1. **What to do**, step by step, and a checklist.
 2. **The MASTER PROMPT** in a grey box. It tells the AI what to answer and which rules to follow. Copy it with the copy button in the corner of the box.
-3. **CHAT 1, CHAT 2 ... CHAT 10**: ten blocks of 10 prompts each (the 25-row packages have 3). Every prompt is in its own grey box with a **▶ ROW 001** heading.
+3. **The prompts.** Step 1 has its 5 prompts in the issue text. Step 2 has them in the **comments under the issue**: *CHAT 1 (rows 006-015)*, *CHAT 2 (rows 016-025)* and so on, **10 prompts per comment**. Every prompt is in its own grey box with a **▶ ROW 006** heading. Do the comments in order.
 
-For each CHAT block:
+For each comment (each one is one chat):
 
 1. Open a **new chat** with your model.
 2. Paste the **MASTER PROMPT**. The AI answers `ready`.
@@ -140,9 +140,9 @@ Also: fill `config.yml`; the packages merge into one Excel or JSON Lines file pe
 ## Where is what
 
 ```
-MY_PROMPTS/<package>.md        your prompts, all in one file (start here)
+your GitHub issues              the instructions, the master prompt and the prompts (start here)
 submissions/<package>.txt      your hand-in file (the only file you hand in)
-prompts/MASTER_PROMPT.md       the master prompt (also copied at the top of your prompts file)
+prompts/MASTER_PROMPT.md       the master prompt (also at the top of every issue)
 prompts/CLAUDE_CHECK_PROMPT.md the two checks to do in the browser with Claude
 docs/Dataset_A_Closed_Models.docx   the full specification (read it once if you like)
 packages/, data/, issues/, tools/    material of the lead; you can ignore these

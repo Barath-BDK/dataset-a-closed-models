@@ -9,7 +9,7 @@ There are two checks. Do **Check A** first, then **Check B**.
 ## Check A: do the rows follow the rules?
 
 1. Open a new Claude chat and paste the box below.
-2. Directly under it, paste the 10 rows, each like this (the prompt is in your `MY_PROMPTS` file, the answer is in your hand-in file):
+2. Directly under it, paste the 10 rows, each like this (the prompt is in your issue, the answer is in your hand-in file):
 
 ```
 ROW 003

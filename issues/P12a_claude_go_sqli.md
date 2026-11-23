@@ -4,50 +4,80 @@
 
 | | |
 |---|---|
-| **Your prompts (one file)** | [`MY_PROMPTS/P12a_claude_go_sqli.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/MY_PROMPTS/P12a_claude_go_sqli.md) |
 | **Your hand-in file (the only file you hand in)** | [`submissions/P12a_claude_go_sqli.txt`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/submissions/P12a_claude_go_sqli.txt) |
 | **How to do it** | [`README.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/README.md) |
 | **Check with Claude, in the browser** | [`prompts/CLAUDE_CHECK_PROMPT.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/prompts/CLAUDE_CHECK_PROMPT.md) |
 
-### Steps (tick them in your pull request)
+## What to do
 
-- [ ] Issue branch `issue/<this issue number>-P12a_claude_go_sqli` made from your personal branch `dev/vinoth96-hub` (after the earlier steps are merged)
-- [ ] Prompts for rows 001-025 pasted into Claude (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P12a_claude_go_sqli.txt`
-- [ ] Check A done with Claude (rules); every REDO row generated again
-- [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into `dev/vinoth96-hub` with **only** `submissions/P12a_claude_go_sqli.txt`; the exact model name in the description
-- [ ] After approval: merged into `dev/vinoth96-hub`; when all your steps are merged, one last pull request `dev/vinoth96-hub` into `main`
+1. Make your issue branch `issue/<this issue number>-P12a_claude_go_sqli` from your personal branch `dev/vinoth96-hub` (after the earlier steps are merged).
+2. The prompts are in the **comments below this text**, **10 prompts per comment = one chat**. Do the comments in order: CHAT 1, CHAT 2, ...
+3. For each comment: open a **new chat**, paste the **MASTER PROMPT** (section 1 below), wait for `ready`, then paste the 10 prompts one by one. After each prompt, paste the whole answer into your hand-in file under its `=== NNN` line.
+4. Check every 10 answers with Claude (README section 4, Check A and Check B).
+5. When all rows are done: pull request from your issue branch into `dev/vinoth96-hub` with **only** `submissions/P12a_claude_go_sqli.txt`, the exact model name in the description. After approval merge it; when all your steps are merged, open one last pull request `dev/vinoth96-hub` into `main`.
 
-Mix of rows: normal 8, hard_positive 4, hard_negative 7, no_code 2, safe 4.
+- [ ] Rows 001 to 025 done (3 chats), every answer pasted under its `=== NNN` line
+- [ ] Check A done (rules); every REDO row generated again
+- [ ] Check B done (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
+- [ ] Pull request opened with only the hand-in file
+- [ ] Merged into your personal branch
 
-<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
+---
 
-| # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 001 | `cla_sqli_go_0019` | CWE-89 | normal | `plain` | gorm Raw | 41-100 | helper called by another function | web_request | descriptive | without | early | query_builder | Look up a city by postal code. |
-| 002 | `cla_sqli_go_0001` | CWE-89 | normal | `plain` | database/sql QueryRow | 1-5 | method on a struct | database_value | terse | with | middle | bound_parameters | Insert a new product review. |
-| 003 | `cla_sqli_go_0015` | CWE-89 | normal | `plain` | database/sql Exec | 6-10 | goroutine or callback | web_request | terse | with | late | allow_list | Find books by author name. |
-| 004 | `cla_sqli_go_0011` | CWE-89 | hard_positive | `bound_but_input_identifier` | database/sql Query | 6-10 | method on a struct | network_message | descriptive | without | late | type_conversion | Get the loyalty points of a customer. |
-| 005 | `cla_sqli_go_0023` | CWE-89 | hard_positive | `handwritten_escaping` | gorm Raw | 21-40 | helper called by another function | network_message | descriptive | with | middle | query_builder | Count signups per day for a date range. |
-| 006 | `cla_sqli_go_0004` | CWE-89 | hard_positive | `bound_but_input_identifier` | database/sql QueryRow | 6-10 | method on a struct | command_line | descriptive | with | late | type_conversion | Mark a notification as read for a user. |
-| 007 | `cla_sqli_go_0018` | CWE-89 | hard_negative | `integer_forced` | database/sql QueryRow | 6-10 | command line tool function | command_line | descriptive | without | - | - | Delete expired sessions older than a number of days. |
-| 008 | `cla_sqli_go_0016` | CWE-89 | no_code | `plain` | none | 11-20 | HTTP handler | not_applicable | descriptive | with | - | - | Merge two lists without duplicates. |
-| 009 | `cla_sqli_go_0013` | CWE-89 | normal | `plain` | sqlx | 11-20 | HTTP handler | web_request | descriptive | with | early | type_conversion | Find a customer record by email address. |
-| 010 | `cla_sqli_go_0008` | CWE-89 | normal | `plain` | sqlx | 6-10 | command line tool function | command_line | descriptive | with | middle | bound_parameters | Find a vehicle by its registration number. |
-| 011 | `cla_sqli_go_0017` | CWE-89 | normal | `plain` | sqlx | 1-5 | plain function | web_request | terse | without | early | type_conversion | Return the stock quantity for a product code. |
-| 012 | `cla_sqli_go_0022` | CWE-89 | hard_negative | `bound_via_builder` | sqlx | 6-10 | helper called by another function | web_request | terse | without | - | - | List recent transactions for an account sorted by amount or date. |
-| 013 | `cla_sqli_go_0009` | CWE-89 | normal | `plain` | gorm Raw | 11-20 | method on a struct | web_request | terse | with | early | query_builder | Find all accounts created through an affiliate code. |
-| 014 | `cla_sqli_go_0020` | CWE-89 | no_code | `plain` | none | 1-5 | command line tool function | not_applicable | terse | without | - | - | Format an order total with tax and currency. |
-| 015 | `cla_sqli_go_0002` | CWE-89 | safe | `plain` | gorm Raw | 21-40 | plain function | function_argument | terse | with | - | - | Check a username and password hash for a login. |
-| 016 | `cla_sqli_go_0014` | CWE-89 | hard_negative | `placeholder_list_for_in` | database/sql Query | 21-40 | helper called by another function | file | terse | without | - | - | Find all accounts created through an affiliate code. |
-| 017 | `cla_sqli_go_0010` | CWE-89 | hard_negative | `placeholders_only_format` | database/sql Query | 6-10 | plain function | command_line | terse | with | - | - | Find articles that carry a given tag. |
-| 018 | `cla_sqli_go_0012` | CWE-89 | normal | `plain` | sqlx | 1-5 | plain function | command_line | descriptive | without | early | query_builder | Find events happening in a given city. |
-| 019 | `cla_sqli_go_0005` | CWE-89 | hard_negative | `placeholder_list_for_in` | sqlx | 21-40 | plain function | function_argument | terse | with | - | - | List the most recent log entries of a service. |
-| 020 | `cla_sqli_go_0025` | CWE-89 | hard_negative | `bound_via_builder` | database/sql Exec | 41-100 | method on a struct | command_line | descriptive | without | - | - | Export the orders of a given month. |
-| 021 | `cla_sqli_go_0021` | CWE-89 | hard_negative | `constant_fragments_only` | database/sql Exec | 11-20 | helper called by another function | function_argument | terse | with | - | - | Find patients by surname. |
-| 022 | `cla_sqli_go_0003` | CWE-89 | safe | `plain` | sqlx | 11-20 | command line tool function | command_line | terse | without | - | - | List the employees of a department. |
-| 023 | `cla_sqli_go_0007` | CWE-89 | safe | `plain` | sqlx | 41-100 | goroutine or callback | network_message | terse | with | - | - | Find articles that carry a given tag. |
-| 024 | `cla_sqli_go_0006` | CWE-89 | hard_positive | `one_branch_bound` | database/sql Query | 21-40 | command line tool function | command_line | terse | without | middle | allow_list | List recent transactions for an account sorted by amount or date. |
-| 025 | `cla_sqli_go_0024` | CWE-89 | safe | `plain` | database/sql QueryRow | 11-20 | HTTP handler | web_request | terse | without | - | - | Search a phone book by name prefix. |
+## 1. The MASTER PROMPT (paste this first in every new chat)
 
-</details>
+Copy it with the copy button in the corner of the box. The AI must answer `ready`.
+
+````text
+You are helping to build a training dataset for a research project that teaches software tools to detect, locate and repair security weaknesses in source code. The code you write is used defensively, to train and test vulnerability detectors. It will never be deployed or run against any real system. Write realistic code of the kind found in real programs.
+
+I will send you one task at a time. For each task, reply with ONE JSON object and nothing else.
+
+## What a reply is
+Exactly one JSON object, no text before or after it, no explanation, with these eight keys:
+- "code": the function, as one string, with its original indentation and line breaks written as \n.
+- "fixed_code": the same function made safe. Only for vulnerable rows (see below). An empty string "" for every other row.
+- "vulnerable_lines": a JSON list of line numbers of "code", counted from 1 (the first line of the function is line 1), for example [3, 5, 6]. Only for vulnerable rows. An empty list [] for every other row.
+- "task_description": one natural sentence saying what the function does. No hint of whether it is safe or vulnerable.
+- "sink": the call in your code that is the dangerous call (or the safe call used in its place), for example "cursor.execute" or "fopen". Empty string for code without such a call.
+- "build_style": how the dangerous value is built, for example "concatenation", "f_string", "path_join", "snprintf", "libc_rand". "none" for code without a dangerous call.
+- "fix_type": the kind of fix used in fixed_code, as named in the task. An empty string for rows without a fix.
+- "cwe_detail": the operation or variant involved, for example "rename", "sqlite3", "hex", "subprocess". "none" if not applicable.
+
+## The four weaknesses
+- CWE-89 SQL injection: untrusted input becomes part of the text of an SQL statement.
+- CWE-78 OS command injection: untrusted input can change which command or shell syntax is executed.
+- CWE-22 Path traversal: untrusted input can make a file operation reach outside the intended folder.
+- CWE-338 Weak random generator: a non-cryptographic random generator produces a security value (token, password, key, one-time code, session id, salt, reset code).
+
+## The five kinds of row (the task tells you which one)
+- plainly vulnerable (label 1): the function has the weakness. Give fixed_code and vulnerable_lines.
+- protected in a way that looks correct but fails (label 1): there is a check, filter, escape or similar that looks right, but the function is still vulnerable. A careful reader must be able to show how it fails. Give fixed_code and vulnerable_lines.
+- safe, written the standard way (label 0): no weakness. fixed_code "" and vulnerable_lines [].
+- completely safe, while using the dangerous call or looking like the vulnerable form (label 0): really safe, but a quick reader might think it is not. For CWE-338 this includes ordinary random used for something harmless (simulation, shuffling, sampling, retry jitter, games, test data, a fixed seed for a reproducible experiment). fixed_code "" and vulnerable_lines [].
+- ordinary code from the same kind of program that does not use any dangerous call for this weakness (label 0). fixed_code "", vulnerable_lines [], sink "", build_style "none".
+
+## Rules for every reply
+1. ONE complete function in the language asked for. A method is written alone, as the method. No main program, no includes or imports outside the function (in Python put imports inside the function body; in C, C++ and Go assume the usual headers or imports exist and do not write them). Never more than one function. No helper functions after it.
+2. The function must stand alone: do not call helper functions that are not defined or imported inside it, especially for the part that makes it safe or vulnerable. Write that logic inside the function.
+3. Follow the task exactly: pattern, where the input comes from, call family, program shape, names (descriptive = full words, terse = short names), comments, where the flaw sits, fix type. If the call family does not fit the task, use the closest natural call of the same kind.
+4. Length: aim for the number of lines the task asks for (count the signature, blank lines and every other line). It is better to be a few lines off than to pad. Never add code after a return, break or throw, never repeat statements, never add empty comments. To write a longer function add real logic around the task: input validation, a loop over several items, error handling, logging, building a result, a second step inside the same function.
+5. Comments: if the task says comments, write a few plain comment lines or a docstring that explain what the code does. If it says none, write no comments and no docstring at all.
+6. fixed_code changes as few lines as possible, at most 10, keeps the same function name, signature and behaviour for normal input, and really removes the weakness. Find EVERY place where the untrusted value reaches the dangerous call and cover each one. Use the standard library or the library the task names, not unusual extra packages. Do not rewrite the function.
+7. vulnerable_lines: first number the lines of "code" from 1, then list the lines that build the dangerous value, any faulty check that is meant to protect it, and the line that uses it in the dangerous call. Not the whole function. Check each number against your numbering before you answer.
+8. Never write any comment, name, string or message that says or hints whether the code is safe or vulnerable. Forbidden words in code, comments, names and strings: vulnerable, insecure, unsafe, safe, secure (as a label), fixed, bug, attack, exploit, injection, sanitize. Do not write attack strings, payloads or exploit steps.
+9. Make every function different: different names, structure and logic. Do not reuse the same layout from one answer to the next in this chat.
+
+## Check before you answer (silently, every time)
+- One function only, nothing after a return, line count close to the target?
+- Comments exactly as the task says?
+- For vulnerable rows: does fixed_code cover every use of the untrusted value, change at most 10 lines and keep the signature? Do the numbers in vulnerable_lines match your numbering of "code"?
+- Does "sink" appear in "code"? No label-revealing words anywhere?
+- The reply is only one JSON object.
+
+If you understand, reply only with: ready
+````
+
+---
+
+## 2. Your prompts are in the comments below (3 comments, 10 prompts each, one chat each)

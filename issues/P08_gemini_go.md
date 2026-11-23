@@ -4,120 +4,80 @@
 
 | | |
 |---|---|
-| **Your prompts (one file)** | [`MY_PROMPTS/P08_gemini_go.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/MY_PROMPTS/P08_gemini_go.md) |
 | **Your hand-in file (the only file you hand in)** | [`submissions/P08_gemini_go.txt`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/submissions/P08_gemini_go.txt) |
 | **How to do it** | [`README.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/README.md) |
 | **Check with Claude, in the browser** | [`prompts/CLAUDE_CHECK_PROMPT.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/prompts/CLAUDE_CHECK_PROMPT.md) |
 
-### Steps (tick them in your pull request)
+## What to do
 
-- [ ] Issue branch `issue/<this issue number>-P08_gemini_go` made from your personal branch `dev/rohisara` (after the earlier steps are merged)
-- [ ] Prompts for rows 006-100 pasted into Gemini (new chat for every 10 rows, master prompt first); every answer pasted under its `=== NNN` line in `submissions/P08_gemini_go.txt`
-- [ ] Check A done with Claude (rules); every REDO row generated again
-- [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
-- [ ] Pull request from the issue branch into `dev/rohisara` with **only** `submissions/P08_gemini_go.txt`; the exact model name in the description
-- [ ] After approval: merged into `dev/rohisara`; when all your steps are merged, one last pull request `dev/rohisara` into `main`
+1. Make your issue branch `issue/<this issue number>-P08_gemini_go` from your personal branch `dev/rohisara` (after the earlier steps are merged).
+2. The prompts are in the **comments below this text**, **10 prompts per comment = one chat**. Do the comments in order: CHAT 1, CHAT 2, ...
+3. For each comment: open a **new chat**, paste the **MASTER PROMPT** (section 1 below), wait for `ready`, then paste the 10 prompts one by one. After each prompt, paste the whole answer into your hand-in file under its `=== NNN` line.
+4. Check every 10 answers with Claude (README section 4, Check A and Check B).
+5. When all rows are done: pull request from your issue branch into `dev/rohisara` with **only** `submissions/P08_gemini_go.txt`, the exact model name in the description. After approval merge it; when all your steps are merged, open one last pull request `dev/rohisara` into `main`.
 
-Mix of rows: normal 31, hard_negative 26, safe 14, no_code 8, hard_positive 16.
+- [ ] Rows 006 to 100 done (10 chats), every answer pasted under its `=== NNN` line
+- [ ] Check A done (rules); every REDO row generated again
+- [ ] Check B done (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
+- [ ] Pull request opened with only the hand-in file
+- [ ] Merged into your personal branch
 
-<details><summary>Table of the rows (for reference; the prompts already contain all of this)</summary>
+---
 
-| # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 006 | `gem_pt_go_0006` | CWE-22 | normal | `plain` | http.ServeFile | 1-5 | method on a struct | environment | terse | with | late | allow_list_mapping | Return the contents of a help page file. |
-| 007 | `gem_rnd_go_0009` | CWE-338 | hard_negative | `ordinary_random_shuffling` | math/rand | 6-10 | helper called by another function | not_applicable | descriptive | without | - | - | Shuffle a playlist before playing it. |
-| 008 | `gem_cmdi_go_0022` | CWE-78 | safe | `plain` | exec.Command with sh -c | 11-20 | helper called by another function | web_request | descriptive | without | - | - | Mount a network share with given options. |
-| 009 | `gem_sqli_go_0004` | CWE-89 | hard_negative | `identifier_allowlist` | database/sql QueryRow | 6-10 | helper called by another function | environment | descriptive | without | - | - | Update the email address of a user profile. |
-| 010 | `gem_sqli_go_0013` | CWE-89 | hard_negative | `placeholders_only_format` | database/sql Exec | 11-20 | plain function | command_line | descriptive | with | - | - | Update the status of a support ticket. |
-| 011 | `gem_pt_go_0016` | CWE-22 | normal | `plain` | http.ServeFile | 41-100 | plain function | command_line | descriptive | with | early | base_name_only | Extract the entries of an uploaded archive into a folder. |
-| 012 | `gem_cmdi_go_0025` | CWE-78 | normal | `plain` | exec.Command with arguments | 6-10 | command line tool function | command_line | terse | without | late | argv_no_shell | Look up the registration data of a domain. |
-| 013 | `gem_cmdi_go_0007` | CWE-78 | normal | `plain` | exec.Command with sh -c | 21-40 | method on a struct | environment | descriptive | with | early | quoting | Count the lines of a file with a standard tool. |
-| 014 | `gem_sqli_go_0002` | CWE-89 | safe | `plain` | database/sql Exec | 41-100 | command line tool function | command_line | descriptive | with | - | - | Delete a user's saved bookmarks that match a title. |
-| 015 | `gem_rnd_go_0021` | CWE-338 | hard_negative | `ordinary_random_test_data` | math/rand | 6-10 | HTTP handler | not_applicable | terse | without | - | - | Create random order amounts for a demo database. |
-| 016 | `gem_cmdi_go_0017` | CWE-78 | safe | `plain` | exec.Command with sh -c | 6-10 | helper called by another function | function_argument | descriptive | without | - | - | Restart a named system service. |
-| 017 | `gem_cmdi_go_0020` | CWE-78 | safe | `plain` | exec.Command with sh -c | 41-100 | plain function | environment | descriptive | without | - | - | Convert an audio file to another bitrate. |
-| 018 | `gem_pt_go_0004` | CWE-22 | no_code | `plain` | none | 6-10 | HTTP handler | not_applicable | descriptive | with | - | - | Get the extension of a file name given as text. |
-| 019 | `gem_pt_go_0007` | CWE-22 | normal | `plain` | archive extraction (archive/zip) | 11-20 | helper called by another function | command_line | descriptive | without | middle | path_containment_check | Serve a static asset such as an image or stylesheet. |
-| 020 | `gem_pt_go_0017` | CWE-22 | hard_positive | `relative_check_misses_absolute` | archive extraction (archive/zip) | 21-40 | goroutine or callback | database_value | terse | with | late | allow_list_mapping | Read the first line of a stored file. |
-| 021 | `gem_pt_go_0009` | CWE-22 | no_code | `plain` | none | 11-20 | HTTP handler | not_applicable | descriptive | without | - | - | Compute a human readable size label. |
-| 022 | `gem_rnd_go_0017` | CWE-338 | no_code | `plain` | none | 11-20 | plain function | not_applicable | terse | with | - | - | Group a token into blocks of four characters. |
-| 023 | `gem_sqli_go_0003` | CWE-89 | normal | `plain` | gorm Raw | 6-10 | plain function | file | terse | without | middle | type_conversion | Search a phone book by name prefix. |
-| 024 | `gem_pt_go_0018` | CWE-22 | hard_negative | `library_confined_access` | http.ServeFile | 11-20 | method on a struct | network_message | descriptive | with | - | - | Read a log file of a named service. |
-| 025 | `gem_cmdi_go_0005` | CWE-78 | no_code | `plain` | none | 6-10 | goroutine or callback | not_applicable | terse | with | - | - | Format a duration in seconds as hours and minutes. |
-| 026 | `gem_rnd_go_0006` | CWE-338 | normal | `plain` | math/rand | 6-10 | HTTP handler | not_applicable | terse | with | early | secure_bytes_encoded | Create a token for confirming a newsletter subscription. |
-| 027 | `gem_rnd_go_0003` | CWE-338 | safe | `plain` | math/rand | 21-40 | helper called by another function | not_applicable | terse | with | - | - | Generate a temporary password for a new account. |
-| 028 | `gem_sqli_go_0011` | CWE-89 | hard_positive | `one_branch_bound` | database/sql Query | 11-20 | method on a struct | network_message | terse | with | late | allow_list | Record an audit entry for an administrator action. |
-| 029 | `gem_sqli_go_0024` | CWE-89 | normal | `plain` | sqlx | 11-20 | plain function | database_value | descriptive | without | middle | bound_parameters | List the appointments of a doctor on a given day. |
-| 030 | `gem_rnd_go_0025` | CWE-338 | hard_positive | `secure_sounding_name_weak_generator` | math/rand | 21-40 | plain function | not_applicable | terse | without | late | secure_generator_api | Create a cookie value for a remember-me login. |
-| 031 | `gem_pt_go_0001` | CWE-22 | hard_positive | `check_before_normalising` | os.ReadFile | 41-100 | method on a struct | network_message | descriptive | with | late | path_containment_check | Read the lines of a CSV import file. |
-| 032 | `gem_pt_go_0020` | CWE-22 | hard_positive | `check_before_normalising` | http.ServeFile | 11-20 | plain function | file | terse | without | middle | allow_list_mapping | Return the contents of a shared snippet file. |
-| 033 | `gem_rnd_go_0012` | CWE-338 | no_code | `plain` | none | 6-10 | method on a struct | not_applicable | descriptive | without | - | - | Compute the check digit of a number. |
-| 034 | `gem_sqli_go_0020` | CWE-89 | normal | `plain` | sqlx | 11-20 | goroutine or callback | environment | terse | without | early | query_builder | List the files shared with a user. |
-| 035 | `gem_pt_go_0021` | CWE-22 | safe | `plain` | archive extraction (archive/zip) | 21-40 | plain function | database_value | descriptive | without | - | - | Append a line to a user's activity log. |
-| 036 | `gem_sqli_go_0015` | CWE-89 | hard_negative | `constant_fragments_only` | database/sql Query | 21-40 | plain function | environment | terse | with | - | - | Set the stock quantity of a product after a delivery. |
-| 037 | `gem_pt_go_0010` | CWE-22 | hard_negative | `safe_filename_helper_fixed_folder` | os.Create | 11-20 | goroutine or callback | web_request | descriptive | without | - | - | Read a plugin manifest from a plugin folder. |
-| 038 | `gem_rnd_go_0004` | CWE-338 | hard_negative | `ordinary_random_retry_jitter` | math/rand | 6-10 | HTTP handler | not_applicable | terse | with | - | - | Compute a retry delay with random jitter so clients do not retry together. |
-| 039 | `gem_rnd_go_0016` | CWE-338 | hard_positive | `seed_from_clock_or_pid` | math/rand | 21-40 | helper called by another function | not_applicable | terse | with | early | secure_generator_api | Create a one-time code for two-factor sign in. |
-| 040 | `gem_pt_go_0022` | CWE-22 | hard_negative | `resolve_then_separator_aware_check` | http.ServeFile | 6-10 | plain function | web_request | terse | with | - | - | Return the modification time of a stored file. |
-| 041 | `gem_sqli_go_0010` | CWE-89 | hard_negative | `identifier_allowlist` | database/sql QueryRow | 11-20 | plain function | network_message | descriptive | with | - | - | Return the top sellers for a given region. |
-| 042 | `gem_cmdi_go_0023` | CWE-78 | normal | `plain` | exec.Command with sh -c | 21-40 | HTTP handler | web_request | descriptive | with | early | strict_validation | Pack an installer from a folder with a packaging tool. |
-| 043 | `gem_pt_go_0013` | CWE-22 | normal | `plain` | os.Create | 11-20 | method on a struct | database_value | terse | without | early | library_confinement | Unzip a theme package into the themes folder. |
-| 044 | `gem_sqli_go_0008` | CWE-89 | safe | `plain` | gorm Raw | 21-40 | HTTP handler | web_request | descriptive | without | - | - | Count the unread messages of a user. |
-| 045 | `gem_pt_go_0023` | CWE-22 | hard_negative | `base_name_only` | os.Create | 11-20 | method on a struct | environment | descriptive | with | - | - | Load a configuration file for a named profile. |
-| 046 | `gem_sqli_go_0017` | CWE-89 | no_code | `plain` | none | 11-20 | HTTP handler | not_applicable | terse | without | - | - | Parse a CSV line into fields. |
-| 047 | `gem_cmdi_go_0003` | CWE-78 | normal | `plain` | exec.Command with arguments | 6-10 | goroutine or callback | command_line | descriptive | with | middle | allow_list | Run a spell checker on a text file. |
-| 048 | `gem_cmdi_go_0010` | CWE-78 | hard_positive | `dash_argument_injection` | exec.Command with arguments | 11-20 | HTTP handler | database_value | terse | with | middle | quoting | Show the mount information of a device. |
-| 049 | `gem_pt_go_0019` | CWE-22 | hard_negative | `base_name_only` | archive extraction (archive/zip) | 41-100 | plain function | command_line | descriptive | without | - | - | Read a language pack for a game. |
-| 050 | `gem_cmdi_go_0002` | CWE-78 | normal | `plain` | exec.Command with arguments | 1-5 | HTTP handler | database_value | terse | without | late | strict_validation | Show the commit history of a repository for one author. |
-| 051 | `gem_rnd_go_0005` | CWE-338 | hard_negative | `ordinary_random_shuffling` | math/rand | 41-100 | goroutine or callback | not_applicable | terse | with | - | - | Shuffle a playlist before playing it. |
-| 052 | `gem_rnd_go_0008` | CWE-338 | normal | `plain` | math/rand | 11-20 | method on a struct | not_applicable | terse | without | late | secure_generator_api | Create a webhook signing secret. |
-| 053 | `gem_cmdi_go_0004` | CWE-78 | normal | `plain` | exec.Command with sh -c | 6-10 | HTTP handler | database_value | terse | with | early | allow_list | Query the status of a container by name. |
-| 054 | `gem_pt_go_0005` | CWE-22 | normal | `plain` | http.ServeFile | 21-40 | method on a struct | function_argument | descriptive | without | late | library_confinement | List the files in a sub folder of the storage area. |
-| 055 | `gem_sqli_go_0007` | CWE-89 | hard_positive | `handwritten_escaping` | database/sql Exec | 41-100 | goroutine or callback | command_line | descriptive | without | early | query_builder | Remove a product from a wishlist. |
-| 056 | `gem_pt_go_0015` | CWE-22 | normal | `plain` | os.ReadFile | 6-10 | plain function | environment | descriptive | with | late | path_containment_check | Count the lines of a stored text file. |
-| 057 | `gem_cmdi_go_0018` | CWE-78 | normal | `plain` | exec.Command with sh -c | 21-40 | plain function | file | terse | with | late | argv_no_shell | Run a linter on a submitted file and return its report. |
-| 058 | `gem_sqli_go_0014` | CWE-89 | normal | `plain` | database/sql Query | 11-20 | method on a struct | file | terse | without | early | allow_list | Get the loyalty points of a customer. |
-| 059 | `gem_cmdi_go_0015` | CWE-78 | hard_negative | `user_data_after_end_of_options` | exec.Command with sh -c | 11-20 | method on a struct | database_value | terse | without | - | - | Extract a thumbnail frame from a video file. |
-| 060 | `gem_sqli_go_0023` | CWE-89 | hard_negative | `identifier_allowlist` | gorm Raw | 21-40 | method on a struct | function_argument | descriptive | without | - | - | Transfer a balance between two accounts inside a transaction. |
-| 061 | `gem_rnd_go_0024` | CWE-338 | normal | `plain` | math/rand | 11-20 | helper called by another function | not_applicable | terse | with | early | secure_generator_api | Issue a device registration token. |
-| 062 | `gem_pt_go_0014` | CWE-22 | normal | `plain` | os.ReadFile | 11-20 | method on a struct | command_line | descriptive | with | early | path_containment_check | Truncate a log file chosen by name. |
-| 063 | `gem_pt_go_0003` | CWE-22 | hard_negative | `safe_filename_helper_fixed_folder` | os.ReadFile | 6-10 | command line tool function | command_line | descriptive | with | - | - | Read a font file requested by a stylesheet. |
-| 064 | `gem_cmdi_go_0016` | CWE-78 | hard_positive | `quoting_in_wrong_context` | exec.Command with sh -c | 11-20 | plain function | command_line | descriptive | with | middle | argv_no_shell | Show the fingerprint of an ssh key file. |
-| 065 | `gem_rnd_go_0015` | CWE-338 | hard_positive | `seed_from_clock_or_pid` | math/rand | 41-100 | command line tool function | not_applicable | descriptive | with | early | rejection_sampling_secure_index | Generate an initialization vector for encrypting a file. |
-| 066 | `gem_sqli_go_0025` | CWE-89 | hard_positive | `one_branch_bound` | gorm Raw | 21-40 | HTTP handler | web_request | descriptive | without | early | allow_list | Search a product catalogue with optional filters for price and brand. |
-| 067 | `gem_pt_go_0011` | CWE-22 | normal | `plain` | http.ServeFile | 11-20 | helper called by another function | web_request | terse | with | late | base_name_only | Delete temporary files that match a name. |
-| 068 | `gem_cmdi_go_0006` | CWE-78 | hard_positive | `partial_shell_character_filter` | exec.Command with arguments | 11-20 | HTTP handler | database_value | descriptive | without | middle | argv_no_shell | Zip the contents of a folder into a named archive. |
-| 069 | `gem_sqli_go_0009` | CWE-89 | normal | `plain` | gorm Raw | 21-40 | goroutine or callback | web_request | descriptive | with | early | query_builder | Update the status of a support ticket. |
-| 070 | `gem_pt_go_0008` | CWE-22 | safe | `plain` | archive extraction (archive/zip) | 41-100 | HTTP handler | web_request | descriptive | with | - | - | Create a backup copy of a document. |
-| 071 | `gem_cmdi_go_0013` | CWE-78 | hard_negative | `command_from_fixed_map` | exec.Command with arguments | 6-10 | HTTP handler | web_request | terse | without | - | - | Download a web page with a command line client. |
-| 072 | `gem_rnd_go_0011` | CWE-338 | hard_negative | `fixed_seed_reproducible` | math/rand | 11-20 | command line tool function | not_applicable | descriptive | without | - | - | Draw the same sample every run for a reproducible experiment. |
-| 073 | `gem_pt_go_0012` | CWE-22 | hard_positive | `prefix_test_without_separator` | http.ServeFile | 21-40 | helper called by another function | file | terse | with | middle | library_confinement | Let a user download a generated report by name. |
-| 074 | `gem_pt_go_0024` | CWE-22 | hard_negative | `library_confined_access` | os.ReadFile | 11-20 | command line tool function | command_line | terse | with | - | - | Report the size of a stored file. |
-| 075 | `gem_sqli_go_0012` | CWE-89 | normal | `plain` | database/sql Query | 1-5 | helper called by another function | network_message | descriptive | with | late | type_conversion | Find all students enrolled in a course. |
-| 076 | `gem_sqli_go_0022` | CWE-89 | hard_negative | `constant_fragments_only` | sqlx | 21-40 | HTTP handler | web_request | terse | without | - | - | Update the email address of a user profile. |
-| 077 | `gem_pt_go_0002` | CWE-22 | safe | `plain` | os.Create | 21-40 | plain function | file | terse | without | - | - | Read a user's saved draft. |
-| 078 | `gem_rnd_go_0018` | CWE-338 | normal | `plain` | math/rand | 11-20 | method on a struct | not_applicable | terse | with | middle | secure_bytes_encoded | Generate a secret for a shared team calendar link. |
-| 079 | `gem_sqli_go_0018` | CWE-89 | hard_positive | `keyword_blocklist` | sqlx | 6-10 | helper called by another function | environment | terse | with | middle | bound_parameters | Search support tickets by keyword and priority. |
-| 080 | `gem_sqli_go_0005` | CWE-89 | safe | `plain` | database/sql Exec | 11-20 | goroutine or callback | file | descriptive | without | - | - | Fetch an invoice by its number. |
-| 081 | `gem_cmdi_go_0011` | CWE-78 | hard_negative | `strict_parser_then_no_shell` | exec.Command with sh -c | 21-40 | method on a struct | network_message | terse | with | - | - | Search a log file for lines containing a term. |
-| 082 | `gem_rnd_go_0007` | CWE-338 | hard_negative | `fixed_seed_reproducible` | math/rand | 41-100 | helper called by another function | not_applicable | descriptive | with | - | - | Generate reproducible synthetic data for a unit test. |
-| 083 | `gem_cmdi_go_0012` | CWE-78 | no_code | `plain` | none | 1-5 | HTTP handler | not_applicable | descriptive | with | - | - | Join a list of words into a title. |
-| 084 | `gem_sqli_go_0001` | CWE-89 | normal | `plain` | database/sql Exec | 41-100 | method on a struct | file | descriptive | with | middle | allow_list | Delete a user's saved bookmarks that match a title. |
-| 085 | `gem_sqli_go_0016` | CWE-89 | no_code | `plain` | none | 6-10 | helper called by another function | not_applicable | descriptive | without | - | - | Compute an age from a birth date. |
-| 086 | `gem_pt_go_0025` | CWE-22 | safe | `plain` | archive extraction (archive/zip) | 11-20 | helper called by another function | command_line | terse | without | - | - | Open a video file for streaming. |
-| 087 | `gem_cmdi_go_0019` | CWE-78 | hard_negative | `all_arguments_shell_quoted` | exec.Command with arguments | 11-20 | command line tool function | command_line | terse | with | - | - | Unpack an uploaded archive into a working folder. |
-| 088 | `gem_rnd_go_0014` | CWE-338 | safe | `plain` | math/rand | 21-40 | helper called by another function | not_applicable | descriptive | without | - | - | Generate a one-time login link token. |
-| 089 | `gem_rnd_go_0019` | CWE-338 | normal | `plain` | math/rand | 6-10 | goroutine or callback | not_applicable | terse | with | early | secure_bytes_encoded | Generate an unlock code for a smart lock. |
-| 090 | `gem_sqli_go_0006` | CWE-89 | hard_negative | `integer_forced` | sqlx | 21-40 | command line tool function | command_line | descriptive | with | - | - | Find events happening in a given city. |
-| 091 | `gem_rnd_go_0001` | CWE-338 | hard_positive | `weak_value_hashed` | math/rand | 6-10 | method on a struct | not_applicable | descriptive | with | late | secure_bytes_encoded | Generate a password reset token to email to a user. |
-| 092 | `gem_sqli_go_0019` | CWE-89 | normal | `plain` | database/sql QueryRow | 41-100 | goroutine or callback | database_value | descriptive | with | late | bound_parameters | Count signups per day for a date range. |
-| 093 | `gem_cmdi_go_0008` | CWE-78 | hard_negative | `constant_shell_command` | exec.Command with sh -c | 6-10 | method on a struct | function_argument | descriptive | without | - | - | Sync a folder to a remote host over ssh. |
-| 094 | `gem_rnd_go_0023` | CWE-338 | hard_negative | `ordinary_random_simulation` | math/rand | 21-40 | plain function | not_applicable | terse | with | - | - | Simulate customer arrivals at a shop with random gaps between them. |
-| 095 | `gem_rnd_go_0020` | CWE-338 | safe | `plain` | math/rand | 21-40 | goroutine or callback | not_applicable | descriptive | without | - | - | Issue a ticket secret for a QR code. |
-| 096 | `gem_cmdi_go_0024` | CWE-78 | hard_positive | `partial_shell_character_filter` | exec.Command with sh -c | 41-100 | goroutine or callback | file | terse | without | middle | allow_list | Extract a thumbnail frame from a video file. |
-| 097 | `gem_rnd_go_0022` | CWE-338 | normal | `plain` | math/rand | 41-100 | method on a struct | not_applicable | terse | without | late | secure_bytes_encoded | Generate a booking confirmation code. |
-| 098 | `gem_cmdi_go_0001` | CWE-78 | normal | `plain` | exec.Command with sh -c | 1-5 | plain function | network_message | terse | without | late | allow_list | Convert a document to another format with a converter. |
-| 099 | `gem_cmdi_go_0009` | CWE-78 | normal | `plain` | exec.Command with sh -c | 11-20 | HTTP handler | web_request | terse | with | late | quoting | Resize an image to a requested size with an external tool. |
-| 100 | `gem_rnd_go_0010` | CWE-338 | safe | `plain` | math/rand | 11-20 | command line tool function | not_applicable | terse | without | - | - | Generate a shared secret for a time-based one-time password setup. |
+## 1. The MASTER PROMPT (paste this first in every new chat)
 
-</details>
+Copy it with the copy button in the corner of the box. The AI must answer `ready`.
+
+````text
+You are helping to build a training dataset for a research project that teaches software tools to detect, locate and repair security weaknesses in source code. The code you write is used defensively, to train and test vulnerability detectors. It will never be deployed or run against any real system. Write realistic code of the kind found in real programs.
+
+I will send you one task at a time. For each task, reply with ONE JSON object and nothing else.
+
+## What a reply is
+Exactly one JSON object, no text before or after it, no explanation, with these eight keys:
+- "code": the function, as one string, with its original indentation and line breaks written as \n.
+- "fixed_code": the same function made safe. Only for vulnerable rows (see below). An empty string "" for every other row.
+- "vulnerable_lines": a JSON list of line numbers of "code", counted from 1 (the first line of the function is line 1), for example [3, 5, 6]. Only for vulnerable rows. An empty list [] for every other row.
+- "task_description": one natural sentence saying what the function does. No hint of whether it is safe or vulnerable.
+- "sink": the call in your code that is the dangerous call (or the safe call used in its place), for example "cursor.execute" or "fopen". Empty string for code without such a call.
+- "build_style": how the dangerous value is built, for example "concatenation", "f_string", "path_join", "snprintf", "libc_rand". "none" for code without a dangerous call.
+- "fix_type": the kind of fix used in fixed_code, as named in the task. An empty string for rows without a fix.
+- "cwe_detail": the operation or variant involved, for example "rename", "sqlite3", "hex", "subprocess". "none" if not applicable.
+
+## The four weaknesses
+- CWE-89 SQL injection: untrusted input becomes part of the text of an SQL statement.
+- CWE-78 OS command injection: untrusted input can change which command or shell syntax is executed.
+- CWE-22 Path traversal: untrusted input can make a file operation reach outside the intended folder.
+- CWE-338 Weak random generator: a non-cryptographic random generator produces a security value (token, password, key, one-time code, session id, salt, reset code).
+
+## The five kinds of row (the task tells you which one)
+- plainly vulnerable (label 1): the function has the weakness. Give fixed_code and vulnerable_lines.
+- protected in a way that looks correct but fails (label 1): there is a check, filter, escape or similar that looks right, but the function is still vulnerable. A careful reader must be able to show how it fails. Give fixed_code and vulnerable_lines.
+- safe, written the standard way (label 0): no weakness. fixed_code "" and vulnerable_lines [].
+- completely safe, while using the dangerous call or looking like the vulnerable form (label 0): really safe, but a quick reader might think it is not. For CWE-338 this includes ordinary random used for something harmless (simulation, shuffling, sampling, retry jitter, games, test data, a fixed seed for a reproducible experiment). fixed_code "" and vulnerable_lines [].
+- ordinary code from the same kind of program that does not use any dangerous call for this weakness (label 0). fixed_code "", vulnerable_lines [], sink "", build_style "none".
+
+## Rules for every reply
+1. ONE complete function in the language asked for. A method is written alone, as the method. No main program, no includes or imports outside the function (in Python put imports inside the function body; in C, C++ and Go assume the usual headers or imports exist and do not write them). Never more than one function. No helper functions after it.
+2. The function must stand alone: do not call helper functions that are not defined or imported inside it, especially for the part that makes it safe or vulnerable. Write that logic inside the function.
+3. Follow the task exactly: pattern, where the input comes from, call family, program shape, names (descriptive = full words, terse = short names), comments, where the flaw sits, fix type. If the call family does not fit the task, use the closest natural call of the same kind.
+4. Length: aim for the number of lines the task asks for (count the signature, blank lines and every other line). It is better to be a few lines off than to pad. Never add code after a return, break or throw, never repeat statements, never add empty comments. To write a longer function add real logic around the task: input validation, a loop over several items, error handling, logging, building a result, a second step inside the same function.
+5. Comments: if the task says comments, write a few plain comment lines or a docstring that explain what the code does. If it says none, write no comments and no docstring at all.
+6. fixed_code changes as few lines as possible, at most 10, keeps the same function name, signature and behaviour for normal input, and really removes the weakness. Find EVERY place where the untrusted value reaches the dangerous call and cover each one. Use the standard library or the library the task names, not unusual extra packages. Do not rewrite the function.
+7. vulnerable_lines: first number the lines of "code" from 1, then list the lines that build the dangerous value, any faulty check that is meant to protect it, and the line that uses it in the dangerous call. Not the whole function. Check each number against your numbering before you answer.
+8. Never write any comment, name, string or message that says or hints whether the code is safe or vulnerable. Forbidden words in code, comments, names and strings: vulnerable, insecure, unsafe, safe, secure (as a label), fixed, bug, attack, exploit, injection, sanitize. Do not write attack strings, payloads or exploit steps.
+9. Make every function different: different names, structure and logic. Do not reuse the same layout from one answer to the next in this chat.
+
+## Check before you answer (silently, every time)
+- One function only, nothing after a return, line count close to the target?
+- Comments exactly as the task says?
+- For vulnerable rows: does fixed_code cover every use of the untrusted value, change at most 10 lines and keep the signature? Do the numbers in vulnerable_lines match your numbering of "code"?
+- Does "sink" appear in "code"? No label-revealing words anywhere?
+- The reply is only one JSON object.
+
+If you understand, reply only with: ready
+````
+
+---
+
+## 2. Your prompts are in the comments below (10 comments, 10 prompts each, one chat each)

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Builds, for every package, the two files a person works with:
 
-    MY_PROMPTS/<package>.md       all prompts of the package in ONE file (master prompt on top, then chat 1 ... chat 10)
     submissions/<package>.txt     the ONE file the person hands in: an empty form with a line '=== 001' ... for every row
 
 Run from the repository root after tools/make_briefs.py. Never overwrites a submission file that already has content.
@@ -25,7 +24,6 @@ def main():
     for r in rows:
         pk.setdefault(r["package"], []).append(r)
     mp = master_prompt()
-    os.makedirs(os.path.join(ROOT, "MY_PROMPTS"), exist_ok=True)
     os.makedirs(os.path.join(ROOT, "submissions"), exist_ok=True)
     for pkg, rs in pk.items():
         m, lang = MODEL[rs[0]["model"]], LANG[rs[0]["language"]]
@@ -64,7 +62,6 @@ def main():
                 L += [f"### ▶ ROW {r['row_no']:03d} &nbsp;·&nbsp; {r['cwe']} &nbsp;·&nbsp; {r['case_type']}",
                       f"Save the answer under `=== {r['row_no']:03d}`", "", "```text", r["prompt"], "```", ""]
             L += ["---", ""]
-        open(os.path.join(ROOT, "MY_PROMPTS", f"{pkg}.md"), "w", encoding="utf-8", newline="\n").write("\n".join(L))
         sub = os.path.join(ROOT, "submissions", f"{pkg}.txt")
         if not os.path.exists(sub) or not open(sub, encoding="utf-8").read().strip():
             S = [f"HAND-IN FILE FOR {pkg}  ({m}, {lang}, {n} rows)",
