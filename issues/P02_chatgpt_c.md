@@ -1,6 +1,6 @@
 ## 🟦 STEP 2 of 2
 
-**Assigned to: bkvishal28.** Do this **after** the warm-up (issue #17) is approved. Rows **006 to 100** (ChatGPT × C).
+**Assigned to: bkvishal28.** Do this **after** your first issue (#17) is approved. Rows **006 to 100** (ChatGPT × C).
 
 | | |
 |---|---|

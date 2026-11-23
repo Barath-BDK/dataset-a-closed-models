@@ -1,6 +1,6 @@
 ## 🟦 STEP 2 of 3
 
-**Assigned to: gokulnathan301g.** Do this **after** the warm-up (issue #18) is approved. Rows **006 to 100** (ChatGPT × C++).
+**Assigned to: gokulnathan301g.** Do this **after** your first issue (#18) is approved. Rows **006 to 100** (ChatGPT × C++).
 
 | | |
 |---|---|

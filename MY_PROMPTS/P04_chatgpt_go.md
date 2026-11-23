@@ -10,7 +10,7 @@
 4. Copy the whole answer and paste it into `submissions/P04_chatgpt_go.txt` **under the line `=== 001`**.
 5. Do the same for the next rows. **After 10 rows, start a new chat** and paste the MASTER PROMPT again (the file tells you where).
 
-**Order:** first do the **STEP 1 warm-up (rows 001 to 005, five prompts)** and hand it in, so the lead can tell you if you are doing it right. Only then do the rest (STEP 2).
+**Order:** first do the **STEP 1 first issue (rows 001 to 005, five prompts, they count towards your 100)** and hand it in, so the lead can tell you if you are doing it right. Only then do the rest (STEP 2).
 6. When you finish, check your answers with Claude (see the README, step 5) and hand in the one file.
 
 Do not change the model's answer. Do not leave out rows. If a row goes wrong, ask the same row again in a new chat and replace the answer.
@@ -71,9 +71,9 @@ If you understand, reply only with: ready
 
 ---
 
-# 🟩 STEP 1: WARM-UP CHAT. DO THIS FIRST (rows 001 to 005, only 5 prompts)
+# 🟩 STEP 1: YOUR FIRST ISSUE. DO THIS FIRST (rows 001 to 005, only 5 prompts, they count towards your 100)
 
-**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → paste these 5 rows one by one → paste each answer into your hand-in file.** Then do the warm-up pull request (README, section 3) and wait for the lead's reply before you continue with CHAT 2.
+**Open a NEW chat → paste the MASTER PROMPT (at the top of this file) → wait for `ready` → paste these 5 rows one by one → paste each answer into your hand-in file.** Then hand in these 5 rows with a pull request (README, section 3) and wait for the lead's reply before you continue with CHAT 2.
 
 ### ▶ ROW 001 &nbsp;·&nbsp; CWE-89 &nbsp;·&nbsp; hard_negative
 Save the answer under `=== 001`

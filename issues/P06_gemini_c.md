@@ -1,6 +1,6 @@
 ## 🟦 STEP 2 of 2
 
-**Assigned to: maheera-b.** Do this **after** the warm-up (issue #21) is approved. Rows **006 to 100** (Gemini × C).
+**Assigned to: maheera-b.** Do this **after** your first issue (#21) is approved. Rows **006 to 100** (Gemini × C).
 
 | | |
 |---|---|

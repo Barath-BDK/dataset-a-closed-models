@@ -42,23 +42,23 @@ def main():
             wnum = 15 + int(pid[1:])
             # warm-up issue
             step_of_main = 2
-            W = [f"## 🟩 STEP 1 of {n_steps}: DO THIS FIRST", "",
-                 f"**Assigned to: {user}.** A short warm-up so you learn the routine before the big job: **only 5 prompts** (rows 001 to 005 of {m} × {lang}).", "",
+            W = [f"## 🟩 STEP 1 of {n_steps}: THIS IS YOUR FIRST ISSUE. RESOLVE IT FIRST", "",
+                 f"**Assigned to: {user}.** This is the **first issue you must resolve**, before any other issue. It is only **5 prompts** (rows 001 to 005 of {m} × {lang}). **These 5 rows are real rows: they count towards your 100** and are part of the final dataset. They are first so that the lead can check your format after 5 rows and you learn the routine before the big job.", "",
                  *links,
                  "### What to do", "",
                  f"1. Read the `README.md` (set-up, personal branch).",
-                 f"2. Open [`MY_PROMPTS/{pkg}.md`]({mp}) and find the green block **STEP 1: WARM-UP CHAT**.",
+                 f"2. Open [`MY_PROMPTS/{pkg}.md`]({mp}) and find the green block **STEP 1: FIRST ISSUE (rows 001 to 005)**.",
                  f"3. New chat with **{m}** (free base model) → paste the **MASTER PROMPT** → wait for `ready` → paste ROW 001 → paste the answer into `submissions/{pkg}.txt` under `=== 001` → same for rows 002 to 005.",
                  "4. Check the 5 answers with Claude (README section 4, Check A and Check B).",
-                 f"5. Make the issue branch `issue/<this issue number>-warmup`, commit `submissions/{pkg}.txt` with rows 001 to 005 filled, open a pull request into your personal branch `dev/{user}`, write the exact model name in it, and ask the lead for review.",
+                 f"5. Make the issue branch `issue/<this issue number>-first`, commit `submissions/{pkg}.txt` with rows 001 to 005 filled, open a pull request into your personal branch `dev/{user}`, write the exact model name in it, and ask the lead for review.",
                  f"6. **Wait for the lead's reply**, then start Step 2 (issue #{number_of[pkg]}). Rows 006 to 100 go in the same file.", "",
-                 "- [ ] Master prompt pasted, answered `ready`", "- [ ] Rows 001 to 005 pasted under their lines", "- [ ] Check A and B done", "- [ ] Pull request opened, lead's OK received", ""]
-            wtitle = f"[{user} · Step 1 of {n_steps} · DO THIS FIRST] Warm-up: 5 prompts ({pid} {m} x {lang}, rows 001-005)"
+                 "- [ ] Master prompt pasted, answered `ready`", "- [ ] Rows 001 to 005 pasted under their lines", "- [ ] Check A and B done", "- [ ] Pull request opened, lead's OK received (only then start Step 2)", ""]
+            wtitle = f"[{user} · Step 1 of {n_steps} · FIRST ISSUE, DO THIS FIRST] {pid} {m} x {lang}: rows 001-005 (5 rows)"
             open(os.path.join(ROOT, "issues", f"{pkg}_warmup.md"), "w", encoding="utf-8").write("\n".join(W))
-            out.append([wnum, wtitle, f"{pkg}_warmup.md", f"warm-up,model:{rs[0]['model']},lang:{rs[0]['language']}", user])
+            out.append([wnum, wtitle, f"{pkg}_warmup.md", f"first-issue,model:{rs[0]['model']},lang:{rs[0]['language']}", user])
             body_rows, first, last = rest, 6, 100
             title = f"[{user} · Step 2 of {n_steps}] {pid} {m} x {lang}: rows 006-100 (95 rows)"
-            head = [f"## 🟦 STEP 2 of {n_steps}", "", f"**Assigned to: {user}.** Do this **after** the warm-up (issue #{wnum}) is approved. Rows **006 to 100** ({m} × {lang}).", ""]
+            head = [f"## 🟦 STEP 2 of {n_steps}", "", f"**Assigned to: {user}.** Do this **after** your first issue (#{wnum}) is approved. Rows **006 to 100** ({m} × {lang}).", ""]
         else:
             body_rows, first, last = rs, 1, len(rs)
             step = n_steps

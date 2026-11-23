@@ -1,6 +1,6 @@
 ## 🟦 STEP 2 of 2
 
-**Assigned to: rohisara.** Do this **after** the warm-up (issue #23) is approved. Rows **006 to 100** (Gemini × Go).
+**Assigned to: rohisara.** Do this **after** your first issue (#23) is approved. Rows **006 to 100** (Gemini × Go).
 
 | | |
 |---|---|

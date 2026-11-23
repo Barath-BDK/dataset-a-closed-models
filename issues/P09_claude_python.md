@@ -1,6 +1,6 @@
 ## 🟦 STEP 2 of 3
 
-**Assigned to: kanishkagopiramanan-ai.** Do this **after** the warm-up (issue #24) is approved. Rows **006 to 100** (Claude × Python).
+**Assigned to: kanishkagopiramanan-ai.** Do this **after** your first issue (#24) is approved. Rows **006 to 100** (Claude × Python).
 
 | | |
 |---|---|

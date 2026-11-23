@@ -1,6 +1,6 @@
 ## 🟦 STEP 2 of 3
 
-**Assigned to: dHEENA0644.** Do this **after** the warm-up (issue #20) is approved. Rows **006 to 100** (Gemini × Python).
+**Assigned to: dHEENA0644.** Do this **after** your first issue (#20) is approved. Rows **006 to 100** (Gemini × Python).
 
 | | |
 |---|---|

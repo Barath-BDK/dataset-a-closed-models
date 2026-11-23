@@ -1,6 +1,6 @@
 ## 🟦 STEP 2 of 3
 
-**Assigned to: vinoth96-hub.** Do this **after** the warm-up (issue #16) is approved. Rows **006 to 100** (ChatGPT × Python).
+**Assigned to: vinoth96-hub.** Do this **after** your first issue (#16) is approved. Rows **006 to 100** (ChatGPT × Python).
 
 | | |
 |---|---|
