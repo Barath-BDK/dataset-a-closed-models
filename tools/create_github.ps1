@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   Creates the GitHub repository, the labels and one issue per package, and assigns the issues.
 
@@ -15,7 +15,8 @@ param(
   [Parameter(Mandatory = $true)][string]$Repo,
   [ValidateSet("private", "public")][string]$Visibility = "private",
   [switch]$SkipRepo,
-  [switch]$InviteCollaborators
+  [switch]$InviteCollaborators,
+  [string]$Assignments = 'assignments.csv'
 )
 $ErrorActionPreference = "Stop"
 Set-Location (Join-Path $PSScriptRoot "..")
@@ -35,7 +36,7 @@ $labels = @(
 )
 foreach ($l in $labels) { gh label create $l[0] --color $l[1] --repo $Repo --force | Out-Null }
 
-$rows = Import-Csv assignments.csv
+$rows = Import-Csv $Assignments
 foreach ($r in $rows) {
   $pkg = $r.package
   $parts = $pkg.Split("_")
@@ -47,7 +48,9 @@ foreach ($r in $rows) {
   if ($user) {
     if ($InviteCollaborators) { gh api -X PUT "repos/$Repo/collaborators/$user" -f permission=push | Out-Null }
     $args += @("--assignee", $user)
-  } else { Write-Warning "No GitHub user for $pkg: issue created without an assignee" }
+  } else { Write-Warning "No GitHub user for ${pkg}: issue created without an assignee" }
   & gh @args
 }
 Write-Host "Done. Protect the main branch (Settings > Branches) so that it only accepts pull requests."
+
+

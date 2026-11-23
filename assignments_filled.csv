@@ -1,0 +1,16 @@
+﻿package,issue_title,github_username
+P01_chatgpt_python,[P01] ChatGPT x Python: 100 rows,vinoth96-hub
+P02_chatgpt_c,[P02] ChatGPT x C: 100 rows,bkvishal28
+P03_chatgpt_cpp,[P03] ChatGPT x C++: 100 rows,gokulnathan301g
+P04_chatgpt_go,[P04] ChatGPT x Go: 100 rows,Puneeth-2428
+P05_gemini_python,[P05] Gemini x Python: 100 rows,dHEENA0644
+P06_gemini_c,[P06] Gemini x C: 100 rows,maheera-b
+P07_gemini_cpp,[P07] Gemini x C++: 100 rows,Hafsah-Khathoon
+P08_gemini_go,[P08] Gemini x Go: 100 rows,rohisara
+P09_claude_python,[P09] Claude x Python: 100 rows,kanishkagopiramanan-ai
+P10_claude_c,[P10] Claude x C: 100 rows,yuvasreejagadeesan05
+P11_claude_cpp,[P11] Claude x C++: 100 rows,jeevikaar
+P12a_claude_go_sqli,[P12a] Claude x Go x CWE-89: 25 rows,vinoth96-hub
+P12b_claude_go_cmdi,[P12b] Claude x Go x CWE-78: 25 rows,dHEENA0644
+P12c_claude_go_pt,[P12c] Claude x Go x CWE-22: 25 rows,kanishkagopiramanan-ai
+P12d_claude_go_rnd,[P12d] Claude x Go x CWE-338: 25 rows,gokulnathan301g
