@@ -1,165 +1,148 @@
-# Dataset A (closed models): 1,200 vulnerable and safe functions
+# Dataset A: 1,200 code examples written by AI models
 
-ISEA Phase 3 project *Dynamic Security Testing of LLM-Generated Code*. This repository is where eleven people build **Synthetic Dataset A**: 1,200 functions written by three closed models (ChatGPT, Gemini, Claude) for four weaknesses in four languages. The specification is `docs/Dataset_A_Closed_Models.docx`. **Read it once before you start.** This README tells you how to do your part and how to hand it in.
+ISEA Phase 3 project *Dynamic Security Testing of LLM-Generated Code*. Eleven people build a dataset of **1,200 small functions** (some safe, some with a security weakness) using three AI chat models: ChatGPT, Gemini and Claude. Each person gets **one model and one programming language**.
 
-## 1. The job in one table
+**You do three things: paste prompts into an AI chat, paste the answers into one file, hand that one file in.** You do not need to write code and you do not need the command line (a few Git commands are shown, with a no-Git alternative).
 
-| | Python | C | C++ | Go | Total |
-|---|---|---|---|---|---|
-| CWE-89 SQL injection | 75 | 75 | 75 | 75 | 300 |
-| CWE-78 OS command injection | 75 | 75 | 75 | 75 | 300 |
-| CWE-22 Path traversal | 75 | 75 | 75 | 75 | 300 |
-| CWE-338 Weak random generator | 75 | 75 | 75 | 75 | 300 |
-| **Total** | 300 | 300 | 300 | 300 | **1,200** |
+---
 
-Each of the 16 cells (weakness × language) has 75 rows, **25 from each model**: 25 normal, 12 hard_positive, 12 safe, 20 hard_negative, 6 no_code across the three models, lengths spread over five bands, and a spread of program shapes, input sources, tasks and fix types. `tools/make_briefs.py` already turned the whole distribution into one brief per row (`data/briefs.jsonl`), so **you do not decide what to write: every prompt already carries its case type, pattern, call, length, shape, input source, names, comments, flaw position, fix type and task.**
+## 1. Find your job
 
-## 2. Who does what
+1. Open the **Issues** tab of this repository. Your issue is the one **assigned to you** (it names your model and language, for example `[P05] Gemini x Python: 100 rows`). Note your package name, for example `P05_gemini_python`.
+2. Your **prompts** are in one file: **`MY_PROMPTS/<your package>.md`** (for example `MY_PROMPTS/P05_gemini_python.md`).
+3. Your **hand-in file** is one file: **`submissions/<your package>.txt`** (for example `submissions/P05_gemini_python.txt`). It already exists and is empty; you fill it in.
 
-There are 3 models × 4 languages = **12 packages of 100 rows**. Each person gets **one model and one language**. With 11 people, package 12 (Claude × Go) is split by weakness into four small issues (25 rows each) that are shared out. The table is in `assignments.csv`; the lead fills in the GitHub names.
+That is all you work with: **one prompts file, one hand-in file.**
 
-| Package | Model | Language | Rows | Folder |
-|---|---|---|---|---|
-| P01 | ChatGPT | Python | 100 | `packages/P01_chatgpt_python/` |
-| P02 | ChatGPT | C | 100 | `packages/P02_chatgpt_c/` |
-| P03 | ChatGPT | C++ | 100 | `packages/P03_chatgpt_cpp/` |
-| P04 | ChatGPT | Go | 100 | `packages/P04_chatgpt_go/` |
-| P05 | Gemini | Python | 100 | `packages/P05_gemini_python/` |
-| P06 | Gemini | C | 100 | `packages/P06_gemini_c/` |
-| P07 | Gemini | C++ | 100 | `packages/P07_gemini_cpp/` |
-| P08 | Gemini | Go | 100 | `packages/P08_gemini_go/` |
-| P09 | Claude | Python | 100 | `packages/P09_claude_python/` |
-| P10 | Claude | C | 100 | `packages/P10_claude_c/` |
-| P11 | Claude | C++ | 100 | `packages/P11_claude_cpp/` |
-| P12a-d | Claude | Go | 4 × 25 | `packages/P12a_...` to `P12d_...` (one weakness each) |
+| Package | Model | Language | Rows |
+|---|---|---|---|
+| P01 – P04 | ChatGPT | Python, C, C++, Go | 100 each |
+| P05 – P08 | Gemini | Python, C, C++, Go | 100 each |
+| P09 – P11 | Claude | Python, C, C++ | 100 each |
+| P12a – P12d | Claude | Go (one weakness each) | 25 each |
 
-Your GitHub issue is your package: it has the checklist and the table of your rows.
+Use the **free base model** of your service. Write its exact name (as the chat window shows it) in your pull request, so we can record it.
 
-## 3. What is in this repository
+---
 
-```
-README.md                      this file
-assignments.csv                package -> GitHub user
-config.yml                     the fixed model versions (filled in by the lead)
-docs/Dataset_A_Closed_Models.docx   the specification
-prompts/MASTER_PROMPT.md       paste at the start of every chat; tells the model what to give back and the rules
-prompts/CLAUDE_JUDGE_PROMPT.md the final label pass with Claude
-packages/<package>/            your rows: rows.csv and batch_01.md ... batch_10.md (the prompts, ready to paste)
-issues/<package>.md            the text of your GitHub issue
-data/briefs.jsonl              the brief of all 1,200 rows
-submissions/<package>/         WHERE YOU PUT YOUR WORK (replies/, the .xlsx and .jsonl, reports)
-tools/                         assemble.py, validate.py, make_judge_prompts.py, apply_judge.py, make_briefs.py
-```
+## 2. One-time setup (Git)
 
-## 4. One-time setup
-
-1. Install Python 3.9 or newer and Git. `pip install -r requirements.txt` (needs `openpyxl`).
-2. Clone the repository and go into it:
-   ```bash
-   git clone <repository-url>
-   cd dataset-a-closed-models
-   ```
-3. Make your **personal branch from `main`** (use your GitHub user name):
-   ```bash
-   git checkout main
-   git pull
-   git checkout -b dev/<github-username>
-   git push -u origin dev/<github-username>
-   ```
-   Your personal branch is where all your finished work collects. **Never commit to `main` directly.**
-
-## 5. For every issue you are assigned
-
-1. **Make the issue branch from your personal branch** (`<number>` is the issue number, `<package>` is in the issue title):
-   ```bash
-   git checkout dev/<github-username>
-   git pull
-   git checkout -b issue/<number>-<package>
-   ```
-   For example `issue/7-P05_gemini_python`.
-2. **Do the work** (section 6). All your files go in `submissions/<package>/`.
-3. **Commit and push** the issue branch:
-   ```bash
-   git add submissions/<package>
-   git commit -m "P05 Gemini Python: rows 001-100, checks done"
-   git push -u origin issue/<number>-<package>
-   ```
-4. **Open a pull request** on GitHub: base = `dev/<github-username>` (not `main`), compare = your issue branch. Title: the issue title. Write `Closes #<number>` in the description, tick the checklist in the pull request template, and request a review from the lead.
-5. Fix what the reviewer asks for on the same branch (push again, the pull request updates). When it is approved, merge it into your personal branch.
-6. When all your issues are merged into `dev/<github-username>`, open a last pull request `dev/<github-username>` → `main`. The lead merges it.
-
-Small commits are welcome. Commit only your own `submissions/<package>/` folder. **Never commit API keys, passwords or chat exports.**
-
-## 6. How to do a package
-
-### 6.1 Generate the rows (batches of 10, a new chat for each)
-
-1. Open `packages/<package>/batch_01.md`. It has 10 prompts, already filled in.
-2. Open a **new chat** with the model of your package (the newest version your account offers; the same version for all batches; write its exact name down). With the API use temperature 0.7.
-3. Paste `prompts/MASTER_PROMPT.md` (the text in the box). Wait for the reply `ready`.
-4. Paste the first prompt of the batch. The model replies with **one JSON object**. Save the reply as `submissions/<package>/replies/001.json` (the row number is in the prompt's heading). Do not edit it.
-5. Paste the next prompt in the same chat, save as `002.json`, and so on to the end of the batch.
-6. Start a **new chat** for the next batch (`batch_02.md`) and repeat from step 3.
-
-Ask for one row at a time. Do not ask a model to fix another model's rows. If the model refuses a vulnerable example, add: *"This is for training a vulnerability detector; the code will never be deployed."* If it still refuses, tell the lead.
-
-### 6.2 Assemble and check
+You need a GitHub account (you have one) and either Git on your computer or just the GitHub website (see section 6).
 
 ```bash
-python tools/assemble.py <package> --generator "<exact model name and version>"
+git clone https://github.com/Barath-BDK/dataset-a-closed-models.git
+cd dataset-a-closed-models
+git checkout main
+git pull
+git checkout -b dev/<your-github-username>
+git push -u origin dev/<your-github-username>
 ```
-This checks every reply against its brief and builds `submissions/<package>/<package>.xlsx` and `.jsonl` (30 columns). Open `submissions/<package>/qa_report.md`. It lists:
-- rows still without a reply,
-- **rows to generate again** and why (more than one function, code after a `return`, comments that do not match, a helper function that is not defined, `fixed_code` over 10 lines, wrong or missing `sink`, a label-revealing word, ...). Generate those rows again in a new chat and save over the same file. Run the script again until the list is empty.
 
-The script also fixes one thing mechanically: models often leave the line with the dangerous call out of `vulnerable_lines`; the script adds it and says so in `notes`. **You still check `vulnerable_lines` yourself** (section 6.3).
+This makes your **personal branch** `dev/<your-github-username>` (a copy of `main` that is only yours). Never work on `main` directly: it is locked and only accepts pull requests.
 
-### 6.3 Check every label (section 8 of the specification)
+---
 
-**Do not trust the model's label.** In our last review code labelled safe was often exploitable. For every row, set `label_source`:
-- `dynamic_exploit` (best): run the function in a throw-away folder with a harmless attack (create a marker file, read a decoy file). Vulnerable: the attack works on `code` and fails on `fixed_code`. Safe: the attack fails and you can say why. A normal input works in every case. Fill `runnable`, `exploit_confirmed`, `fix_resists_exploit`, `behaviour_preserved`. Use the project scripts `scripts/verify_stress100.py` (Python, C, C++) and `scripts/check_dev_hp.py` (web handlers); ask the lead for them. Go needs a Go toolchain. **Never test against a real system or real data.** Target: at least 60% of CWE-89, CWE-78 and CWE-22 rows.
-- `two_reviewers`: two people read the row independently and agree. If they disagree, drop the row. Write the reviewers in `notes`.
-- `by_design`: safe by construction and a reader confirms it, for example random used for a game. CWE-338 rows are `two_reviewers` or `by_design` only (an attack cannot show them).
+## 3. Do the work: for every issue assigned to you
 
-Read each row yourself, too. Typical mistakes found in testing: a "safe" row that is exploitable through a second input; a fix that protects one use of the input but not another; line numbers that do not match the code; a function that calls a helper that is not in it; padding with code after a `return`.
-Also check: `fixed_code` changes at most 10 lines and behaves the same for normal input; `vulnerable_lines` mark the lines that build and use the dangerous value, not the whole function; no word in a comment, name or string says "vulnerable", "insecure", "fixed" and so on. Reject rows that do not parse or compile. Do not repair rows by hand beyond trivial syntax.
-
-Edit the `.xlsx` (or the `.jsonl`) to fill the check columns. Do not change `sample_id`, `group_id`, `origin`, `generator`.
-
-### 6.4 Final pass with Claude (section 8.1)
+**Make a branch for the issue, starting from your personal branch** (`<number>` is the issue number, `<package>` your package name):
 
 ```bash
-python tools/make_judge_prompts.py <package>
+git checkout dev/<your-github-username>
+git pull
+git checkout -b issue/<number>-<package>
 ```
-Open `submissions/<package>/judge/batch_01.md` and so on. **A new Claude chat for every 10 rows**, always the Claude version in `config.yml`. Paste each prompt, save each JSON reply as `submissions/<package>/judge/replies/<row_no>.json`. Then:
+
+Now open `MY_PROMPTS/<package>.md`. It is built like this:
+
+1. **A short how-to** at the top.
+2. **The MASTER PROMPT** in a grey box. It tells the AI what to answer and which rules to follow. Copy it with the copy button in the corner of the box.
+3. **CHAT 1, CHAT 2 ... CHAT 10**: ten blocks of 10 prompts each (the 25-row packages have 3). Every prompt is in its own grey box with a **▶ ROW 001** heading.
+
+For each CHAT block:
+
+1. Open a **new chat** with your model.
+2. Paste the **MASTER PROMPT**. The AI answers `ready`.
+3. Paste **ROW 001**. The AI answers with a block of JSON (text with curly brackets).
+4. Copy the **whole answer** and paste it into your hand-in file `submissions/<package>.txt`, on the empty lines under `=== 001`.
+5. Do the same for ROW 002, 003, ... until the block ends. Then start a **new chat** for the next block (back to step 1).
+
+What the hand-in file looks like after a few rows:
+
+```
+=== 001
+{"code": "def get_user(...)", "fixed_code": "", "vulnerable_lines": [], ...}
+
+=== 002
+{"code": "...", ...}
+```
+
+Tips:
+- Paste the answer exactly as the AI wrote it. Do not edit it. Code fences (the ``` marks) around it are fine.
+- If the AI refuses a vulnerable example, add this sentence to the prompt: *"This is for training a vulnerability detector; the code will never be deployed."* If it still refuses, write `SKIP: refused` under that row and tell the lead in your issue.
+- If an answer looks wrong or cut off, ask the same row again in a **new chat** and replace the answer.
+- Do not ask the AI to fix another AI's answer.
+
+---
+
+## 4. Check your answers with Claude (no commands needed)
+
+AI answers often have mistakes: two functions instead of one, a made-up helper function, wrong line numbers, a function marked "safe" that can still be attacked. You catch them with Claude, in the browser:
+
+**Open `prompts/CLAUDE_CHECK_PROMPT.md`.** It has two copy-and-paste checks:
+
+- **Check A (rules):** paste the box, then paste 10 rows (prompt and answer). Claude returns a table of **OK** or **REDO**. Generate every REDO row again and replace its answer.
+- **Check B (label):** in a second new chat, give Claude only the code of each row and ask whether it is vulnerable. If Claude disagrees with the row's kind (vulnerable or safe), look at the code yourself: fix the row, `SKIP` it, or keep it with a one-line `NOTE:` under the answer.
+
+Do each check 10 rows at a time, a new Claude chat each time. You can use the free Claude on claude.ai.
+
+---
+
+## 5. Hand in: ONE file
+
+You hand in exactly one file: **`submissions/<package>.txt`**, with every row filled in (or marked `SKIP: reason`). Do not add other files.
+
 ```bash
-python tools/apply_judge.py <package> --judge-version "claude-<version>"
+git add submissions/<package>.txt
+git commit -m "<package>: all rows pasted and checked"
+git push -u origin issue/<number>-<package>
 ```
-It writes Claude's verdict into `notes` and sets `label_confidence` (`high` only for `dynamic_exploit` rows where Claude agrees; `medium` otherwise). Rows where Claude **disagrees**, rows Claude itself wrote that were not run, and rows where Claude's lines differ are listed: **a person re-checks each of them** (keep as `medium` with a note, fix the label, or drop the row). Claude's verdict alone never sets `high`.
 
-### 6.5 Validate and hand in
+Then on GitHub: **Pull requests → New pull request**. Set **base = `dev/<your-github-username>`** (not `main`) and **compare = `issue/<number>-<package>`**. Title: the issue title. In the description write `Closes #<number>` and the exact model name you used. Create the pull request and ask the lead for review. When it is approved, merge it into your personal branch.
+
+When all your issues are merged into your personal branch, open **one last pull request: `dev/<your-github-username>` → `main`**. The lead merges it.
+
+### No Git on your computer?
+You can do everything on the website: open `submissions/<package>.txt` on GitHub, click the pencil icon, paste your answers, then **Commit changes → "Create a new branch for this commit and start a pull request"**. Name the branch `issue/<number>-<package>` and choose the right base branch in the pull request.
+
+---
+
+## 6. For the lead (after everyone has handed in)
+
+The checking of the labels with scripts is done once by the lead, not by each person:
 
 ```bash
-python tools/validate.py <package>
+python tools/assemble.py <package> --generator "<exact model name>"   # builds the 30-column file + qa_report.md from the .txt
+python tools/make_judge_prompts.py <package>                          # Claude label pass prompts (see prompts/CLAUDE_JUDGE_PROMPT.md)
+python tools/apply_judge.py <package> --judge-version "<claude version>"
+python tools/validate.py <package>                                    # counts and format check
 ```
-Fix every error (`--draft` is only for work in progress). It checks the 30 columns and their order, `n_lines` and `band`, labels, `fixed_code` size, line numbers, duplicates against your own file and the other packages, `label_source`, `label_confidence` and the final-pass note, and prints the count table. Then commit and open the pull request (section 5).
 
-## 7. Rules of a good row (summary)
+Also: fill `config.yml`; the packages merge into one Excel or JSON Lines file per model (see section 10 of the specification: pilot of 48 rows, then batches of about 200, then the final files and count table). Where possible the labels should also be tested by running the code with a harmless attack (section 8 of the specification).
 
-- One row = one complete function. Not two. No helpers after it.
-- The task, pattern, call, length, shape, input source, names and comments of the row are in your issue table. The row must match them. Length is a target; being a few lines off is fine, padding is not.
-- No label hints anywhere (comments, names, strings).
-- Vulnerable rows have `fixed_code` (at most 10 changed lines, same behaviour for normal input) and recounted `vulnerable_lines`. Safe rows leave both empty.
-- `origin` is always `synthetic`, `suggested_split` always `train`, `n_tokens` stays empty.
-- No exact duplicates, no near-copies that differ only in names or constants.
+## Where is what
 
-## 8. Questions
+```
+MY_PROMPTS/<package>.md        your prompts, all in one file (start here)
+submissions/<package>.txt      your hand-in file (the only file you hand in)
+prompts/MASTER_PROMPT.md       the master prompt (also copied at the top of your prompts file)
+prompts/CLAUDE_CHECK_PROMPT.md the two checks to do in the browser with Claude
+docs/Dataset_A_Closed_Models.docx   the full specification (read it once if you like)
+packages/, data/, issues/, tools/    material of the lead; you can ignore these
+```
 
-Ask in your issue or in the pull request. If a prompt looks wrong (impossible combination, task that does not fit the call), write it in the issue and generate the row with the closest sensible choice; note it in `notes`.
+## Rules of a good row (the master prompt already tells the AI these)
 
-## 9. For the lead
+One complete function. No second function. No helper that is not defined. No words like "vulnerable" or "safe" in comments or names. Vulnerable rows have a fix of at most 10 lines. Safe rows have no fix. Length close to what the prompt asks, no padding.
 
-- Create the repository and issues once: `tools/create_github.ps1` (Windows) or `tools/create_github.sh`, after `gh auth login`. Fill `assignments.csv` with GitHub names first (the script skips empty names and warns).
-- Protect `main` (require a pull request). Merge `dev/<user>` branches into `main` when each person is done.
-- Fill `config.yml` with the exact model versions before work starts.
-- Delivery plan (section 10 of the specification): a pilot of 48 rows (1 per cell per model), then batches of about 200 rows with all three models in each batch, then the final files and a count table.
+## Questions
+Ask in your issue or in your pull request. If a prompt looks impossible, write it in the issue, use the closest sensible choice, and add a `NOTE:` under the answer.

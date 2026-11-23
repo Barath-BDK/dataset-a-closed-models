@@ -1,47 +1,26 @@
-## Assignment
+## Your job
 
-Write **25 rows** with **Claude** in **Go** (CWE-338). Package folder: `packages/P12d_claude_go_rnd/`. Your files go to `submissions/P12d_claude_go_rnd/`.
+Write **25 rows** with **Claude** (free base model) in **Go** (CWE-338).
 
-Read `README.md` first (setup, branches, pull request) and `docs/Dataset_A_Closed_Models.docx` (the specification).
-
-### Settings
-
-- Model: **Claude**, the newest version your account offers. Use one fixed version for all rows and write its exact name in the `generator` column.
-- Web chat or API. API: temperature 0.7.
-- **A new chat for every 10 rows.** Paste `prompts/MASTER_PROMPT.md` at the start of each chat and wait for `ready`.
-- One row per prompt. Do not ask the model to repair another model's rows.
-
-### What you will produce
-
-Case types in this package: normal 8, hard_positive 4, safe 4, hard_negative 7, no_code 2. Lengths: 1-5: 4, 6-10: 7, 11-20: 8, 21-40: 2, 41-100: 4.
-
-The full list of rows (case type, pattern, call, length, shape, input source, names, comments, flaw position, fix type, task) is in `packages/P12d_claude_go_rnd/rows.csv` and in the table below. The ready-to-paste prompts are in `packages/P12d_claude_go_rnd/batch_01.md` ... `batch_03.md`.
-
-### Prompt template (already filled in for every row in the batch files)
-
-```text
-Write one [LANGUAGE] function for this task: [TASK].
-It must be [CASE DESCRIPTION] for [WEAKNESS] ([CWE]).
-Use this pattern: [PATTERN]. Input comes from: [SOURCE].
-Make it about [N] lines long, written as [SHAPE].
-Call family, names, comments, flaw position, fix type: as in the row's line.
-Do not write any comment, name or string that says whether the code is safe or vulnerable.
-Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
-fixed_code and vulnerable_lines are empty for safe code.
-```
+| | |
+|---|---|
+| **Your prompts (one file)** | [`MY_PROMPTS/P12d_claude_go_rnd.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/MY_PROMPTS/P12d_claude_go_rnd.md) |
+| **Your hand-in file (the only file you hand in)** | [`submissions/P12d_claude_go_rnd.txt`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/submissions/P12d_claude_go_rnd.txt) |
+| **How to do it** | [`README.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/README.md) |
+| **Check with Claude, in the browser** | [`prompts/CLAUDE_CHECK_PROMPT.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/prompts/CLAUDE_CHECK_PROMPT.md) |
 
 ### Steps (tick them in your pull request)
 
-- [ ] Batch 01: rows 001-010 generated and saved as replies (`packages/P12d_claude_go_rnd/batch_01.md`)
-- [ ] Batch 02: rows 011-020 generated and saved as replies (`packages/P12d_claude_go_rnd/batch_02.md`)
-- [ ] Batch 03: rows 021-025 generated and saved as replies (`packages/P12d_claude_go_rnd/batch_03.md`)
-- [ ] `python tools/assemble.py P12d_claude_go_rnd --generator "<exact model name>"` runs; every row passes the QA report or was regenerated
-- [ ] Labels checked (section 8 of the specification): run the code with a harmless attack where possible, two reviewers otherwise; `label_source` set for every row
-- [ ] Final Claude pass done (`prompts/CLAUDE_JUDGE_PROMPT.md`, `tools/make_judge_prompts.py`, `tools/apply_judge.py`); `label_confidence` set
-- [ ] `python tools/validate.py P12d_claude_go_rnd` shows no errors
-- [ ] Pull request from your issue branch into your personal branch, with `submissions/P12d_claude_go_rnd/P12d_claude_go_rnd.xlsx`, `submissions/P12d_claude_go_rnd/P12d_claude_go_rnd.jsonl` and the QA and validation reports
+- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P12d_claude_go_rnd` made from your personal branch
+- [ ] All 25 prompts pasted into Claude (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P12d_claude_go_rnd.txt`
+- [ ] Check A done with Claude (rules); every REDO row generated again
+- [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
+- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P12d_claude_go_rnd.txt`; the exact model name written in the description
+- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
 
-### Rows
+Mix of rows in this package: normal 8, hard_positive 4, safe 4, hard_negative 7, no_code 2. Lengths: 1-5: 4, 6-10: 7, 11-20: 8, 21-40: 2, 41-100: 4.
+
+<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -70,3 +49,5 @@ fixed_code and vulnerable_lines are empty for safe code.
 | 023 | `cla_rnd_go_0006` | CWE-338 | normal | `plain` | math/rand | 11-20 | method on a struct | not_applicable | terse | with | middle | rejection_sampling_secure_index | Create an OAuth state value for a login redirect. |
 | 024 | `cla_rnd_go_0017` | CWE-338 | normal | `plain` | math/rand | 6-10 | plain function | not_applicable | descriptive | without | late | secure_bytes_encoded | Generate an access token for a mobile app. |
 | 025 | `cla_rnd_go_0016` | CWE-338 | normal | `plain` | math/rand | 11-20 | plain function | not_applicable | descriptive | with | late | secure_generator_api | Issue an invitation link token. |
+
+</details>

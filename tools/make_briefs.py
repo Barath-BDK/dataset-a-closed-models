@@ -295,14 +295,6 @@ def main():
             for r in rows:
                 w.writerow([r["row_no"], r["batch"], r["sample_id"], r["cwe"], r["case_type"], r["pattern"], r["api"], r["target_lines"], r["band"], r["shape"], r["source"],
                             r["names"], r["comments"], r.get("flaw", ""), r.get("fix_type", ""), "yes" if r.get("indirect") else "", r["task"]])
-        for b in range(1, nb + 1):
-            chunk = [r for r in rows if r["batch"] == b]
-            parts = [f"# {pkg} · batch {b} of {nb} ({len(chunk)} rows)", "",
-                     f"**Model:** {S.MODEL_TITLE[m]} (use the same exact version for all batches). **New chat for this batch.** Paste `prompts/MASTER_PROMPT.md` first, wait for `ready`, "
-                     "then paste the prompts below one at a time. Save each reply as `submissions/" + pkg + "/replies/<row_no>.json` (for example `001.json`).", ""]
-            for r in chunk:
-                parts += [f"## Row {r['row_no']:03d} · `{r['sample_id']}` · {r['cwe']} · {r['case_type']}", "", "```text", r["prompt"], "```", ""]
-            open(os.path.join(d, f"batch_{b:02d}.md"), "w", encoding="utf-8").write("\n".join(parts))
     # issues
     assign = []
     for pkg, rows in packages.items():
@@ -313,38 +305,27 @@ def main():
         bands = collections.Counter(r["band"] for r in rows)
         title = f"[{pkg.split('_')[0]}] {S.MODEL_TITLE[m]} x {S.LANG_TITLE[lang]}" + (f" x {', '.join(cwes)}" if len(cwes) == 1 else "") + f": {len(rows)} rows"
         lines = [
-            f"## Assignment", "",
-            f"Write **{len(rows)} rows** with **{S.MODEL_TITLE[m]}** in **{S.LANG_TITLE[lang]}** ({', '.join(cwes)}). Package folder: `packages/{pkg}/`. Your files go to `submissions/{pkg}/`.", "",
-            "Read `README.md` first (setup, branches, pull request) and `docs/Dataset_A_Closed_Models.docx` (the specification).", "",
-            "### Settings", "",
-            f"- Model: **{S.MODEL_TITLE[m]}**, the newest version your account offers. Use one fixed version for all rows and write its exact name in the `generator` column.",
-            "- Web chat or API. API: temperature 0.7.",
-            "- **A new chat for every 10 rows.** Paste `prompts/MASTER_PROMPT.md` at the start of each chat and wait for `ready`.",
-            "- One row per prompt. Do not ask the model to repair another model's rows.", "",
-            "### What you will produce", "",
-            f"Case types in this package: " + ", ".join(f"{k} {cnt[k]}" for k in S.CASE_TYPES) + ". Lengths: " + ", ".join(f"{b}: {bands[b]}" for b in S.BANDS) + ".", "",
-            f"The full list of rows (case type, pattern, call, length, shape, input source, names, comments, flaw position, fix type, task) is in `packages/{pkg}/rows.csv` and in the table below. "
-            f"The ready-to-paste prompts are in `packages/{pkg}/batch_01.md` ... `batch_{nb:02d}.md`.", "",
-            "### Prompt template (already filled in for every row in the batch files)", "", "```text",
-            "Write one [LANGUAGE] function for this task: [TASK].",
-            "It must be [CASE DESCRIPTION] for [WEAKNESS] ([CWE]).",
-            "Use this pattern: [PATTERN]. Input comes from: [SOURCE].",
-            "Make it about [N] lines long, written as [SHAPE].",
-            "Call family, names, comments, flaw position, fix type: as in the row's line.",
-            "Do not write any comment, name or string that says whether the code is safe or vulnerable.",
-            "Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.",
-            "fixed_code and vulnerable_lines are empty for safe code.", "```", "",
-            "### Steps (tick them in your pull request)", ""]
-        lines += [f"- [ ] Batch {b:02d}: rows {(b - 1) * 10 + 1:03d}-{min(b * 10, len(rows)):03d} generated and saved as replies (`packages/{pkg}/batch_{b:02d}.md`)" for b in range(1, nb + 1)]
-        lines += ["- [ ] `python tools/assemble.py " + pkg + " --generator \"<exact model name>\"` runs; every row passes the QA report or was regenerated",
-                  "- [ ] Labels checked (section 8 of the specification): run the code with a harmless attack where possible, two reviewers otherwise; `label_source` set for every row",
-                  "- [ ] Final Claude pass done (`prompts/CLAUDE_JUDGE_PROMPT.md`, `tools/make_judge_prompts.py`, `tools/apply_judge.py`); `label_confidence` set",
-                  "- [ ] `python tools/validate.py " + pkg + "` shows no errors",
-                  f"- [ ] Pull request from your issue branch into your personal branch, with `submissions/{pkg}/{pkg}.xlsx`, `submissions/{pkg}/{pkg}.jsonl` and the QA and validation reports", "",
-                  "### Rows", "", "| # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+            f"## Your job", "",
+            f"Write **{len(rows)} rows** with **{S.MODEL_TITLE[m]}** (free base model) in **{S.LANG_TITLE[lang]}** ({', '.join(cwes)}).", "",
+            "| | |", "|---|---|",
+            f"| **Your prompts (one file)** | [`MY_PROMPTS/{pkg}.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/MY_PROMPTS/{pkg}.md) |",
+            f"| **Your hand-in file (the only file you hand in)** | [`submissions/{pkg}.txt`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/submissions/{pkg}.txt) |",
+            "| **How to do it** | [`README.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/README.md) |",
+            "| **Check with Claude, in the browser** | [`prompts/CLAUDE_CHECK_PROMPT.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/prompts/CLAUDE_CHECK_PROMPT.md) |", "",
+            "### Steps (tick them in your pull request)", "",
+            "- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-" + pkg + "` made from your personal branch",
+            f"- [ ] All {len(rows)} prompts pasted into {S.MODEL_TITLE[m]} (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/{pkg}.txt`",
+            "- [ ] Check A done with Claude (rules); every REDO row generated again",
+            "- [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)",
+            f"- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/{pkg}.txt`; the exact model name written in the description",
+            "- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`", "",
+            f"Mix of rows in this package: " + ", ".join(f"{k} {cnt[k]}" for k in S.CASE_TYPES) + ". Lengths: " + ", ".join(f"{b}: {bands[b]}" for b in S.BANDS) + ".", "",
+            "<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>", "",
+                  "| # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for r in rows:
             lines.append(f"| {r['row_no']:03d} | `{r['sample_id']}` | {r['cwe']} | {r['case_type']} | `{r['pattern']}` | {r['api']} | {r['band']} | {r['shape'].split(' (')[0]} | {r['source']} | {r['names']} | {r['comments']} | "
                          f"{r.get('flaw', '-')} | {r.get('fix_type', '-')} | {r['task']} |")
+        lines.append(chr(10) + "</details>")
         open(os.path.join(ROOT, "issues", f"{pkg}.md"), "w", encoding="utf-8").write("\n".join(lines) + "\n")
         open(os.path.join(ROOT, "issues", f"{pkg}.title.txt"), "w", encoding="utf-8").write(title)
         assign.append([pkg, title, ""])

@@ -1,0 +1,78 @@
+HAND-IN FILE FOR P12d_claude_go_rnd  (Claude, Go, 25 rows)
+Paste the model's answer for each row under its line. Do not delete the '=== NNN' lines. Keep the answers exactly as the model wrote them.
+If a row could not be made, write SKIP and the reason under its line.
+
+=== 001
+
+
+=== 002
+
+
+=== 003
+
+
+=== 004
+
+
+=== 005
+
+
+=== 006
+
+
+=== 007
+
+
+=== 008
+
+
+=== 009
+
+
+=== 010
+
+
+=== 011
+
+
+=== 012
+
+
+=== 013
+
+
+=== 014
+
+
+=== 015
+
+
+=== 016
+
+
+=== 017
+
+
+=== 018
+
+
+=== 019
+
+
+=== 020
+
+
+=== 021
+
+
+=== 022
+
+
+=== 023
+
+
+=== 024
+
+
+=== 025
+

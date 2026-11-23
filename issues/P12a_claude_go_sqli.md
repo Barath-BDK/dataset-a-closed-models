@@ -1,47 +1,26 @@
-## Assignment
+## Your job
 
-Write **25 rows** with **Claude** in **Go** (CWE-89). Package folder: `packages/P12a_claude_go_sqli/`. Your files go to `submissions/P12a_claude_go_sqli/`.
+Write **25 rows** with **Claude** (free base model) in **Go** (CWE-89).
 
-Read `README.md` first (setup, branches, pull request) and `docs/Dataset_A_Closed_Models.docx` (the specification).
-
-### Settings
-
-- Model: **Claude**, the newest version your account offers. Use one fixed version for all rows and write its exact name in the `generator` column.
-- Web chat or API. API: temperature 0.7.
-- **A new chat for every 10 rows.** Paste `prompts/MASTER_PROMPT.md` at the start of each chat and wait for `ready`.
-- One row per prompt. Do not ask the model to repair another model's rows.
-
-### What you will produce
-
-Case types in this package: normal 8, hard_positive 4, safe 4, hard_negative 7, no_code 2. Lengths: 1-5: 4, 6-10: 7, 11-20: 6, 21-40: 5, 41-100: 3.
-
-The full list of rows (case type, pattern, call, length, shape, input source, names, comments, flaw position, fix type, task) is in `packages/P12a_claude_go_sqli/rows.csv` and in the table below. The ready-to-paste prompts are in `packages/P12a_claude_go_sqli/batch_01.md` ... `batch_03.md`.
-
-### Prompt template (already filled in for every row in the batch files)
-
-```text
-Write one [LANGUAGE] function for this task: [TASK].
-It must be [CASE DESCRIPTION] for [WEAKNESS] ([CWE]).
-Use this pattern: [PATTERN]. Input comes from: [SOURCE].
-Make it about [N] lines long, written as [SHAPE].
-Call family, names, comments, flaw position, fix type: as in the row's line.
-Do not write any comment, name or string that says whether the code is safe or vulnerable.
-Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
-fixed_code and vulnerable_lines are empty for safe code.
-```
+| | |
+|---|---|
+| **Your prompts (one file)** | [`MY_PROMPTS/P12a_claude_go_sqli.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/MY_PROMPTS/P12a_claude_go_sqli.md) |
+| **Your hand-in file (the only file you hand in)** | [`submissions/P12a_claude_go_sqli.txt`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/submissions/P12a_claude_go_sqli.txt) |
+| **How to do it** | [`README.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/README.md) |
+| **Check with Claude, in the browser** | [`prompts/CLAUDE_CHECK_PROMPT.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/prompts/CLAUDE_CHECK_PROMPT.md) |
 
 ### Steps (tick them in your pull request)
 
-- [ ] Batch 01: rows 001-010 generated and saved as replies (`packages/P12a_claude_go_sqli/batch_01.md`)
-- [ ] Batch 02: rows 011-020 generated and saved as replies (`packages/P12a_claude_go_sqli/batch_02.md`)
-- [ ] Batch 03: rows 021-025 generated and saved as replies (`packages/P12a_claude_go_sqli/batch_03.md`)
-- [ ] `python tools/assemble.py P12a_claude_go_sqli --generator "<exact model name>"` runs; every row passes the QA report or was regenerated
-- [ ] Labels checked (section 8 of the specification): run the code with a harmless attack where possible, two reviewers otherwise; `label_source` set for every row
-- [ ] Final Claude pass done (`prompts/CLAUDE_JUDGE_PROMPT.md`, `tools/make_judge_prompts.py`, `tools/apply_judge.py`); `label_confidence` set
-- [ ] `python tools/validate.py P12a_claude_go_sqli` shows no errors
-- [ ] Pull request from your issue branch into your personal branch, with `submissions/P12a_claude_go_sqli/P12a_claude_go_sqli.xlsx`, `submissions/P12a_claude_go_sqli/P12a_claude_go_sqli.jsonl` and the QA and validation reports
+- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P12a_claude_go_sqli` made from your personal branch
+- [ ] All 25 prompts pasted into Claude (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P12a_claude_go_sqli.txt`
+- [ ] Check A done with Claude (rules); every REDO row generated again
+- [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
+- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P12a_claude_go_sqli.txt`; the exact model name written in the description
+- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
 
-### Rows
+Mix of rows in this package: normal 8, hard_positive 4, safe 4, hard_negative 7, no_code 2. Lengths: 1-5: 4, 6-10: 7, 11-20: 6, 21-40: 5, 41-100: 3.
+
+<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -70,3 +49,5 @@ fixed_code and vulnerable_lines are empty for safe code.
 | 023 | `cla_sqli_go_0007` | CWE-89 | safe | `plain` | sqlx | 41-100 | goroutine or callback | network_message | terse | with | - | - | Find articles that carry a given tag. |
 | 024 | `cla_sqli_go_0006` | CWE-89 | hard_positive | `one_branch_bound` | database/sql Query | 21-40 | command line tool function | command_line | terse | without | middle | allow_list | List recent transactions for an account sorted by amount or date. |
 | 025 | `cla_sqli_go_0024` | CWE-89 | safe | `plain` | database/sql QueryRow | 11-20 | HTTP handler | web_request | terse | without | - | - | Search a phone book by name prefix. |
+
+</details>

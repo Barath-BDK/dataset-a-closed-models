@@ -1,54 +1,26 @@
-## Assignment
+## Your job
 
-Write **100 rows** with **ChatGPT** in **C++** (CWE-22, CWE-338, CWE-78, CWE-89). Package folder: `packages/P03_chatgpt_cpp/`. Your files go to `submissions/P03_chatgpt_cpp/`.
+Write **100 rows** with **ChatGPT** (free base model) in **C++** (CWE-22, CWE-338, CWE-78, CWE-89).
 
-Read `README.md` first (setup, branches, pull request) and `docs/Dataset_A_Closed_Models.docx` (the specification).
-
-### Settings
-
-- Model: **ChatGPT**, the newest version your account offers. Use one fixed version for all rows and write its exact name in the `generator` column.
-- Web chat or API. API: temperature 0.7.
-- **A new chat for every 10 rows.** Paste `prompts/MASTER_PROMPT.md` at the start of each chat and wait for `ready`.
-- One row per prompt. Do not ask the model to repair another model's rows.
-
-### What you will produce
-
-Case types in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 9, 6-10: 26, 11-20: 31, 21-40: 22, 41-100: 12.
-
-The full list of rows (case type, pattern, call, length, shape, input source, names, comments, flaw position, fix type, task) is in `packages/P03_chatgpt_cpp/rows.csv` and in the table below. The ready-to-paste prompts are in `packages/P03_chatgpt_cpp/batch_01.md` ... `batch_10.md`.
-
-### Prompt template (already filled in for every row in the batch files)
-
-```text
-Write one [LANGUAGE] function for this task: [TASK].
-It must be [CASE DESCRIPTION] for [WEAKNESS] ([CWE]).
-Use this pattern: [PATTERN]. Input comes from: [SOURCE].
-Make it about [N] lines long, written as [SHAPE].
-Call family, names, comments, flaw position, fix type: as in the row's line.
-Do not write any comment, name or string that says whether the code is safe or vulnerable.
-Reply with JSON only, with these keys: code, fixed_code, vulnerable_lines, task_description, sink, build_style, fix_type, cwe_detail.
-fixed_code and vulnerable_lines are empty for safe code.
-```
+| | |
+|---|---|
+| **Your prompts (one file)** | [`MY_PROMPTS/P03_chatgpt_cpp.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/MY_PROMPTS/P03_chatgpt_cpp.md) |
+| **Your hand-in file (the only file you hand in)** | [`submissions/P03_chatgpt_cpp.txt`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/submissions/P03_chatgpt_cpp.txt) |
+| **How to do it** | [`README.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/README.md) |
+| **Check with Claude, in the browser** | [`prompts/CLAUDE_CHECK_PROMPT.md`](https://github.com/Barath-BDK/dataset-a-closed-models/blob/main/prompts/CLAUDE_CHECK_PROMPT.md) |
 
 ### Steps (tick them in your pull request)
 
-- [ ] Batch 01: rows 001-010 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_01.md`)
-- [ ] Batch 02: rows 011-020 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_02.md`)
-- [ ] Batch 03: rows 021-030 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_03.md`)
-- [ ] Batch 04: rows 031-040 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_04.md`)
-- [ ] Batch 05: rows 041-050 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_05.md`)
-- [ ] Batch 06: rows 051-060 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_06.md`)
-- [ ] Batch 07: rows 061-070 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_07.md`)
-- [ ] Batch 08: rows 071-080 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_08.md`)
-- [ ] Batch 09: rows 081-090 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_09.md`)
-- [ ] Batch 10: rows 091-100 generated and saved as replies (`packages/P03_chatgpt_cpp/batch_10.md`)
-- [ ] `python tools/assemble.py P03_chatgpt_cpp --generator "<exact model name>"` runs; every row passes the QA report or was regenerated
-- [ ] Labels checked (section 8 of the specification): run the code with a harmless attack where possible, two reviewers otherwise; `label_source` set for every row
-- [ ] Final Claude pass done (`prompts/CLAUDE_JUDGE_PROMPT.md`, `tools/make_judge_prompts.py`, `tools/apply_judge.py`); `label_confidence` set
-- [ ] `python tools/validate.py P03_chatgpt_cpp` shows no errors
-- [ ] Pull request from your issue branch into your personal branch, with `submissions/P03_chatgpt_cpp/P03_chatgpt_cpp.xlsx`, `submissions/P03_chatgpt_cpp/P03_chatgpt_cpp.jsonl` and the QA and validation reports
+- [ ] Personal branch `dev/<your-github-username>` made from `main`; issue branch `issue/<number>-P03_chatgpt_cpp` made from your personal branch
+- [ ] All 100 prompts pasted into ChatGPT (new chat for every 10 rows, master prompt first) and every answer pasted under its `=== NNN` line in `submissions/P03_chatgpt_cpp.txt`
+- [ ] Check A done with Claude (rules); every REDO row generated again
+- [ ] Check B done with Claude (labels); disagreements looked at (fixed, `SKIP`, or `NOTE:`)
+- [ ] Pull request from the issue branch into your personal branch with **only** `submissions/P03_chatgpt_cpp.txt`; the exact model name written in the description
+- [ ] After approval: merged into your personal branch, then one last pull request `dev/<your-github-username>` into `main`
 
-### Rows
+Mix of rows in this package: normal 33, hard_positive 16, safe 16, hard_negative 27, no_code 8. Lengths: 1-5: 9, 6-10: 26, 11-20: 31, 21-40: 22, 41-100: 12.
+
+<details><summary>Table of all rows (for reference; the prompts already contain all of this)</summary>
 
 | # | id | weakness | case | pattern | call | lines | shape | input | names | comments | flaw | fix | task |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -152,3 +124,5 @@ fixed_code and vulnerable_lines are empty for safe code.
 | 098 | `gpt_pt_cpp_0018` | CWE-22 | hard_negative | `library_confined_access` | fopen | 6-10 | helper called by another function | web_request | terse | without | - | - | Serve a static asset such as an image or stylesheet. |
 | 099 | `gpt_cmdi_cpp_0008` | CWE-78 | no_code | `plain` | none | 11-20 | command line tool function | not_applicable | descriptive | without | - | - | Check the shape of a host name string. |
 | 100 | `gpt_pt_cpp_0012` | CWE-22 | hard_negative | `safe_filename_helper_fixed_folder` | fopen | 11-20 | callback, lambda or asynchronous task | web_request | terse | with | - | - | Return the contents of a shared snippet file. |
+
+</details>

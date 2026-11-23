@@ -3,7 +3,8 @@
 
     python tools/assemble.py P05_gemini_python --generator "Gemini 2.5 Pro" [--prompt-id P1-t0.7]
 
-Reads   submissions/<package>/replies/001.json, 002.json ...   (the model's JSON reply for row 1, 2 ...; code fences and text around the JSON are ignored)
+Reads   submissions/<package>.txt   (ONE file: every reply pasted under a line '=== 001', '=== 002' ...)
+        or submissions/<package>/replies/001.json, 002.json ...   (the model's JSON reply for row 1, 2 ...; code fences and text around the JSON are ignored)
 Writes  submissions/<package>/<package>.xlsx and .jsonl         rows that passed the QA checks, all 30 columns, label_source / label_confidence still empty
         submissions/<package>/qa_report.md                       what is missing, which rows must be generated again and why
 Nothing is taken from the model except the content keys; weakness, language, case type, label, input source, pattern, fix type and group come from the brief.
@@ -26,7 +27,24 @@ def load_briefs(package):
 
 
 def read_json(path):
-    text = open(path, encoding="utf-8", errors="replace").read()
+    return parse_text(open(path, encoding="utf-8", errors="replace").read())
+
+
+def split_single_file(path):
+    """submissions/<package>.txt: replies pasted under lines like '=== 001'. Returns {row_no: text}."""
+    import re
+    out, cur = {}, None
+    for line in open(path, encoding="utf-8", errors="replace").read().splitlines():
+        m = re.match(r"^\s*===\s*(\d+)", line)
+        if m:
+            cur = int(m.group(1))
+            out[cur] = []
+        elif cur is not None:
+            out[cur].append(line)
+    return {k: chr(10).join(v) for k, v in out.items()}
+
+
+def parse_text(text):
     dec = json.JSONDecoder()
     i = 0
     while True:
@@ -66,12 +84,17 @@ def main():
     os.makedirs(rep_dir, exist_ok=True)
     rows, report = [], []
     missing, unreadable = [], []
+    single = os.path.join(ROOT, "submissions", a.package + ".txt")
+    texts = split_single_file(single) if os.path.exists(single) else {}
     for no, b in sorted(briefs.items()):
         path = os.path.join(rep_dir, f"{no:03d}.json")
-        if not os.path.exists(path):
+        if os.path.exists(path):
+            o = read_json(path)
+        elif no in texts and texts[no].strip() and not texts[no].strip().upper().startswith("SKIP"):
+            o = parse_text(texts[no])
+        else:
             missing.append(no)
             continue
-        o = read_json(path)
         if o is None:
             unreadable.append(no)
             continue
