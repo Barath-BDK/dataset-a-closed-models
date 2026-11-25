@@ -3,20 +3,60 @@ Paste the model's answer for each row under its line. Do not delete the '=== NNN
 If a row could not be made, write SKIP and the reason under its line.
 
 === 001
-
-
+{\
+&#x20; "code": "void findVehicle(const QHttpServerRequest& req, QHttpServerResponder& res) {\n    QJsonObject obj = QJsonDocument::fromJson(req.body()).object();\n    QString reg = obj.value(\\"registrationNumber\\").toString().trimmed();\n    if (reg.isEmpty()) {\n        res.write(QHttpServerResponder::StatusCode::BadRequest);\n        return;\n    }\n    QSqlQuery q;\n    q.prepare(\\"SELECT id, registration_number, model, owner_name FROM vehicles WHERE registration_number = :reg\\");\n    q.bindValue(\\":reg\\", reg);\n    if (!q.exec()) {\n        res.write(QHttpServerResponder::StatusCode::InternalServerError);\n        return;\n    }\n    QJsonObject result;\n    if (!q.next()) {\n        res.write(QHttpServerResponder::StatusCode::NotFound);\n        return;\n    }\n    result.insert(\\"id\\", q.value(\\"id\\").toInt());\n    result.insert(\\"registrationNumber\\", q.value(\\"registration_number\\").toString());\n    result.insert(\\"model\\", q.value(\\"model\\").toString());\n    result.insert(\\"ownerName\\", q.value(\\"owner_name\\").toString());\n    QJsonDocument doc(result);\n    res.write(doc.toJson(QJsonDocument::Compact), \\"application/json\\");\n}",\
+&#x20; "fixed_code": "",\
+&#x20; "vulnerable_lines": [],\
+&#x20; "task_description": "Finds a vehicle by its registration number supplied in a web request and returns the matching vehicle details as JSON.",\
+&#x20; "sink": "QSqlQuery",\
+&#x20; "build_style": "web_handler",\
+&#x20; "fix_type": "",\
+&#x20; "cwe_detail": "none"\
+}
 === 002
-
-
+{\
+&#x20; "code": "QSqlQuery getRecentLogs(const QByteArray &networkMessage, QSqlDatabase database) {\n    // Parse the requested log category.\n    QJsonObject request = QJsonDocument::fromJson(networkMessage).object();\n    QString category = request.value(\\"category\\").toString();\n    // Select a column from the predefined list.\n    QString column = category == \\"service\\" ? \\"service_name\\" : \\"created_at\\";\n    QSqlQuery query(database);\n    query.prepare(\\"SELECT \* FROM service_logs WHERE \\" + column + \\" = :value ORDER BY created_at DESC LIMIT 10\\");\n    query.bindValue(\\":value\\", request.value(\\"value\\").toString());\n    query.exec();\n    return query;\n}",\
+&#x20; "fixed_code": "",\
+&#x20; "vulnerable_lines": [],\
+&#x20; "task_description": "The helper retrieves the ten most recent service log entries using a requested category and value from a network message.",\
+&#x20; "sink": "query.exec",\
+&#x20; "build_style": "identifier_allowlist",\
+&#x20; "fix_type": "",\
+&#x20; "cwe_detail": "sqlite3"\
+}
 === 003
-
-
+{
+"code": "bool updateTicketStatus(PGconn *connection, int argc, char *argv[]) {\n if (argc < 3 || !connection || PQstatus(connection) != CONNECTION_OK) return false;\n const char *parameters[2] = {argv[2], argv[1]};\n PGresult *result = PQexecParams(connection, \"UPDATE support_tickets SET status = $1 WHERE ticket_id = $2\", 2, nullptr, parameters, nullptr, nullptr, 0);\n if (PQresultStatus(result) != PGRES_COMMAND_OK) {\n PQclear(result);\n return false;\n }\n PQclear(result);\n return true;\n}",
+"fixed_code": "",
+"vulnerable_lines": [],
+"task_description": "The helper updates a support ticket's status using values supplied through command-line arguments.",
+"sink": "PQexecParams",
+"build_style": "bound_parameters",
+"fix_type": "",
+"cwe_detail": "ticket_status_update"
+}
 === 004
-
-
+{\
+&#x20; "code": "int checkHostnameShape(int argc, char\* argv[]) {\n    if (argc < 2) {\n        std::cerr << \\"Usage: hostname_check \<hostname>\\\n\\";\n        return 1;\n    }\n    std::string hostname = argv[1];\n    if (hostname.empty() || hostname.size() > 253) {\n        return 1;\n    }\n    if (hostname.front() == '.' || hostname.back() == '.') {\n        return 1;\n    }\n    for (char character : hostname) {\n        if (!std::isalnum(static_cast\<unsigned char>(character)) && character != '.' && character != '-') {\n            return 1;\n        }\n    }\n    return 0;\n}",\
+&#x20; "fixed_code": "",\
+&#x20; "vulnerable_lines": [],\
+&#x20; "task_description": "Checks whether a hostname provided through command-line arguments follows basic hostname formatting rules.",\
+&#x20; "sink": "",\
+&#x20; "build_style": "none",\
+&#x20; "fix_type": "",\
+&#x20; "cwe_detail": "none"\
+}
 === 005
-
-
+{\
+&#x20; "code": "void getSnippet(const httplib::Request& req, httplib::Response& res) {\n    // Read the requested snippet name.\n    std::string name = req.get_param_value(\\"name\\");\n    if (name.empty() || name.size() > 64 ||\n        name.find_first_not_of(\\"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\_-\\") != std::string::npos) {\n        res.status = 400;\n        return;\n    }\n    // Keep all files inside the shared snippets directory.\n    const std::string dir = \\"/var/app/shared/snippets/\\";\n    std::string path = dir + name + \\".txt\\";\n    FILE\* fp = std::fopen(path.c_str(), \\"rb\\");\n    if (!fp) {\n        res.status = 404;\n        return;\n    }\n    char buf[512];\n    size_t n;\n    while ((n = std::fread(buf, 1, sizeof(buf), fp)) > 0) res.body.append(buf, n);\n    std::fclose(fp);\n    res.set_content(res.body, \\"text/plain\\");\n}",\
+&#x20; "fixed_code": "",\
+&#x20; "vulnerable_lines": [],\
+&#x20; "task_description": "Reads and returns the contents of a shared snippet file selected by a web request, using a restricted filename and a fixed directory.",\
+&#x20; "sink": "std::fopen",\
+&#x20; "build_style": "web_handler",\
+&#x20; "fix_type": "",\
+&#x20; "cwe_detail": "none"\
+}
 === 006
 
 
