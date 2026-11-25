@@ -1,0 +1,134 @@
+key,part,total,package,row_from,row_to,title,labels,assignee,file
+P01_chatgpt_python:001,1,14,P01_chatgpt_python,1,5,[vinoth96-hub · Part 1 of 14 · DO THIS FIRST] P01 ChatGPT x Python: rows 001-005 (5 rows),"first-issue,model:chatgpt,lang:python",vinoth96-hub,001.md
+P01_chatgpt_python:006,2,14,P01_chatgpt_python,6,15,[vinoth96-hub · Part 2 of 14] P01 ChatGPT x Python: rows 006-015 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,002.md
+P01_chatgpt_python:016,3,14,P01_chatgpt_python,16,25,[vinoth96-hub · Part 3 of 14] P01 ChatGPT x Python: rows 016-025 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,003.md
+P01_chatgpt_python:026,4,14,P01_chatgpt_python,26,35,[vinoth96-hub · Part 4 of 14] P01 ChatGPT x Python: rows 026-035 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,004.md
+P01_chatgpt_python:036,5,14,P01_chatgpt_python,36,45,[vinoth96-hub · Part 5 of 14] P01 ChatGPT x Python: rows 036-045 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,005.md
+P01_chatgpt_python:046,6,14,P01_chatgpt_python,46,55,[vinoth96-hub · Part 6 of 14] P01 ChatGPT x Python: rows 046-055 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,006.md
+P01_chatgpt_python:056,7,14,P01_chatgpt_python,56,65,[vinoth96-hub · Part 7 of 14] P01 ChatGPT x Python: rows 056-065 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,007.md
+P01_chatgpt_python:066,8,14,P01_chatgpt_python,66,75,[vinoth96-hub · Part 8 of 14] P01 ChatGPT x Python: rows 066-075 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,008.md
+P01_chatgpt_python:076,9,14,P01_chatgpt_python,76,85,[vinoth96-hub · Part 9 of 14] P01 ChatGPT x Python: rows 076-085 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,009.md
+P01_chatgpt_python:086,10,14,P01_chatgpt_python,86,95,[vinoth96-hub · Part 10 of 14] P01 ChatGPT x Python: rows 086-095 (10 rows),"package,model:chatgpt,lang:python",vinoth96-hub,010.md
+P01_chatgpt_python:096,11,14,P01_chatgpt_python,96,100,[vinoth96-hub · Part 11 of 14] P01 ChatGPT x Python: rows 096-100 (5 rows),"package,model:chatgpt,lang:python",vinoth96-hub,011.md
+P02_chatgpt_c:001,1,11,P02_chatgpt_c,1,5,[bkvishal28 · Part 1 of 11 · DO THIS FIRST] P02 ChatGPT x C: rows 001-005 (5 rows),"first-issue,model:chatgpt,lang:c",bkvishal28,012.md
+P02_chatgpt_c:006,2,11,P02_chatgpt_c,6,15,[bkvishal28 · Part 2 of 11] P02 ChatGPT x C: rows 006-015 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,013.md
+P02_chatgpt_c:016,3,11,P02_chatgpt_c,16,25,[bkvishal28 · Part 3 of 11] P02 ChatGPT x C: rows 016-025 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,014.md
+P02_chatgpt_c:026,4,11,P02_chatgpt_c,26,35,[bkvishal28 · Part 4 of 11] P02 ChatGPT x C: rows 026-035 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,015.md
+P02_chatgpt_c:036,5,11,P02_chatgpt_c,36,45,[bkvishal28 · Part 5 of 11] P02 ChatGPT x C: rows 036-045 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,016.md
+P02_chatgpt_c:046,6,11,P02_chatgpt_c,46,55,[bkvishal28 · Part 6 of 11] P02 ChatGPT x C: rows 046-055 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,017.md
+P02_chatgpt_c:056,7,11,P02_chatgpt_c,56,65,[bkvishal28 · Part 7 of 11] P02 ChatGPT x C: rows 056-065 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,018.md
+P02_chatgpt_c:066,8,11,P02_chatgpt_c,66,75,[bkvishal28 · Part 8 of 11] P02 ChatGPT x C: rows 066-075 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,019.md
+P02_chatgpt_c:076,9,11,P02_chatgpt_c,76,85,[bkvishal28 · Part 9 of 11] P02 ChatGPT x C: rows 076-085 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,020.md
+P02_chatgpt_c:086,10,11,P02_chatgpt_c,86,95,[bkvishal28 · Part 10 of 11] P02 ChatGPT x C: rows 086-095 (10 rows),"package,model:chatgpt,lang:c",bkvishal28,021.md
+P02_chatgpt_c:096,11,11,P02_chatgpt_c,96,100,[bkvishal28 · Part 11 of 11] P02 ChatGPT x C: rows 096-100 (5 rows),"package,model:chatgpt,lang:c",bkvishal28,022.md
+P03_chatgpt_cpp:001,1,14,P03_chatgpt_cpp,1,5,[gokulnathan301g · Part 1 of 14 · DO THIS FIRST] P03 ChatGPT x C++: rows 001-005 (5 rows),"first-issue,model:chatgpt,lang:cpp",gokulnathan301g,023.md
+P03_chatgpt_cpp:006,2,14,P03_chatgpt_cpp,6,15,[gokulnathan301g · Part 2 of 14] P03 ChatGPT x C++: rows 006-015 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,024.md
+P03_chatgpt_cpp:016,3,14,P03_chatgpt_cpp,16,25,[gokulnathan301g · Part 3 of 14] P03 ChatGPT x C++: rows 016-025 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,025.md
+P03_chatgpt_cpp:026,4,14,P03_chatgpt_cpp,26,35,[gokulnathan301g · Part 4 of 14] P03 ChatGPT x C++: rows 026-035 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,026.md
+P03_chatgpt_cpp:036,5,14,P03_chatgpt_cpp,36,45,[gokulnathan301g · Part 5 of 14] P03 ChatGPT x C++: rows 036-045 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,027.md
+P03_chatgpt_cpp:046,6,14,P03_chatgpt_cpp,46,55,[gokulnathan301g · Part 6 of 14] P03 ChatGPT x C++: rows 046-055 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,028.md
+P03_chatgpt_cpp:056,7,14,P03_chatgpt_cpp,56,65,[gokulnathan301g · Part 7 of 14] P03 ChatGPT x C++: rows 056-065 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,029.md
+P03_chatgpt_cpp:066,8,14,P03_chatgpt_cpp,66,75,[gokulnathan301g · Part 8 of 14] P03 ChatGPT x C++: rows 066-075 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,030.md
+P03_chatgpt_cpp:076,9,14,P03_chatgpt_cpp,76,85,[gokulnathan301g · Part 9 of 14] P03 ChatGPT x C++: rows 076-085 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,031.md
+P03_chatgpt_cpp:086,10,14,P03_chatgpt_cpp,86,95,[gokulnathan301g · Part 10 of 14] P03 ChatGPT x C++: rows 086-095 (10 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,032.md
+P03_chatgpt_cpp:096,11,14,P03_chatgpt_cpp,96,100,[gokulnathan301g · Part 11 of 14] P03 ChatGPT x C++: rows 096-100 (5 rows),"package,model:chatgpt,lang:cpp",gokulnathan301g,033.md
+P04_chatgpt_go:001,1,11,P04_chatgpt_go,1,5,[Puneeth-2428 · Part 1 of 11 · DO THIS FIRST] P04 ChatGPT x Go: rows 001-005 (5 rows),"first-issue,model:chatgpt,lang:go",Puneeth-2428,034.md
+P04_chatgpt_go:006,2,11,P04_chatgpt_go,6,15,[Puneeth-2428 · Part 2 of 11] P04 ChatGPT x Go: rows 006-015 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,035.md
+P04_chatgpt_go:016,3,11,P04_chatgpt_go,16,25,[Puneeth-2428 · Part 3 of 11] P04 ChatGPT x Go: rows 016-025 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,036.md
+P04_chatgpt_go:026,4,11,P04_chatgpt_go,26,35,[Puneeth-2428 · Part 4 of 11] P04 ChatGPT x Go: rows 026-035 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,037.md
+P04_chatgpt_go:036,5,11,P04_chatgpt_go,36,45,[Puneeth-2428 · Part 5 of 11] P04 ChatGPT x Go: rows 036-045 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,038.md
+P04_chatgpt_go:046,6,11,P04_chatgpt_go,46,55,[Puneeth-2428 · Part 6 of 11] P04 ChatGPT x Go: rows 046-055 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,039.md
+P04_chatgpt_go:056,7,11,P04_chatgpt_go,56,65,[Puneeth-2428 · Part 7 of 11] P04 ChatGPT x Go: rows 056-065 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,040.md
+P04_chatgpt_go:066,8,11,P04_chatgpt_go,66,75,[Puneeth-2428 · Part 8 of 11] P04 ChatGPT x Go: rows 066-075 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,041.md
+P04_chatgpt_go:076,9,11,P04_chatgpt_go,76,85,[Puneeth-2428 · Part 9 of 11] P04 ChatGPT x Go: rows 076-085 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,042.md
+P04_chatgpt_go:086,10,11,P04_chatgpt_go,86,95,[Puneeth-2428 · Part 10 of 11] P04 ChatGPT x Go: rows 086-095 (10 rows),"package,model:chatgpt,lang:go",Puneeth-2428,043.md
+P04_chatgpt_go:096,11,11,P04_chatgpt_go,96,100,[Puneeth-2428 · Part 11 of 11] P04 ChatGPT x Go: rows 096-100 (5 rows),"package,model:chatgpt,lang:go",Puneeth-2428,044.md
+P05_gemini_python:001,1,14,P05_gemini_python,1,5,[dHEENA0644 · Part 1 of 14 · DO THIS FIRST] P05 Gemini x Python: rows 001-005 (5 rows),"first-issue,model:gemini,lang:python",dHEENA0644,045.md
+P05_gemini_python:006,2,14,P05_gemini_python,6,15,[dHEENA0644 · Part 2 of 14] P05 Gemini x Python: rows 006-015 (10 rows),"package,model:gemini,lang:python",dHEENA0644,046.md
+P05_gemini_python:016,3,14,P05_gemini_python,16,25,[dHEENA0644 · Part 3 of 14] P05 Gemini x Python: rows 016-025 (10 rows),"package,model:gemini,lang:python",dHEENA0644,047.md
+P05_gemini_python:026,4,14,P05_gemini_python,26,35,[dHEENA0644 · Part 4 of 14] P05 Gemini x Python: rows 026-035 (10 rows),"package,model:gemini,lang:python",dHEENA0644,048.md
+P05_gemini_python:036,5,14,P05_gemini_python,36,45,[dHEENA0644 · Part 5 of 14] P05 Gemini x Python: rows 036-045 (10 rows),"package,model:gemini,lang:python",dHEENA0644,049.md
+P05_gemini_python:046,6,14,P05_gemini_python,46,55,[dHEENA0644 · Part 6 of 14] P05 Gemini x Python: rows 046-055 (10 rows),"package,model:gemini,lang:python",dHEENA0644,050.md
+P05_gemini_python:056,7,14,P05_gemini_python,56,65,[dHEENA0644 · Part 7 of 14] P05 Gemini x Python: rows 056-065 (10 rows),"package,model:gemini,lang:python",dHEENA0644,051.md
+P05_gemini_python:066,8,14,P05_gemini_python,66,75,[dHEENA0644 · Part 8 of 14] P05 Gemini x Python: rows 066-075 (10 rows),"package,model:gemini,lang:python",dHEENA0644,052.md
+P05_gemini_python:076,9,14,P05_gemini_python,76,85,[dHEENA0644 · Part 9 of 14] P05 Gemini x Python: rows 076-085 (10 rows),"package,model:gemini,lang:python",dHEENA0644,053.md
+P05_gemini_python:086,10,14,P05_gemini_python,86,95,[dHEENA0644 · Part 10 of 14] P05 Gemini x Python: rows 086-095 (10 rows),"package,model:gemini,lang:python",dHEENA0644,054.md
+P05_gemini_python:096,11,14,P05_gemini_python,96,100,[dHEENA0644 · Part 11 of 14] P05 Gemini x Python: rows 096-100 (5 rows),"package,model:gemini,lang:python",dHEENA0644,055.md
+P06_gemini_c:001,1,11,P06_gemini_c,1,5,[maheera-b · Part 1 of 11 · DO THIS FIRST] P06 Gemini x C: rows 001-005 (5 rows),"first-issue,model:gemini,lang:c",maheera-b,056.md
+P06_gemini_c:006,2,11,P06_gemini_c,6,15,[maheera-b · Part 2 of 11] P06 Gemini x C: rows 006-015 (10 rows),"package,model:gemini,lang:c",maheera-b,057.md
+P06_gemini_c:016,3,11,P06_gemini_c,16,25,[maheera-b · Part 3 of 11] P06 Gemini x C: rows 016-025 (10 rows),"package,model:gemini,lang:c",maheera-b,058.md
+P06_gemini_c:026,4,11,P06_gemini_c,26,35,[maheera-b · Part 4 of 11] P06 Gemini x C: rows 026-035 (10 rows),"package,model:gemini,lang:c",maheera-b,059.md
+P06_gemini_c:036,5,11,P06_gemini_c,36,45,[maheera-b · Part 5 of 11] P06 Gemini x C: rows 036-045 (10 rows),"package,model:gemini,lang:c",maheera-b,060.md
+P06_gemini_c:046,6,11,P06_gemini_c,46,55,[maheera-b · Part 6 of 11] P06 Gemini x C: rows 046-055 (10 rows),"package,model:gemini,lang:c",maheera-b,061.md
+P06_gemini_c:056,7,11,P06_gemini_c,56,65,[maheera-b · Part 7 of 11] P06 Gemini x C: rows 056-065 (10 rows),"package,model:gemini,lang:c",maheera-b,062.md
+P06_gemini_c:066,8,11,P06_gemini_c,66,75,[maheera-b · Part 8 of 11] P06 Gemini x C: rows 066-075 (10 rows),"package,model:gemini,lang:c",maheera-b,063.md
+P06_gemini_c:076,9,11,P06_gemini_c,76,85,[maheera-b · Part 9 of 11] P06 Gemini x C: rows 076-085 (10 rows),"package,model:gemini,lang:c",maheera-b,064.md
+P06_gemini_c:086,10,11,P06_gemini_c,86,95,[maheera-b · Part 10 of 11] P06 Gemini x C: rows 086-095 (10 rows),"package,model:gemini,lang:c",maheera-b,065.md
+P06_gemini_c:096,11,11,P06_gemini_c,96,100,[maheera-b · Part 11 of 11] P06 Gemini x C: rows 096-100 (5 rows),"package,model:gemini,lang:c",maheera-b,066.md
+P07_gemini_cpp:001,1,11,P07_gemini_cpp,1,5,[Hafsah-Khathoon · Part 1 of 11 · DO THIS FIRST] P07 Gemini x C++: rows 001-005 (5 rows),"first-issue,model:gemini,lang:cpp",Hafsah-Khathoon,067.md
+P07_gemini_cpp:006,2,11,P07_gemini_cpp,6,15,[Hafsah-Khathoon · Part 2 of 11] P07 Gemini x C++: rows 006-015 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,068.md
+P07_gemini_cpp:016,3,11,P07_gemini_cpp,16,25,[Hafsah-Khathoon · Part 3 of 11] P07 Gemini x C++: rows 016-025 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,069.md
+P07_gemini_cpp:026,4,11,P07_gemini_cpp,26,35,[Hafsah-Khathoon · Part 4 of 11] P07 Gemini x C++: rows 026-035 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,070.md
+P07_gemini_cpp:036,5,11,P07_gemini_cpp,36,45,[Hafsah-Khathoon · Part 5 of 11] P07 Gemini x C++: rows 036-045 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,071.md
+P07_gemini_cpp:046,6,11,P07_gemini_cpp,46,55,[Hafsah-Khathoon · Part 6 of 11] P07 Gemini x C++: rows 046-055 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,072.md
+P07_gemini_cpp:056,7,11,P07_gemini_cpp,56,65,[Hafsah-Khathoon · Part 7 of 11] P07 Gemini x C++: rows 056-065 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,073.md
+P07_gemini_cpp:066,8,11,P07_gemini_cpp,66,75,[Hafsah-Khathoon · Part 8 of 11] P07 Gemini x C++: rows 066-075 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,074.md
+P07_gemini_cpp:076,9,11,P07_gemini_cpp,76,85,[Hafsah-Khathoon · Part 9 of 11] P07 Gemini x C++: rows 076-085 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,075.md
+P07_gemini_cpp:086,10,11,P07_gemini_cpp,86,95,[Hafsah-Khathoon · Part 10 of 11] P07 Gemini x C++: rows 086-095 (10 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,076.md
+P07_gemini_cpp:096,11,11,P07_gemini_cpp,96,100,[Hafsah-Khathoon · Part 11 of 11] P07 Gemini x C++: rows 096-100 (5 rows),"package,model:gemini,lang:cpp",Hafsah-Khathoon,077.md
+P08_gemini_go:001,1,11,P08_gemini_go,1,5,[rohisara · Part 1 of 11 · DO THIS FIRST] P08 Gemini x Go: rows 001-005 (5 rows),"first-issue,model:gemini,lang:go",rohisara,078.md
+P08_gemini_go:006,2,11,P08_gemini_go,6,15,[rohisara · Part 2 of 11] P08 Gemini x Go: rows 006-015 (10 rows),"package,model:gemini,lang:go",rohisara,079.md
+P08_gemini_go:016,3,11,P08_gemini_go,16,25,[rohisara · Part 3 of 11] P08 Gemini x Go: rows 016-025 (10 rows),"package,model:gemini,lang:go",rohisara,080.md
+P08_gemini_go:026,4,11,P08_gemini_go,26,35,[rohisara · Part 4 of 11] P08 Gemini x Go: rows 026-035 (10 rows),"package,model:gemini,lang:go",rohisara,081.md
+P08_gemini_go:036,5,11,P08_gemini_go,36,45,[rohisara · Part 5 of 11] P08 Gemini x Go: rows 036-045 (10 rows),"package,model:gemini,lang:go",rohisara,082.md
+P08_gemini_go:046,6,11,P08_gemini_go,46,55,[rohisara · Part 6 of 11] P08 Gemini x Go: rows 046-055 (10 rows),"package,model:gemini,lang:go",rohisara,083.md
+P08_gemini_go:056,7,11,P08_gemini_go,56,65,[rohisara · Part 7 of 11] P08 Gemini x Go: rows 056-065 (10 rows),"package,model:gemini,lang:go",rohisara,084.md
+P08_gemini_go:066,8,11,P08_gemini_go,66,75,[rohisara · Part 8 of 11] P08 Gemini x Go: rows 066-075 (10 rows),"package,model:gemini,lang:go",rohisara,085.md
+P08_gemini_go:076,9,11,P08_gemini_go,76,85,[rohisara · Part 9 of 11] P08 Gemini x Go: rows 076-085 (10 rows),"package,model:gemini,lang:go",rohisara,086.md
+P08_gemini_go:086,10,11,P08_gemini_go,86,95,[rohisara · Part 10 of 11] P08 Gemini x Go: rows 086-095 (10 rows),"package,model:gemini,lang:go",rohisara,087.md
+P08_gemini_go:096,11,11,P08_gemini_go,96,100,[rohisara · Part 11 of 11] P08 Gemini x Go: rows 096-100 (5 rows),"package,model:gemini,lang:go",rohisara,088.md
+P09_claude_python:001,1,14,P09_claude_python,1,5,[kanishkagopiramanan-ai · Part 1 of 14 · DO THIS FIRST] P09 Claude x Python: rows 001-005 (5 rows),"first-issue,model:claude,lang:python",kanishkagopiramanan-ai,089.md
+P09_claude_python:006,2,14,P09_claude_python,6,15,[kanishkagopiramanan-ai · Part 2 of 14] P09 Claude x Python: rows 006-015 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,090.md
+P09_claude_python:016,3,14,P09_claude_python,16,25,[kanishkagopiramanan-ai · Part 3 of 14] P09 Claude x Python: rows 016-025 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,091.md
+P09_claude_python:026,4,14,P09_claude_python,26,35,[kanishkagopiramanan-ai · Part 4 of 14] P09 Claude x Python: rows 026-035 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,092.md
+P09_claude_python:036,5,14,P09_claude_python,36,45,[kanishkagopiramanan-ai · Part 5 of 14] P09 Claude x Python: rows 036-045 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,093.md
+P09_claude_python:046,6,14,P09_claude_python,46,55,[kanishkagopiramanan-ai · Part 6 of 14] P09 Claude x Python: rows 046-055 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,094.md
+P09_claude_python:056,7,14,P09_claude_python,56,65,[kanishkagopiramanan-ai · Part 7 of 14] P09 Claude x Python: rows 056-065 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,095.md
+P09_claude_python:066,8,14,P09_claude_python,66,75,[kanishkagopiramanan-ai · Part 8 of 14] P09 Claude x Python: rows 066-075 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,096.md
+P09_claude_python:076,9,14,P09_claude_python,76,85,[kanishkagopiramanan-ai · Part 9 of 14] P09 Claude x Python: rows 076-085 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,097.md
+P09_claude_python:086,10,14,P09_claude_python,86,95,[kanishkagopiramanan-ai · Part 10 of 14] P09 Claude x Python: rows 086-095 (10 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,098.md
+P09_claude_python:096,11,14,P09_claude_python,96,100,[kanishkagopiramanan-ai · Part 11 of 14] P09 Claude x Python: rows 096-100 (5 rows),"package,model:claude,lang:python",kanishkagopiramanan-ai,099.md
+P10_claude_c:001,1,11,P10_claude_c,1,5,[yuvasreejagadeesan05 · Part 1 of 11 · DO THIS FIRST] P10 Claude x C: rows 001-005 (5 rows),"first-issue,model:claude,lang:c",yuvasreejagadeesan05,100.md
+P10_claude_c:006,2,11,P10_claude_c,6,15,[yuvasreejagadeesan05 · Part 2 of 11] P10 Claude x C: rows 006-015 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,101.md
+P10_claude_c:016,3,11,P10_claude_c,16,25,[yuvasreejagadeesan05 · Part 3 of 11] P10 Claude x C: rows 016-025 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,102.md
+P10_claude_c:026,4,11,P10_claude_c,26,35,[yuvasreejagadeesan05 · Part 4 of 11] P10 Claude x C: rows 026-035 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,103.md
+P10_claude_c:036,5,11,P10_claude_c,36,45,[yuvasreejagadeesan05 · Part 5 of 11] P10 Claude x C: rows 036-045 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,104.md
+P10_claude_c:046,6,11,P10_claude_c,46,55,[yuvasreejagadeesan05 · Part 6 of 11] P10 Claude x C: rows 046-055 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,105.md
+P10_claude_c:056,7,11,P10_claude_c,56,65,[yuvasreejagadeesan05 · Part 7 of 11] P10 Claude x C: rows 056-065 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,106.md
+P10_claude_c:066,8,11,P10_claude_c,66,75,[yuvasreejagadeesan05 · Part 8 of 11] P10 Claude x C: rows 066-075 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,107.md
+P10_claude_c:076,9,11,P10_claude_c,76,85,[yuvasreejagadeesan05 · Part 9 of 11] P10 Claude x C: rows 076-085 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,108.md
+P10_claude_c:086,10,11,P10_claude_c,86,95,[yuvasreejagadeesan05 · Part 10 of 11] P10 Claude x C: rows 086-095 (10 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,109.md
+P10_claude_c:096,11,11,P10_claude_c,96,100,[yuvasreejagadeesan05 · Part 11 of 11] P10 Claude x C: rows 096-100 (5 rows),"package,model:claude,lang:c",yuvasreejagadeesan05,110.md
+P11_claude_cpp:001,1,11,P11_claude_cpp,1,5,[jeevikaar · Part 1 of 11 · DO THIS FIRST] P11 Claude x C++: rows 001-005 (5 rows),"first-issue,model:claude,lang:cpp",jeevikaar,111.md
+P11_claude_cpp:006,2,11,P11_claude_cpp,6,15,[jeevikaar · Part 2 of 11] P11 Claude x C++: rows 006-015 (10 rows),"package,model:claude,lang:cpp",jeevikaar,112.md
+P11_claude_cpp:016,3,11,P11_claude_cpp,16,25,[jeevikaar · Part 3 of 11] P11 Claude x C++: rows 016-025 (10 rows),"package,model:claude,lang:cpp",jeevikaar,113.md
+P11_claude_cpp:026,4,11,P11_claude_cpp,26,35,[jeevikaar · Part 4 of 11] P11 Claude x C++: rows 026-035 (10 rows),"package,model:claude,lang:cpp",jeevikaar,114.md
+P11_claude_cpp:036,5,11,P11_claude_cpp,36,45,[jeevikaar · Part 5 of 11] P11 Claude x C++: rows 036-045 (10 rows),"package,model:claude,lang:cpp",jeevikaar,115.md
+P11_claude_cpp:046,6,11,P11_claude_cpp,46,55,[jeevikaar · Part 6 of 11] P11 Claude x C++: rows 046-055 (10 rows),"package,model:claude,lang:cpp",jeevikaar,116.md
+P11_claude_cpp:056,7,11,P11_claude_cpp,56,65,[jeevikaar · Part 7 of 11] P11 Claude x C++: rows 056-065 (10 rows),"package,model:claude,lang:cpp",jeevikaar,117.md
+P11_claude_cpp:066,8,11,P11_claude_cpp,66,75,[jeevikaar · Part 8 of 11] P11 Claude x C++: rows 066-075 (10 rows),"package,model:claude,lang:cpp",jeevikaar,118.md
+P11_claude_cpp:076,9,11,P11_claude_cpp,76,85,[jeevikaar · Part 9 of 11] P11 Claude x C++: rows 076-085 (10 rows),"package,model:claude,lang:cpp",jeevikaar,119.md
+P11_claude_cpp:086,10,11,P11_claude_cpp,86,95,[jeevikaar · Part 10 of 11] P11 Claude x C++: rows 086-095 (10 rows),"package,model:claude,lang:cpp",jeevikaar,120.md
+P11_claude_cpp:096,11,11,P11_claude_cpp,96,100,[jeevikaar · Part 11 of 11] P11 Claude x C++: rows 096-100 (5 rows),"package,model:claude,lang:cpp",jeevikaar,121.md
+P12a_claude_go_sqli:001,12,14,P12a_claude_go_sqli,1,10,[vinoth96-hub · Part 12 of 14] P12a Claude x Go × CWE-89: rows 001-010 (10 rows),"package,model:claude,lang:go",vinoth96-hub,122.md
+P12a_claude_go_sqli:011,13,14,P12a_claude_go_sqli,11,20,[vinoth96-hub · Part 13 of 14] P12a Claude x Go × CWE-89: rows 011-020 (10 rows),"package,model:claude,lang:go",vinoth96-hub,123.md
+P12a_claude_go_sqli:021,14,14,P12a_claude_go_sqli,21,25,[vinoth96-hub · Part 14 of 14] P12a Claude x Go × CWE-89: rows 021-025 (5 rows),"package,model:claude,lang:go",vinoth96-hub,124.md
+P12b_claude_go_cmdi:001,12,14,P12b_claude_go_cmdi,1,10,[dHEENA0644 · Part 12 of 14] P12b Claude x Go × CWE-78: rows 001-010 (10 rows),"package,model:claude,lang:go",dHEENA0644,125.md
+P12b_claude_go_cmdi:011,13,14,P12b_claude_go_cmdi,11,20,[dHEENA0644 · Part 13 of 14] P12b Claude x Go × CWE-78: rows 011-020 (10 rows),"package,model:claude,lang:go",dHEENA0644,126.md
+P12b_claude_go_cmdi:021,14,14,P12b_claude_go_cmdi,21,25,[dHEENA0644 · Part 14 of 14] P12b Claude x Go × CWE-78: rows 021-025 (5 rows),"package,model:claude,lang:go",dHEENA0644,127.md
+P12c_claude_go_pt:001,12,14,P12c_claude_go_pt,1,10,[kanishkagopiramanan-ai · Part 12 of 14] P12c Claude x Go × CWE-22: rows 001-010 (10 rows),"package,model:claude,lang:go",kanishkagopiramanan-ai,128.md
+P12c_claude_go_pt:011,13,14,P12c_claude_go_pt,11,20,[kanishkagopiramanan-ai · Part 13 of 14] P12c Claude x Go × CWE-22: rows 011-020 (10 rows),"package,model:claude,lang:go",kanishkagopiramanan-ai,129.md
+P12c_claude_go_pt:021,14,14,P12c_claude_go_pt,21,25,[kanishkagopiramanan-ai · Part 14 of 14] P12c Claude x Go × CWE-22: rows 021-025 (5 rows),"package,model:claude,lang:go",kanishkagopiramanan-ai,130.md
+P12d_claude_go_rnd:001,12,14,P12d_claude_go_rnd,1,10,[gokulnathan301g · Part 12 of 14] P12d Claude x Go × CWE-338: rows 001-010 (10 rows),"package,model:claude,lang:go",gokulnathan301g,131.md
+P12d_claude_go_rnd:011,13,14,P12d_claude_go_rnd,11,20,[gokulnathan301g · Part 13 of 14] P12d Claude x Go × CWE-338: rows 011-020 (10 rows),"package,model:claude,lang:go",gokulnathan301g,132.md
+P12d_claude_go_rnd:021,14,14,P12d_claude_go_rnd,21,25,[gokulnathan301g · Part 14 of 14] P12d Claude x Go × CWE-338: rows 021-025 (5 rows),"package,model:claude,lang:go",gokulnathan301g,133.md
