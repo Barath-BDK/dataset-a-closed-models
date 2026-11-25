@@ -2,6 +2,7 @@
 """Lead only. Creates the part issues from issues/parts.csv on GitHub (resumable: finished ones are in issues/created.csv).
 
     python tools/create_part_issues.py            # edits the 11 first issues (#16-#26) and creates all other parts, assigned
+    python tools/create_part_issues.py --update      # rewrites the body of every issue from issues/parts/
     python tools/create_part_issues.py --close-old   # then closes the old Step 2 / Step 3 issues #1-#15 with a pointer
 Every person must have accepted the invitation first (GitHub silently skips assignees who have not).
 """
@@ -28,6 +29,12 @@ def main():
     first_no = {}
     for i, p in enumerate(dict.fromkeys(x["package"] for x in parts if not x["package"].startswith("P12")), 1):
         first_no[p] = 15 + i
+    if "--update" in sys.argv:
+        for p in parts:
+            gh("issue", "edit", done[p["key"]], "-R", REPO, "--body-file", os.path.join(ROOT, "issues", "parts", p["file"]))
+            print("updated", p["key"], "#" + done[p["key"]], flush=True)
+            time.sleep(1)
+        return
     if "--close-old" in sys.argv:
         close_old(parts, done)
         return

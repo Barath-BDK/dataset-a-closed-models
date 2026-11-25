@@ -83,7 +83,11 @@ def main():
                         + (" and the lead has said OK to Part 1." if k == 2 else "."), ""]
                 todo = [f"6. Commit and push to your personal branch `dev/{user}` (your open pull request updates itself).",
                         "7. **Close this issue** (button at the bottom of the page). That is how the lead sees that this part is done. Then start the next part."]
-            body = head + links + [
+            banner = ["> [!IMPORTANT]", f"> ## 🌿 YOUR BRANCH: `dev/{user}`",
+                      f"> **Work ONLY on the branch `dev/{user}`.** Do not use `main` and do not create any other branch (no `issue/...` branches).",
+                      f"> - Does not exist yet? Create it from `main` (website: branch button top left, type `dev/{user}`, *Create branch*; or see README section 2).",
+                      f"> - Every save (commit) goes to `dev/{user}`. The pull request is **base `main` ← compare `dev/{user}`**, opened once after Part 1.", ""]
+            body = head + banner + links + [
                 "## What to do", "",
                 f"1. Open a **new chat** with **{m}** (the free base model).",
                 "2. Paste the **MASTER PROMPT** (section 1 below). Wait for the answer `ready`.",
