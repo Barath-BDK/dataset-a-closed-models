@@ -7,6 +7,7 @@ If a row could not be made, write SKIP and the reason under its line.
 
 
 === 002
+{"code":"func (h *OrderTotalsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {\n    requestedColumn := r.URL.Query().Get("col")\n    allowedColumns := map[string]string{"category":"category","status":"status"}\n    column, ok := allowedColumns[requestedColumn]\n    if !ok { http.Error(w,"Invalid column",http.StatusBadRequest); return }\n    var totals []struct{ GroupingValue string; OrderTotal float64 }\n    if err := h.DB.Raw(SELECT +column+AS grouping_value, SUM(total) AS order_total FROM orders GROUP BY+column).Scan(&totals).Error; err != nil { http.Error(w,err.Error(),http.StatusInternalServerError); return }\n    json.NewEncoder(w).Encode(totals)\n}\n","fixed_code":"","vulnerable_lines":[],"task_description":"reports order totals grouped by a chosen category","sink":"h.DB.Raw","build_style":"plain","fix_type":"allowlist","cwe_detail":"sql injection"}
 
 
 === 003
