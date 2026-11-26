@@ -15,6 +15,7 @@ If a row could not be made, write SKIP and the reason under its line.
 
 
 === 004
+{"code":"func generateShareSecret() string {\n    secret := make([]byte, 16)\n    for i := range secret {\n        randomByte := mathrand.Intn(256)\n        secret[i] = byte(randomByte)\n    }\n    return base64.StdEncoding.EncodeToString(secret)\n}\n","fixed_code":"func generateShareSecret() string {\n    secret := make([]byte, 16)\n    if _, err := cryptorand.Read(secret); err != nil {\n        panic(err)\n    }\n    return base64.StdEncoding.EncodeToString(secret)\n}\n","vulnerable_lines":[4,5],"task_description":"Creates a share link secret for a document.","sink":"mathrand.Intn","build_style":"random_module","fix_type":"secure_bytes_encoded","cwe_detail":"weak_random_generator"}
 
 
 === 005
