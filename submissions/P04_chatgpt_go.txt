@@ -11,6 +11,7 @@ If a row could not be made, write SKIP and the reason under its line.
 
 
 === 003
+{"code":"func mv() error {\n    src := os.Args[1]\n    dst := \"/archive/\" + src\n    return os.Rename(src, dst)\n}","fixed_code":"func mv() error {\n    src := os.Args[1]\n    dstPath := filepath.Join(\"/archive\", src)\n    absDst, err := filepath.Abs(dstPath); if err != nil { return err }\n    absArchive, err := filepath.Abs(\"/archive\"); if err != nil { return err }\n    rel, err := filepath.Rel(absArchive, absDst); if err != nil { return err }\n    if rel == \"..\" || strings.HasPrefix(rel, \"..\"+string(os.PathSeparator)) {\n        return fmt.Errorf(\"invalid path\")\n    }\n    return os.Rename(src, absDst)\n}","vulnerable_lines":[2,3,4],"task_description":"Moves a file to an archive directory.","sink":"os.Rename","build_style":"plain","fix_type":"path_containment_check","cwe_detail":"path traversal"}
 
 
 === 004
