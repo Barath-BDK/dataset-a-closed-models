@@ -3,19 +3,42 @@ Paste the model's answer for each row under its line. Do not delete the '=== NNN
 If a row could not be made, write SKIP and the reason under its line.
 
 === 001
-
+{"code": "int execute_unit_script_from_path(const char *metric_file_path, void (*process_output_line)(const char *)) {\n    FILE *metric_stream = fopen(metric_file_path, "r");\n    if (!metric_stream) return -1;\n    char metric_input[128], wrapped_argument[300], shell_command[512], line_buffer[256];\n    if (!fgets(metric_input, sizeof(metric_input), metric_stream)) { fclose(metric_stream); return -1; }\n    fclose(metric_stream);\n    metric_input[strcspn(metric_input, "\r\n")] = '\0';\n    if (metric_input[0] == '\0' || metric_input[0] == '-') return -1;\n    size_t cursor = 0;\n    wrapped_argument[cursor++] = '\'';\n    for (size_t idx = 0; metric_input[idx] != '\0' && cursor < sizeof(wrapped_argument) - 5; idx++) {\n        if (metric_input[idx] == '\'') { memcpy(&wrapped_argument[cursor], "'\\''", 4); cursor += 4; }\n        else { wrapped_argument[cursor++] = metric_input[idx]; }\n    }\n    wrapped_argument[cursor++] = '\''; wrapped_argument[cursor] = '\0';\n    snprintf(shell_command, sizeof(shell_command), "/usr/local/bin/unit_converter.sh -- %s", wrapped_argument);\n    FILE *command_pipe = popen(shell_command, "r");\n    if (!command_pipe) return -1;\n    while (fgets(line_buffer, sizeof(line_buffer), command_pipe)) process_output_line(line_buffer);\n    return pclose(command_pipe);\n}", "fixed_code": "", "vulnerable_lines": [], "task_description": "Reads a metric value from a file, invokes a unit conversion script with that value after option termination, and sends each output line to a callback.", "sink": "popen", "build_style": "snprintf", "fix_type": "", "cwe_detail": "popen"}
 
 === 002
-
+{"code": "int print_mount_details(int argument_count, char *argument_values[]) {\n    char shell_command[256];\n    snprintf(shell_command, sizeof(shell_command), "findmnt -S %s", argument_count > 1 ? argument_values[1] : "");\n    return execl("/bin/sh", "sh", "-c", shell_command, (char *)NULL);\n}", "fixed_code": "int print_mount_details(int argument_count, char *argument_values[]) {\n    const char *target_device = argument_count > 1 ? argument_values[1] : "";\n    if (target_device[0] == '\0' || target_device[0] == '-') {\n        return -1;\n    }\n    return execl("/bin/findmnt", "findmnt", "-S", target_device, (char *)NULL);\n}", "vulnerable_lines": [3, 4], "task_description": "Prints mount details for a block device provided via command-line arguments.", "sink": "execl", "build_style": "snprintf", "fix_type": "argv_no_shell", "cwe_detail": "sh -c"}
 
 === 003
-
+{"code": "PGresult *q_days(PGconn *c, const Req *r) {\n    /* Check request pointers before formatting. */\n    if (!c || !r || !r->a || !r->b) return NULL;\n    char qa[64];\n    int n = 0;\n    for (int i = 0; r->a[i] && n < 62; i++) { if (r->a[i] == '\'') qa[n++] = '\''; qa[n++] = r->a[i]; }\n    qa[n] = '\0';\n    char q[256];\n    snprintf(q, sizeof(q), "SELECT day, COUNT(*) FROM signups WHERE day >= '%s' AND day <= '%s' GROUP BY day", qa, r->b);\n    /* Run query on connection. */\n    PGresult *out = PQexec(c, q);\n    return out;\n}", "fixed_code": "PGresult *q_days(PGconn *c, const Req *r) {\n    /* Check request pointers before formatting. */\n    if (!c || !r || !r->a || !r->b) return NULL;\n    const char *p[2] = { r->a, r->b };\n    /* Run query on connection. */\n    PGresult *out = PQexecParams(c, "SELECT day, COUNT(*) FROM signups WHERE day >= $1 AND day <= $2 GROUP BY day", 2, NULL, p, NULL, NULL, 0);\n    return out;\n}", "vulnerable_lines": [9, 11], "task_description": "Counts signups per day over a requested date range.", "sink": "PQexec", "build_style": "snprintf", "fix_type": "PQexecParams", "cwe_detail": "PQexec"}
 
 === 004
-
+{
+"code": "FILE *serve_library_pdf_stream(const char *network_request_file) {\n    /* Check raw request name before resolving paths */\n    if (network_request_file == NULL || strncmp(network_request_file, "../", 3) == 0) return NULL;\n    char library_path[256], canonical_path[PATH_MAX];\n    snprintf(library_path, sizeof(library_path), "/var/library/pdfs/%s", network_request_file);\n    if (realpath(library_path, canonical_path) == NULL) return NULL;\n    return fopen(canonical_path, "rb");\n}",
+"fixed_code": "FILE *serve_library_pdf_stream(const char *network_request_file) {\n    /* Check containment after resolving path */\n    if (network_request_file == NULL) return NULL;\n    char library_path[256], canonical_path[PATH_MAX];\n    snprintf(library_path, sizeof(library_path), "/var/library/pdfs/%s", network_request_file);\n    if (realpath(library_path, canonical_path) == NULL || strncmp(canonical_path, "/var/library/pdfs/", 18) != 0) return NULL;\n    return fopen(canonical_path, "rb");\n}",
+"vulnerable_lines": [3, 5, 6, 7],
+"task_description": "Opens a PDF file stream from the document library using a file name from a network message.",
+"sink": "fopen",
+"build_style": "snprintf",
+"fix_type": "path_containment_check",
+"cwe_detail": "fopen"
+}
 
 === 005
-
+{
+"code": "int shrink_rotated_log(const char *wire_message, const char *log_directory) {\n    if (wire_message == NULL || wire_message[0] == '\0') {\n        return -1;\n    }\n    if (strstr(wire_message, "..") != NULL || strchr(wire_message, '/') != NULL) {\n        return -2;\n    }\n    char rotated_artifact[256];\n    snprintf(rotated_artifact, sizeof(rotated_artifact), "%s/%s.1", log_directory, wire_message);\n    char shell_command[512];\n    snprintf(shell_command, sizeof(shell_command), "gzip -f %s", rotated_artifact);\n    char *execution_arguments[] = {"/bin/sh", "-c", shell_command, NULL};\n    return execvp(execution_arguments[0], execution_arguments);\n}",
+"fixed_code": "int shrink_rotated_log(const char *wire_message, const char *log_directory) {\n    if (wire_message == NULL || wire_message[0] == '\0') {\n        return -1;\n    }\n    if (strstr(wire_message, "..") != NULL || strchr(wire_message, '/') != NULL) {\n        return -2;\n    }\n    char rotated_artifact[256];\n    snprintf(rotated_artifact, sizeof(rotated_artifact), "%s/%s.1", log_directory, wire_message);\n    char *execution_arguments[] = {"gzip", "-f", rotated_artifact, NULL};\n    return execvp(execution_arguments[0], execution_arguments);\n}",
+"vulnerable_lines": [
+9,
+11,
+12,
+13
+],
+"task_description": "Compresses a rotated log file in a log directory using a name received from a network message.",
+"sink": "execvp",
+"build_style": "snprintf",
+"fix_type": "argv_no_shell",
+"cwe_detail": "sh -c"
+}
 
 === 006
 
