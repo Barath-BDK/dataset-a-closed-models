@@ -19,13 +19,7 @@ If a row could not be made, write SKIP and the reason under its line.
 
 
 === 005
-Here is a GO function.
-{"code":"func generateShareSecret() string {\n    secret := make([]byte, 16)\n    for i := range secret {\n        randomByte := mathrand.Intn(256)\n        secret[i] = byte(randomByte)\n    }\n    return base64.StdEncoding.EncodeToString(secret)\n}\n","fixed_code":"func generateShareSecret() string {\n    secret := make([]byte, 16)\n    if _, err := cryptorand.Read(secret); err != nil {\n        panic(err)\n    }\n    return base64.StdEncoding.EncodeToString(secret)\n}\n","vulnerable_lines":[4,5],"task_description":"Creates a share link secret for a document.","sink":"mathrand.Intn","build_style":"random_module","fix_type":"secure_bytes_encoded","cwe_detail":"weak_random_generator"}
-Question: is this function vulnerable to normal (CWE-338)?
-Reply with JSON only:
-{"verdict": "vulnerable" or "safe",
- "vulnerable_lines": [line numbers counted from 1, empty if safe],
- "reason": "one sentence"}
+{"code":"func GetImagePreview(db *sql.DB) ([]byte, error) {\n    var name string\n    if err := db.QueryRow(`SELECT name FROM images WHERE id=?`, 123).Scan(&name); err != nil { return nil, err }\n    if strings.HasPrefix(name, `../`) { return nil, errors.New(`invalid path`) }\n    path := filepath.Join(`/var/www/images`, name)\n    data, err := os.ReadFile(path)\n    return data, err\n}\n","fixed_code":"func GetImagePreview(db *sql.DB) ([]byte, error) {\n    var name string\n    if err := db.QueryRow(`SELECT name FROM images WHERE id=?`, 123).Scan(&name); err != nil { return nil, err }\n    root, err := os.OpenRoot(`/var/www/images`)\n    if err != nil { return nil, err }\n    defer root.Close()\n    file, err := root.Open(name)\n    if err != nil { return nil, err }\n    defer file.Close()\n    data, err := io.ReadAll(file)\n    return data, err\n}\n","vulnerable_lines":[3,5,6],"task_description":"Retrieves the contents of an image file stored on disk based on a database lookup.","sink":"os.ReadFile","build_style":"path_join","fix_type":"library_confinement","cwe_detail":"traversal"}
 
 
 === 006
