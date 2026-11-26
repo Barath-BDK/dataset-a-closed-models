@@ -48,14 +48,14 @@ If a row could not be made, write SKIP and the reason under its line.
 }
 === 005
 {
-  "code": "void getSnippet(const httplib::Request& req, httplib::Response& res) {\n    // Read the requested snippet name.\n    std::string name = req.get_param_value(\"name\");\n    if (name.empty() || name.size() > 64 ||\n        name.find_first_not_of(\"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-\") != std::string::npos) {\n        res.status = 400;\n        return;\n    }\n    // Keep all files inside the shared snippets directory.\n    const std::string dir = \"/var/app/shared/snippets/\";\n    std::string path = dir + name + \".txt\";\n    FILE* fp = std::fopen(path.c_str(), \"rb\");\n    if (!fp) {\n        res.status = 404;\n        return;\n    }\n    char buf[512];\n    size_t n;\n    while ((n = std::fread(buf, 1, sizeof(buf), fp)) > 0) res.body.append(buf, n);\n    std::fclose(fp);\n    res.set_content(res.body, \"text/plain\");\n}",
-  "fixed_code": "",
-  "vulnerable_lines": [],
-  "task_description": "Reads and returns the contents of a shared snippet file selected by a web request, using a restricted filename and a fixed directory.",
-  "sink": "std::fopen",
-  "build_style": "web_handler",
-  "fix_type": "",
-  "cwe_detail": "none"
+"code": "std::string ResumeManager::fetchUploadedResume(const std::string& resumeName) {\n // Locate the uploaded resume directory.\n std::filesystem::path resumeDirectory(\"uploads/resumes\");\n // Reject parent-directory references before resolving the path.\n if (resumeName.find(\"..\") != std::string::npos) return {};\n // Construct the requested resume location.\n std::filesystem::path resumePath = resumeDirectory / std::filesystem::path(resumeName);\n resumePath = std::filesystem::absolute(resumePath).lexically_normal();\n // Read the selected resume file.\n std::ifstream resumeFile(resumePath, std::ios::binary);\n if (!resumeFile.is_open()) return {};\n std::ostringstream resumeContents;\n resumeContents << resumeFile.rdbuf();\n return resumeContents.str();\n}",
+"fixed_code": "std::string ResumeManager::fetchUploadedResume(const std::string& resumeName) {\n // Locate the uploaded resume directory.\n std::error_code error;\n std::filesystem::path resumeDirectory = std::filesystem::canonical(\"uploads/resumes\", error);\n if (error) return {};\n // Reject absolute paths and directory separators.\n if (resumeName.empty() || std::filesystem::path(resumeName).is_absolute() || resumeName.find('/') != std::string::npos || resumeName.find('\\\\') != std::string::npos) return {};\n // Resolve and validate the requested resume location.\n std::filesystem::path resumePath = std::filesystem::canonical(resumeDirectory / resumeName, error);\n if (error || resumePath.parent_path() != resumeDirectory) return {};\n // Read the selected resume file.\n std::ifstream resumeFile(resumePath, std::ios::binary);\n if (!resumeFile.is_open()) return {};\n std::ostringstream resumeContents;\n resumeContents << resumeFile.rdbuf();\n return resumeContents.str();\n}",
+"vulnerable_lines": [7, 8, 10],
+"task_description": "Fetches a user's uploaded resume from the designated resume storage directory and returns its contents.",
+"sink": "std::ifstream",
+"build_style": "check_before_normalising",
+"fix_type": "canonical_path_containment",
+"cwe_detail": "path_traversal"
 }
 === 006
 
