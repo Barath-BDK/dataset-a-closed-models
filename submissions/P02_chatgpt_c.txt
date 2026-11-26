@@ -3,19 +3,64 @@ Paste the model's answer for each row under its line. Do not delete the '=== NNN
 If a row could not be made, write SKIP and the reason under its line.
 
 === 001
-
+{
+  "code": "int rn_doc(const char *arg, const char *new_name)\n{\n    char src[512];\n    char dst[512];\n    char *ext;\n    const char *dir = \"storage\";\n    size_t n;\n    int rc;\n\n    if (arg == NULL || new_name == NULL || arg[0] == '\\0' || new_name[0] == '\\0')\n        return -1;\n\n    n = strlen(arg);\n    if (n >= sizeof(src) - 16 || strlen(new_name) >= sizeof(dst) - 16)\n        return -1;\n\n    ext = strrchr((char *)arg, '.');\n    if (ext == NULL || strcmp(ext, \".docx\") != 0)\n        return -1;\n\n    snprintf(src, sizeof(src), \"%s/%s\", dir, arg);\n    printf(\"Document selected: %s\\n\", arg);\n\n    if (access(src, F_OK) != 0)\n        return -1;\n\n    snprintf(dst, sizeof(dst), \"%s/%s\", dir, new_name);\n    rc = rename(src, dst);\n    if (rc != 0)\n        return -1;\n\n    return 0;\n}",
+  "fixed_code": "int rn_doc(const char *arg, const char *new_name)\n{\n    char src[512];\n    char dst[512];\n    char *ext;\n    const char *dir = \"storage\";\n    size_t n;\n    int rc;\n\n    if (arg == NULL || new_name == NULL || arg[0] == '\\0' || new_name[0] == '\\0')\n        return -1;\n\n    n = strlen(arg);\n    if (n >= sizeof(src) - 16 || strlen(new_name) >= sizeof(dst) - 16)\n        return -1;\n\n    if (strchr(arg, '/') != NULL || strstr(arg, \"..\") != NULL || strchr(new_name, '/') != NULL || strstr(new_name, \"..\") != NULL)\n        return -1;\n\n    ext = strrchr((char *)arg, '.');\n    if (ext == NULL || strcmp(ext, \".docx\") != 0)\n        return -1;\n\n    snprintf(src, sizeof(src), \"%s/%s\", dir, arg);\n    printf(\"Document selected: %s\\n\", arg);\n\n    if (access(src, F_OK) != 0)\n        return -1;\n\n    snprintf(dst, sizeof(dst), \"%s/%s\", dir, new_name);\n    rc = rename(src, dst);\n    if (rc != 0)\n        return -1;\n\n    return 0;\n}",
+  "vulnerable_lines": [21, 27, 28],
+  "task_description": "Renames a document from one filename to another within the storage folder after checking the source document extension and existence.",
+  "sink": "rename",
+  "build_style": "concatenation",
+  "fix_type": "reject_path_separators",
+  "cwe_detail": "rename"
+}
 
 === 002
-
+{
+  "code": "int create_download_key(void *context, unsigned char *key, size_t key_length)\n{\n    size_t bytes_collected = 0;\n    ssize_t bytes_received;\n\n    // Generate a key for a private download link.\n    // Read random bytes directly from the operating system.\n    while (bytes_collected < key_length) {\n        bytes_received = getrandom(key + bytes_collected,\n                                   key_length - bytes_collected, 0);\n        if (bytes_received < 0) {\n            if (errno == EINTR) continue;\n            return -1;\n        }\n        if (bytes_received == 0) return -1;\n        bytes_collected += (size_t)bytes_received;\n    }\n    return 0;\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Generates a cryptographically random key for a private download link through a callback interface.",
+  "sink": "getrandom",
+  "build_style": "none",
+  "fix_type": "",
+  "cwe_detail": "getrandom"
+}
 
 === 003
-
+{
+  "code": "int chk(MYSQL *db, const char *u, const char *p)\n{\n    char q[1024];\n    MYSQL_RES *r;\n    MYSQL_ROW row;\n    int ok = 0;\n    if (!db || !u || !p) return 0;\n    if (!*u || !*p) return 0;\n    size_t ul = strlen(u);\n    size_t pl = strlen(p);\n    if (ul > 200 || pl > 200) return 0;\n    snprintf(q, sizeof(q), \"SELECT id FROM users WHERE username='%s' AND password_hash='%s'\", u, p);\n    if (mysql_query(db, q) != 0) return 0;\n    r = mysql_store_result(db);\n    if (r) { row = mysql_fetch_row(r); ok = (row != NULL); mysql_free_result(r); }\n    return ok;\n}",
+  "fixed_code": "int chk(MYSQL *db, const char *u, const char *p)\n{\n    char q[1024], eu[402], ep[402];\n    MYSQL_RES *r;\n    MYSQL_ROW row;\n    int ok = 0;\n    if (!db || !u || !p) return 0;\n    if (!*u || !*p) return 0;\n    size_t ul = strlen(u);\n    size_t pl = strlen(p);\n    if (ul > 200 || pl > 200) return 0;\n    mysql_real_escape_string(db, eu, u, (unsigned long)ul);\n    mysql_real_escape_string(db, ep, p, (unsigned long)pl);\n    snprintf(q, sizeof(q), \"SELECT id FROM users WHERE username='%s' AND password_hash='%s'\", eu, ep);\n    if (mysql_query(db, q) != 0) return 0;\n    r = mysql_store_result(db);\n    if (r) { row = mysql_fetch_row(r); ok = (row != NULL); mysql_free_result(r); }\n    return ok;\n}",
+  "vulnerable_lines": [12, 13],
+  "task_description": "Checks whether a username and password hash received from a web request match an account in the database.",
+  "sink": "mysql_query",
+  "build_style": "snprintf",
+  "fix_type": "escape_string",
+  "cwe_detail": "mysql_query"
+}
 
 === 004
-
+{
+  "code": "int paginate_items(const struct item *items, size_t item_count, struct page_request *request, struct item *results, size_t results_capacity)\n{\n    size_t page_number, page_size, start_index, end_index, index;\n    if (!items || !request || !results) return -1;\n    page_number = request->page_number ? request->page_number : 1;\n    page_size = request->page_size;\n    if (page_size == 0) return -1;\n    // Calculate the starting position of the requested page.\n    if (page_number - 1 > SIZE_MAX / page_size) return -1;\n    start_index = (page_number - 1) * page_size;\n    if (start_index >= item_count) { request->result_count = 0; return 0; }\n    end_index = start_index + page_size;\n    if (end_index < start_index || end_index > item_count) end_index = item_count;\n    if (end_index - start_index > results_capacity) return -1;\n    // Copy the selected items into the supplied response buffer.\n    for (index = start_index; index < end_index; index++)\n        results[index - start_index] = items[index];\n    request->result_count = end_index - start_index;\n    return 0;\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Selects a requested page of items from an in-memory list and copies them into a caller-supplied response buffer.",
+  "sink": "",
+  "build_style": "none",
+  "fix_type": "",
+  "cwe_detail": "none"
+}
 
 === 005
-
+{
+  "code": "char *create_oauth_state(void)\n{\n    // Initialize the random generator for the login state.\n    unsigned int seed = (unsigned int)time(NULL);\n    srand(seed);\n    unsigned int value = (unsigned int)rand();\n    char *state = malloc(9);\n    if (state) snprintf(state, 9, \"%08x\", value);\n    return state;\n}",
+  "fixed_code": "char *create_oauth_state(void)\n{\n    // Generate random bytes for the login state.\n    unsigned char state_bytes[4];\n    char *state = malloc(9);\n    if (!state) return NULL;\n    if (getrandom(state_bytes, sizeof(state_bytes), 0) != sizeof(state_bytes)) { free(state); return NULL; }\n    for (size_t index = 0; index < sizeof(state_bytes); index++)\n        snprintf(state + index * 2, 3, \"%02x\", state_bytes[index]);\n    return state;\n}",
+  "vulnerable_lines": [4, 5, 6, 8],
+  "task_description": "Creates an eight-character hexadecimal OAuth state value for a login redirect.",
+  "sink": "rand",
+  "build_style": "random_module",
+  "fix_type": "secure_generator_api",
+  "cwe_detail": "srand"
+}
 
 === 006
 
