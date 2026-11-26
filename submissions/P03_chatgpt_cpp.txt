@@ -58,35 +58,115 @@ If a row could not be made, write SKIP and the reason under its line.
 "cwe_detail": "path_traversal"
 }
 === 006
-
-
+{
+  "code": "int getQty(sqlite3* db, const std::string& code) {\n    // Read the requested product code from the environment.\n    const char* env = std::getenv(\"STOCK_CODE\");\n    std::string key = env ? env : code;\n    int qty = 0;\n    sqlite3_stmt* stmt = nullptr;\n    // Prepare a statement for the normal lookup branch.\n    if (key.size() < 32) {\n        const char* sql = \"SELECT quantity FROM stock WHERE code = ?\";\n        sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);\n        sqlite3_bind_text(stmt, 1, key.c_str(), -1, SQLITE_TRANSIENT);\n    } else {\n        // Build the lookup statement for longer product codes.\n        std::string sql = \"SELECT quantity FROM stock WHERE code = '\" + key + \"'\";\n        sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);\n    }\n    if (stmt && sqlite3_step(stmt) == SQLITE_ROW) qty = sqlite3_column_int(stmt, 0);\n    if (stmt) sqlite3_finalize(stmt);\n    return qty;\n}",
+  "fixed_code": "int getQty(sqlite3* db, const std::string& code) {\n    // Read the requested product code from the environment.\n    const char* env = std::getenv(\"STOCK_CODE\");\n    std::string key = env ? env : code;\n    int qty = 0;\n    sqlite3_stmt* stmt = nullptr;\n    // Prepare a parameterized lookup for every product code.\n    const char* sql = \"SELECT quantity FROM stock WHERE code = ?\";\n    if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) == SQLITE_OK) {\n        sqlite3_bind_text(stmt, 1, key.c_str(), -1, SQLITE_TRANSIENT);\n    }\n    if (stmt && sqlite3_step(stmt) == SQLITE_ROW) qty = sqlite3_column_int(stmt, 0);\n    if (stmt) sqlite3_finalize(stmt);\n    return qty;\n}",
+  "vulnerable_lines": [14, 15],
+  "task_description": "Retrieves the available stock quantity for a product using its product code, with the lookup value obtained from an environment variable when available.",
+  "sink": "sqlite3_prepare_v2",
+  "build_style": "concatenation",
+  "fix_type": "query_builder_bind",
+  "cwe_detail": "sqlite3"
+}
 === 007
-
-
+{
+  "code": "std::string readSavedDraft(const std::string& defaultUser) {\n    // Obtain the account name from the process environment.\n    const char* environmentUser = std::getenv(\"DRAFT_USER\");\n    std::string userName = environmentUser ? environmentUser : defaultUser;\n    std::string draftDirectory = \"user_drafts\";\n    std::string draftContent;\n    std::string fileName = userName + \".draft\";\n    // Check that a username was provided.\n    if (userName.empty()) {\n        return \"No draft selected\";\n    }\n    // Construct the location of the requested draft.\n    std::filesystem::path draftPath = std::filesystem::path(draftDirectory) / fileName;\n    std::ifstream draftFile(draftPath);\n    if (!draftFile.is_open()) {\n        return \"Unable to open draft\";\n    }\n    // Read the saved draft contents.\n    std::string currentLine;\n    while (std::getline(draftFile, currentLine)) {\n        draftContent += currentLine;\n        draftContent += '\\n';\n    }\n    draftFile.close();\n    // Return the collected draft text.\n    if (draftContent.empty()) {\n        return \"Draft is empty\";\n    }\n    return draftContent;\n}",
+  "fixed_code": "std::string readSavedDraft(const std::string& defaultUser) {\n    // Obtain the account name from the process environment.\n    const char* environmentUser = std::getenv(\"DRAFT_USER\");\n    std::string userName = environmentUser ? environmentUser : defaultUser;\n    std::string draftDirectory = \"user_drafts\";\n    std::string draftContent;\n    std::string fileName = userName + \".draft\";\n    // Check that a username was provided.\n    if (userName.empty()) {\n        return \"No draft selected\";\n    }\n    // Accept only a plain account filename.\n    if (std::filesystem::path(fileName).filename() != fileName || fileName == \".\" || fileName == \"..\") {\n        return \"Invalid draft name\";\n    }\n    // Construct the location of the requested draft.\n    std::filesystem::path draftPath = std::filesystem::path(draftDirectory) / fileName;\n    std::ifstream draftFile(draftPath);\n    if (!draftFile.is_open()) {\n        return \"Unable to open draft\";\n    }\n    // Read the saved draft contents.\n    std::string currentLine;\n    while (std::getline(draftFile, currentLine)) {\n        draftContent += currentLine;\n        draftContent += '\\n';\n    }\n    draftFile.close();\n    // Return the collected draft text.\n    if (draftContent.empty()) {\n        return \"Draft is empty\";\n    }\n    return draftContent;\n}",
+  "vulnerable_lines": [7, 13, 14],
+  "task_description": "Reads and returns the saved draft associated with a user's account, using an environment variable to select the account when available.",
+  "sink": "std::ifstream",
+  "build_style": "path_join",
+  "fix_type": "base_name_only",
+  "cwe_detail": "ifstream"
+}
 === 008
-
-
+{
+  "code": "void listSharedFiles(const HttpRequest& request, PGconn* connection, HttpResponse& response) {\n    // Read the account identifier from the incoming request.\n    std::string userId = request.query(\"user_id\");\n    if (userId.empty()) {\n        response.setStatus(400);\n        return;\n    }\n    // Retrieve files associated with the selected account.\n    std::string query = \"SELECT file_name, shared_by FROM shared_files WHERE user_id = '\" + userId + \"'\";\n    PGresult* result = PQexec(connection, query.c_str());\n    if (PQresultStatus(result) != PGRES_TUPLES_OK) {\n        response.setStatus(500);\n        PQclear(result);\n        return;\n    }\n    // Convert database rows into the response body.\n    for (int row = 0; row < PQntuples(result); ++row) {\n        response.addFile(PQgetvalue(result, row, 0), PQgetvalue(result, row, 1));\n    }\n    PQclear(result);\n}",
+  "fixed_code": "void listSharedFiles(const HttpRequest& request, PGconn* connection, HttpResponse& response) {\n    // Read the account identifier from the incoming request.\n    std::string userId = request.query(\"user_id\");\n    if (userId.empty()) {\n        response.setStatus(400);\n        return;\n    }\n    // Validate the account identifier format.\n    if (!std::all_of(userId.begin(), userId.end(), [](unsigned char character) { return std::isalnum(character) || character == '_' || character == '-'; })) {\n        response.setStatus(400);\n        return;\n    }\n    // Retrieve files associated with the selected account.\n    const char* parameters[] = { userId.c_str() };\n    PGresult* result = PQexecParams(connection, \"SELECT file_name, shared_by FROM shared_files WHERE user_id = $1\", 1, nullptr, parameters, nullptr, nullptr, 0);\n    if (PQresultStatus(result) != PGRES_TUPLES_OK) {\n        response.setStatus(500);\n        PQclear(result);\n        return;\n    }\n    // Convert database rows into the response body.\n    for (int row = 0; row < PQntuples(result); ++row) {\n        response.addFile(PQgetvalue(result, row, 0), PQgetvalue(result, row, 1));\n    }\n    PQclear(result);\n}",
+  "vulnerable_lines": [9, 10],
+  "task_description": "Handles a web request to retrieve and return the files shared with a specified user account.",
+  "sink": "PQexec",
+  "build_style": "concatenation",
+  "fix_type": "allow_list",
+  "cwe_detail": "postgresql"
+}
 === 009
-
-
+{
+  "code": "void findEventsAsync(MYSQL* db, const std::string& fallbackCity, std::function<void(std::vector<std::string>)> callback) {\n    const char* env = std::getenv(\"EVENT_CITY\");\n    std::string city = env ? env : fallbackCity;\n    std::vector<std::string> events;\n    if (city.empty()) { callback(events); return; }\n    const char* sortKey = std::getenv(\"EVENT_SORT\");\n    std::string sortColumn = \"event_date\";\n    if (sortKey && std::string(sortKey) == \"name\") sortColumn = \"event_name\";\n    else if (sortKey && std::string(sortKey) == \"venue\") sortColumn = \"venue_name\";\n    // Build the statement using the selected column identifier.\n    std::string sql = \"SELECT event_name, venue_name, event_date FROM city_events WHERE city = ? ORDER BY \" + sortColumn;\n    MYSQL_STMT* stmt = mysql_stmt_init(db);\n    if (!stmt) { callback(events); return; }\n    if (mysql_stmt_prepare(stmt, sql.c_str(), static_cast<unsigned long>(sql.size())) != 0) {\n        mysql_stmt_close(stmt); callback(events); return;\n    }\n    // Bind the requested city as a parameter.\n    MYSQL_BIND input[1]{};\n    unsigned long cityLength = static_cast<unsigned long>(city.size());\n    input[0].buffer_type = MYSQL_TYPE_STRING;\n    input[0].buffer = city.data();\n    input[0].buffer_length = cityLength;\n    input[0].length = &cityLength;\n    if (mysql_stmt_bind_param(stmt, input) != 0 || mysql_stmt_execute(stmt) != 0) {\n        mysql_stmt_close(stmt); callback(events); return;\n    }\n    char name[256]{};\n    char venue[256]{};\n    char date[64]{};\n    unsigned long lengths[3]{};\n    MYSQL_BIND output[3]{};\n    char* buffers[] = {name, venue, date};\n    unsigned long capacities[] = {sizeof(name), sizeof(venue), sizeof(date)};\n    for (unsigned int i = 0; i < 3; ++i) {\n        output[i].buffer_type = MYSQL_TYPE_STRING;\n        output[i].buffer = buffers[i];\n        output[i].buffer_length = capacities[i];\n        output[i].length = &lengths[i];\n    }\n    if (mysql_stmt_bind_result(stmt, output) == 0) {\n        int status = 0;\n        while ((status = mysql_stmt_fetch(stmt)) == 0 || status == MYSQL_DATA_TRUNCATED) {\n            unsigned long nameLength = std::min(lengths[0], sizeof(name) - 1);\n            unsigned long venueLength = std::min(lengths[1], sizeof(venue) - 1);\n            unsigned long dateLength = std::min(lengths[2], sizeof(date) - 1);\n            name[nameLength] = '\\0';\n            venue[venueLength] = '\\0';\n            date[dateLength] = '\\0';\n            events.emplace_back(std::string(name, nameLength) + \" | \" + venue + \" | \" + date);\n        }\n    }\n    mysql_stmt_close(stmt);\n    callback(events);\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Asynchronously retrieves events taking place in a requested city and orders the results using a predefined event column.",
+  "sink": "mysql_stmt_prepare",
+  "build_style": "identifier_allowlist",
+  "fix_type": "",
+  "cwe_detail": "mysql_prepared_statement"
+}
 === 010
-
-
+{
+  "code": "std::string readFirst(const std::string& root) {\n    const char* env = std::getenv(\"FILE_NAME\");\n    std::string name = env ? env : \"default.txt\";\n    if (name.find(\"..\") != std::string::npos) return \"\";\n    std::filesystem::path path = std::filesystem::path(root) / name;\n    std::ifstream file(path);\n    std::string line;\n    if (std::getline(file, line)) return line;\n    return \"\";\n}",
+  "fixed_code": "std::string readFirst(const std::string& root) {\n    const char* env = std::getenv(\"FILE_NAME\");\n    std::string name = env ? env : \"default.txt\";\n    static const std::unordered_map<std::string, std::string> files = {{\"default.txt\", \"default.txt\"}, {\"notes.txt\", \"notes.txt\"}, {\"summary.txt\", \"summary.txt\"}};\n    auto it = files.find(name);\n    if (it == files.end()) return \"\";\n    std::filesystem::path path = std::filesystem::path(root) / it->second;\n    std::ifstream file(path);\n    std::string line;\n    if (std::getline(file, line)) return line;\n    return \"\";\n}",
+  "vulnerable_lines": [4, 5, 6],
+  "task_description": "Reads and returns the first line of a stored file selected through an environment variable.",
+  "sink": "std::ifstream",
+  "build_style": "path_join",
+  "fix_type": "allow_list_mapping",
+  "cwe_detail": "absolute_path"
+}
 === 011
-
-
+{
+  "code": "int downloadReport(int argc, char* argv[]) {\n    if (argc < 2) return 1;\n    std::string name = argv[1];\n    if (name.empty() || name.find_first_not_of(\"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-\") != std::string::npos) return 1;\n    std::filesystem::path reportPath = std::filesystem::path(\"generated_reports\") / (name + \".pdf\");\n    FILE* report = std::fopen(reportPath.string().c_str(), \"rb\");\n    if (!report) return 1;\n    std::fclose(report);\n    return 0;\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Opens a generated PDF report selected by a command-line argument for user download.",
+  "sink": "std::fopen",
+  "build_style": "safe_filename_helper_fixed_folder",
+  "fix_type": "",
+  "cwe_detail": "fopen"
+}
 === 012
-
-
+{
+  "code": "void getFile(const HttpRequest& req, HttpResponse& res) {\n    namespace fs = std::filesystem;\n    std::string id = req.query(\"id\");\n    if (id.empty()) {\n        res.setStatus(400);\n        res.setBody(\"Missing file identifier\");\n        return;\n    }\n\n    // Locate the upload storage directory.\n    fs::path root = fs::current_path() / \"uploads\";\n    std::error_code ec;\n    if (!fs::exists(root, ec) || ec) {\n        res.setStatus(500);\n        res.setBody(\"Storage unavailable\");\n        return;\n    }\n\n    // Prepare the requested file location.\n    std::string name = id;\n    fs::path base = root;\n    fs::path target = base / name;\n    if (!fs::exists(target, ec) || ec) {\n        res.setStatus(404);\n        res.setBody(\"File not found\");\n        return;\n    }\n\n    // Read the requested file and construct the response.\n    std::ifstream in(target, std::ios::binary);\n    if (!in) {\n        res.setStatus(500);\n        res.setBody(\"Unable to open file\");\n        return;\n    }\n    std::ostringstream out;\n    out << in.rdbuf();\n    res.setHeader(\"Content-Type\", \"application/octet-stream\");\n    res.setBody(out.str());\n}",
+  "fixed_code": "void getFile(const HttpRequest& req, HttpResponse& res) {\n    namespace fs = std::filesystem;\n    std::string id = req.query(\"id\");\n    if (id.empty()) {\n        res.setStatus(400);\n        res.setBody(\"Missing file identifier\");\n        return;\n    }\n\n    // Locate the upload storage directory.\n    fs::path root = fs::current_path() / \"uploads\";\n    std::error_code ec;\n    if (!fs::exists(root, ec) || ec) {\n        res.setStatus(500);\n        res.setBody(\"Storage unavailable\");\n        return;\n    }\n\n    // Prepare the requested file location.\n    std::string name = fs::path(id).filename().string();\n    fs::path base = root;\n    fs::path target = base / name;\n    if (!fs::exists(target, ec) || ec) {\n        res.setStatus(404);\n        res.setBody(\"File not found\");\n        return;\n    }\n\n    // Read the requested file and construct the response.\n    std::ifstream in(target, std::ios::binary);\n    if (!in) {\n        res.setStatus(500);\n        res.setBody(\"Unable to open file\");\n        return;\n    }\n    std::ostringstream out;\n    out << in.rdbuf();\n    res.setHeader(\"Content-Type\", \"application/octet-stream\");\n    res.setBody(out.str());\n}",
+  "vulnerable_lines": [20, 22, 23, 30],
+  "task_description": "Retrieves a file identified by a web request parameter from the upload directory and returns its contents in the response.",
+  "sink": "std::ifstream",
+  "build_style": "path_join",
+  "fix_type": "base_name_only",
+  "cwe_detail": "filesystem"
+}
 === 013
-
-
+{
+  "code": "std::string createWebhookSecret() {\n    std::array<unsigned char, 32> secretBytes{};\n    const char hexadecimalDigits[] = \"0123456789abcdef\";\n    std::string secret;\n    secret.reserve(secretBytes.size() * 2);\n\n    FILE* source = std::fopen(\"/dev/urandom\", \"rb\");\n    if (source == nullptr) {\n        throw std::runtime_error(\"Random source unavailable\");\n    }\n\n    std::size_t bytesRead = std::fread(secretBytes.data(), 1, secretBytes.size(), source);\n    int closeResult = std::fclose(source);\n    if (bytesRead != secretBytes.size() || closeResult != 0) {\n        throw std::runtime_error(\"Unable to obtain random bytes\");\n    }\n\n    for (unsigned char byte : secretBytes) {\n        secret.push_back(hexadecimalDigits[(byte >> 4) & 0x0F]);\n        secret.push_back(hexadecimalDigits[byte & 0x0F]);\n    }\n\n    return secret;\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Generates a hexadecimal signing secret for authenticating webhook requests.",
+  "sink": "std::fread",
+  "build_style": "none",
+  "fix_type": "",
+  "cwe_detail": "none"
+}
 === 014
-
-
+{
+  "code": "MYSQL_RES* findCustomer(MYSQL* connection, const std::string& filePath) {\n    std::ifstream input(filePath); std::string email; std::getline(input, email);\n    std::string query = \"SELECT * FROM customers WHERE email = '\" + email + \"'\";\n    mysql_query(connection, query.c_str());\n    return mysql_store_result(connection);\n}",
+  "fixed_code": "MYSQL_RES* findCustomer(MYSQL* connection, const std::string& filePath) {\n    std::ifstream input(filePath); std::string email; std::getline(input, email);\n    std::string escaped(email.size() * 2 + 1, '\\0'); unsigned long length = mysql_real_escape_string(connection, escaped.data(), email.c_str(), email.size()); escaped.resize(length); std::string query = \"SELECT * FROM customers WHERE email = '\" + escaped + \"'\";\n    mysql_query(connection, query.c_str());\n    return mysql_store_result(connection);\n}",
+  "vulnerable_lines": [3, 4],
+  "task_description": "Reads an email address from a file and retrieves the matching customer record from a MySQL database.",
+  "sink": "mysql_query",
+  "build_style": "concatenation",
+  "fix_type": "mysql_real_escape_string",
+  "cwe_detail": "mysql"
+}
 === 015
-
-
+{
+  "code": "void rotateLogs(const NetworkRequest& req) {\n    // Read the application name and start its log rotation.\n    std::string app = req.message(\"application\");\n    QProcess::execute(\"sh\", {\"-c\", QString::fromStdString(\"logrotate /etc/logrotate.d/\" + app)});\n}",
+  "fixed_code": "void rotateLogs(const NetworkRequest& req) {\n    // Read the application name and start its log rotation.\n    std::string app = req.message(\"application\");\n    if (app != \"billing\" && app != \"inventory\" && app != \"accounts\") return;\n    QProcess::execute(\"logrotate\", {QString::fromStdString(\"/etc/logrotate.d/\" + app)});\n}",
+  "vulnerable_lines": [4],
+  "task_description": "Processes a network message to rotate logs for the specified application.",
+  "sink": "QProcess::execute",
+  "build_style": "concatenation",
+  "fix_type": "allow_list",
+  "cwe_detail": "shell"
+}
 === 016
 
 
