@@ -3,19 +3,64 @@ Paste the model's answer for each row under its line. Do not delete the '=== NNN
 If a row could not be made, write SKIP and the reason under its line.
 
 === 001
-
+{
+  "code": "def deal_cards():\n    import random\n    from flask import jsonify\n    deck = [f\"{r}{s}\" for s in ('H', 'D', 'C', 'S') for r in range(1, 14)]\n    random.SystemRandom().shuffle(deck)\n    hands = {f\"p{i + 1}\": deck[i * 13:(i + 1) * 13] for i in range(4)}\n    return jsonify(hands)",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Shuffles a standard deck of cards and distributes thirteen cards to each of four players through a web response.",
+  "sink": "random.SystemRandom().shuffle",
+  "build_style": "ordinary_random_shuffling",
+  "fix_type": "",
+  "cwe_detail": "shuffling"
+}
 
 === 002
-
+{
+  "code": "def truncate_log_file(self):\n    import argparse\n    from pathlib import Path\n    parser = argparse.ArgumentParser()\n    parser.add_argument('log_name')\n    log_name = parser.parse_args().log_name\n    log_directory = Path('/var/app/logs').resolve()\n    log_path = (log_directory / log_name).resolve()\n    if not log_path.is_relative_to(log_directory) or not log_path.is_file():\n        return False\n    log_path.write_text('')\n    return True",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Reads a log filename from command-line arguments and truncates the corresponding file within the application log directory.",
+  "sink": "write_text",
+  "build_style": "path_join",
+  "fix_type": "",
+  "cwe_detail": "file_truncation"
+}
 
 === 003
-
+{
+  "code": "def get_loyalty_points():\n    \"\"\"Retrieve a customer's loyalty points.\"\"\"\n    import os\n    import pymysql\n    from flask import request\n    customer_id = request.args.get('customer_id')\n    statement = f\"SELECT points FROM customers WHERE customer_id = '{customer_id}'\"\n    with pymysql.connect(host='localhost', user='app', password=os.environ.get('DB_PASSWORD'), database='store') as connection:\n        with connection.cursor() as cursor:\n            cursor.execute(statement)\n            return cursor.fetchone()",
+  "fixed_code": "def get_loyalty_points():\n    \"\"\"Retrieve a customer's loyalty points.\"\"\"\n    import os\n    import pymysql\n    from flask import request\n    customer_id = request.args.get('customer_id')\n    with pymysql.connect(host='localhost', user='app', password=os.environ.get('DB_PASSWORD'), database='store') as connection:\n        with connection.cursor() as cursor:\n            cursor.execute(\"SELECT points FROM customers WHERE customer_id = %s\", (customer_id,))\n            return cursor.fetchone()",
+  "vulnerable_lines": [6, 7, 10],
+  "task_description": "Retrieves the loyalty points associated with a customer identifier supplied through a web request.",
+  "sink": "cursor.execute",
+  "build_style": "f_string",
+  "fix_type": "parameterized_query",
+  "cwe_detail": "mysql"
+}
 
 === 004
-
+{
+  "code": "def check_file():\n    \"\"\"Check whether a named file exists in storage.\"\"\"\n    import argparse\n    import os\n    from pathlib import Path\n    parser = argparse.ArgumentParser()\n    parser.add_argument('name')\n    args = parser.parse_args()\n    root = Path('/var/app/storage').resolve()\n    path = (root / args.name).resolve()\n    # Keep file lookups within the storage directory.\n    if not path.is_relative_to(root):\n        print('Invalid file name')\n        return False\n    exists = os.path.isfile(path)\n    print(exists)\n    return exists",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Checks whether a file specified through a command-line argument exists in the application storage directory.",
+  "sink": "os.path.isfile",
+  "build_style": "path_join",
+  "fix_type": "",
+  "cwe_detail": "file_existence"
+}
 
 === 005
-
+{
+  "code": "def show_mount_information(self, network_message):\n    \"\"\"Retrieve mount information for a device received over the network.\"\"\"\n    import json\n    import os\n    import logging\n\n    logger = logging.getLogger(__name__)\n    try:\n        message_data = json.loads(network_message)\n    except (ValueError, TypeError) as error:\n        logger.error(\"Invalid network message: %s\", error)\n        return {\"error\": \"Invalid message\"}\n    if not isinstance(message_data, dict):\n        return {\"error\": \"Invalid message format\"}\n    device_name = message_data.get(\"device\", \"\")\n    if not device_name:\n        return {\"error\": \"Device name is required\"}\n    device_path = \"/dev/\" + device_name\n    logger.info(\"Retrieving mount information for %s\", device_name)\n    command = \"mount | grep \" + device_path\n    try:\n        process = os.popen(command)\n        mount_information = process.read()\n        process.close()\n        return {\"device\": device_name, \"mount_info\": mount_information}\n    except OSError as error:\n        logger.error(\"Mount lookup failed: %s\", error)\n        return {\"error\": \"Unable to retrieve mount information\"}",
+  "fixed_code": "def show_mount_information(self, network_message):\n    \"\"\"Retrieve mount information for a device received over the network.\"\"\"\n    import json\n    import os\n    import logging\n    import re\n\n    logger = logging.getLogger(__name__)\n    try:\n        message_data = json.loads(network_message)\n    except (ValueError, TypeError) as error:\n        logger.error(\"Invalid network message: %s\", error)\n        return {\"error\": \"Invalid message\"}\n    if not isinstance(message_data, dict):\n        return {\"error\": \"Invalid message format\"}\n    device_name = message_data.get(\"device\", \"\")\n    if not isinstance(device_name, str) or not re.fullmatch(r\"[A-Za-z0-9_-]+\", device_name):\n        return {\"error\": \"Invalid device name\"}\n    device_path = \"/dev/\" + device_name\n    logger.info(\"Retrieving mount information for %s\", device_name)\n    command = \"mount | grep \" + device_path\n    try:\n        process = os.popen(command)\n        mount_information = process.read()\n        process.close()\n        return {\"device\": device_name, \"mount_info\": mount_information}\n    except OSError as error:\n        logger.error(\"Mount lookup failed: %s\", error)\n        return {\"error\": \"Unable to retrieve mount information\"}",
+  "vulnerable_lines": [15, 18, 20, 22],
+  "task_description": "Processes a network message containing a device name and retrieves the corresponding mount information.",
+  "sink": "os.popen",
+  "build_style": "concatenation",
+  "fix_type": "strict_validation",
+  "cwe_detail": "os.popen"
+}
 
 === 006
 
