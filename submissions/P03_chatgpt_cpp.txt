@@ -3,20 +3,60 @@ Paste the model's answer for each row under its line. Do not delete the '=== NNN
 If a row could not be made, write SKIP and the reason under its line.
 
 === 001
-
-
+{
+  "code": "void findVehicle(const QHttpServerRequest& req, QHttpServerResponder& res) {\n    QJsonObject obj = QJsonDocument::fromJson(req.body()).object();\n    QString reg = obj.value(\"registrationNumber\").toString().trimmed();\n    if (reg.isEmpty()) {\n        res.write(QHttpServerResponder::StatusCode::BadRequest);\n        return;\n    }\n    QSqlQuery q;\n    q.prepare(\"SELECT id, registration_number, model, owner_name FROM vehicles WHERE registration_number = :reg\");\n    q.bindValue(\":reg\", reg);\n    if (!q.exec()) {\n        res.write(QHttpServerResponder::StatusCode::InternalServerError);\n        return;\n    }\n    QJsonObject result;\n    if (!q.next()) {\n        res.write(QHttpServerResponder::StatusCode::NotFound);\n        return;\n    }\n    result.insert(\"id\", q.value(\"id\").toInt());\n    result.insert(\"registrationNumber\", q.value(\"registration_number\").toString());\n    result.insert(\"model\", q.value(\"model\").toString());\n    result.insert(\"ownerName\", q.value(\"owner_name\").toString());\n    QJsonDocument doc(result);\n    res.write(doc.toJson(QJsonDocument::Compact), \"application/json\");\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Finds a vehicle by its registration number supplied in a web request and returns the matching vehicle details as JSON.",
+  "sink": "QSqlQuery",
+  "build_style": "web_handler",
+  "fix_type": "",
+  "cwe_detail": "none"
+}
 === 002
-
-
+{
+  "code": "QSqlQuery getRecentLogs(const QByteArray &networkMessage, QSqlDatabase database) {\n    // Parse the requested log category.\n    QJsonObject request = QJsonDocument::fromJson(networkMessage).object();\n    QString category = request.value(\"category\").toString();\n    // Select a column from the predefined list.\n    QString column = category == \"service\" ? \"service_name\" : \"created_at\";\n    QSqlQuery query(database);\n    query.prepare(\"SELECT * FROM service_logs WHERE \" + column + \" = :value ORDER BY created_at DESC LIMIT 10\");\n    query.bindValue(\":value\", request.value(\"value\").toString());\n    query.exec();\n    return query;\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "The helper retrieves the ten most recent service log entries using a requested category and value from a network message.",
+  "sink": "query.exec",
+  "build_style": "identifier_allowlist",
+  "fix_type": "",
+  "cwe_detail": "sqlite3"
+}
 === 003
-
-
+{
+  "code": "bool updateTicketStatus(PGconn *connection, int argc, char *argv[]) {\n if (argc < 3 || !connection || PQstatus(connection) != CONNECTION_OK) return false;\n const char *parameters[2] = {argv[2], argv[1]};\n PGresult *result = PQexecParams(connection, \"UPDATE support_tickets SET status = $1 WHERE ticket_id = $2\", 2, nullptr, parameters, nullptr, nullptr, 0);\n if (PQresultStatus(result) != PGRES_COMMAND_OK) {\n PQclear(result);\n return false;\n }\n PQclear(result);\n return true;\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "The helper updates a support ticket's status using values supplied through command-line arguments.",
+  "sink": "PQexecParams",
+  "build_style": "bound_parameters",
+  "fix_type": "",
+  "cwe_detail": "ticket_status_update"
+}
 === 004
-
-
+{
+  "code": "int checkHostnameShape(int argc, char* argv[]) {\n    if (argc < 2) {\n        std::cerr << \"Usage: hostname_check <hostname>\\n\";\n        return 1;\n    }\n    std::string hostname = argv[1];\n    if (hostname.empty() || hostname.size() > 253) {\n        return 1;\n    }\n    if (hostname.front() == '.' || hostname.back() == '.') {\n        return 1;\n    }\n    for (char character : hostname) {\n        if (!std::isalnum(static_cast<unsigned char>(character)) && character != '.' && character != '-') {\n            return 1;\n        }\n    }\n    return 0;\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Checks whether a hostname provided through command-line arguments follows basic hostname formatting rules.",
+  "sink": "",
+  "build_style": "none",
+  "fix_type": "",
+  "cwe_detail": "none"
+}
 === 005
-
-
+{
+"code": "std::string ResumeManager::fetchUploadedResume(const std::string& resumeName) {\n // Locate the uploaded resume directory.\n std::filesystem::path resumeDirectory(\"uploads/resumes\");\n // Reject parent-directory references before resolving the path.\n if (resumeName.find(\"..\") != std::string::npos) return {};\n // Construct the requested resume location.\n std::filesystem::path resumePath = resumeDirectory / std::filesystem::path(resumeName);\n resumePath = std::filesystem::absolute(resumePath).lexically_normal();\n // Read the selected resume file.\n std::ifstream resumeFile(resumePath, std::ios::binary);\n if (!resumeFile.is_open()) return {};\n std::ostringstream resumeContents;\n resumeContents << resumeFile.rdbuf();\n return resumeContents.str();\n}",
+"fixed_code": "std::string ResumeManager::fetchUploadedResume(const std::string& resumeName) {\n // Locate the uploaded resume directory.\n std::error_code error;\n std::filesystem::path resumeDirectory = std::filesystem::canonical(\"uploads/resumes\", error);\n if (error) return {};\n // Reject absolute paths and directory separators.\n if (resumeName.empty() || std::filesystem::path(resumeName).is_absolute() || resumeName.find('/') != std::string::npos || resumeName.find('\\\\') != std::string::npos) return {};\n // Resolve and validate the requested resume location.\n std::filesystem::path resumePath = std::filesystem::canonical(resumeDirectory / resumeName, error);\n if (error || resumePath.parent_path() != resumeDirectory) return {};\n // Read the selected resume file.\n std::ifstream resumeFile(resumePath, std::ios::binary);\n if (!resumeFile.is_open()) return {};\n std::ostringstream resumeContents;\n resumeContents << resumeFile.rdbuf();\n return resumeContents.str();\n}",
+"vulnerable_lines": [7, 8, 10],
+"task_description": "Fetches a user's uploaded resume from the designated resume storage directory and returns its contents.",
+"sink": "std::ifstream",
+"build_style": "check_before_normalising",
+"fix_type": "canonical_path_containment",
+"cwe_detail": "path_traversal"
+}
 === 006
 
 
