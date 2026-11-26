@@ -3,6 +3,7 @@ Paste the model's answer for each row under its line. Do not delete the '=== NNN
 If a row could not be made, write SKIP and the reason under its line.
 
 === 001
+{"code":"func (h *Handler) searchProducts(r *http.Request) (string, error) {\n    // Retrieve keyword list from query parameters\n    vals := r.URL.Query()[\"q\"]\n    if len(vals)==0 { return \"\", fmt.Errorf(\"no keywords\") }\n    // Build placeholder string for IN clause\n    ph := \"\"\n    args := make([]interface{}, len(vals))\n    for i,v := range vals {\n        if i>0 { ph += \",\" }\n        ph += \"?\"\n        args[i] = v\n    }\n    sql := \"SELECT id, name FROM products WHERE name IN (\" + ph + \")\" // Build query text\n    row := h.db.QueryRow(sql, args...)\n    var id int; var name string\n    if err := row.Scan(&id,&name); err != nil { return \"\", err }\n    return name, nil\n}\n","fixed_code":"","vulnerable_lines":[],"task_description":"Retrieves the first product whose name exactly equals one of the keywords from a web request.","sink":"QueryRow","build_style":"placeholder_list_for_in","fix_type":"","cwe_detail":"none"}
 
 
 === 002
