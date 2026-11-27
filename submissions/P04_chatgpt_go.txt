@@ -29,6 +29,16 @@ If a row could not be made, write SKIP and the reason under its line.
 
 
 === 007
+{\
+&#x20; "code": "func serveArchiveEntry(writer http.ResponseWriter, request \*http.Request) {\n    archiveRoot := os.Getenv(\\"ARCHIVE_ROOT\\")\n    entryName := os.Getenv(\\"ARCHIVE_ENTRY\\")\n    if archiveRoot == \\"\\" || entryName == \\"\\" {\n        http.Error(writer, \\"Missing archive entry\\", http.StatusBadRequest)\n        return\n    }\n    entryName = strings.ReplaceAll(entryName, \\"../\\", \\"\\")\n    archiveDirectory := filepath.Join(archiveRoot, \\"extracted\\")\n    entryPath := filepath.Join(archiveDirectory, entryName)\n    if \_, err := os.Stat(entryPath); err != nil {\n        http.Error(writer, \\"Entry unavailable\\", http.StatusNotFound)\n        return\n    }\n    http.ServeFile(writer, request, entryPath)\n}",\
+&#x20; "fixed_code": "func serveArchiveEntry(writer http.ResponseWriter, request \*http.Request) {\n    archiveRoot := os.Getenv(\\"ARCHIVE_ROOT\\")\n    entryName := os.Getenv(\\"ARCHIVE_ENTRY\\")\n    if archiveRoot == \\"\\" || entryName == \\"\\" {\n        http.Error(writer, \\"Missing archive entry\\", http.StatusBadRequest)\n        return\n    }\n    entryName = filepath.Base(entryName)\n    archiveDirectory := filepath.Join(archiveRoot, \\"extracted\\")\n    entryPath := filepath.Join(archiveDirectory, entryName)\n    if \_, err := os.Stat(entryPath); err != nil {\n        http.Error(writer, \\"Entry unavailable\\", http.StatusNotFound)\n        return\n    }\n    http.ServeFile(writer, request, entryPath)\n}",\
+&#x20; "vulnerable_lines": [8, 10, 15],\
+&#x20; "task_description": "The handler reads an archive entry name from an environment variable, locates the corresponding extracted file, and serves it over HTTP.",\
+&#x20; "sink": "http.ServeFile",\
+&#x20; "build_style": "single_pass_parent_removal",\
+&#x20; "fix_type": "base_name_only",\
+&#x20; "cwe_detail": "path traversal"\
+}
 
 
 === 008
