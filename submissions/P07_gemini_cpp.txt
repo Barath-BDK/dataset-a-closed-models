@@ -3,19 +3,55 @@ Paste the model's answer for each row under its line. Do not delete the '=== NNN
 If a row could not be made, write SKIP and the reason under its line.
 
 === 001
-
+{
+  "code": "int FileLineCounter::CountLines(const std::string& filePath) {\n    if (filePath.empty()) {\n        return -1;\n    }\n    int pipeDescriptors[2];\n    if (pipe(pipeDescriptors) != 0) {\n        return -1;\n    }\n    pid_t childProcess = fork();\n    if (childProcess == -1) {\n        close(pipeDescriptors[0]);\n        close(pipeDescriptors[1]);\n        return -1;\n    }\n    if (childProcess == 0) {\n        close(pipeDescriptors[0]);\n        dup2(pipeDescriptors[1], STDOUT_FILENO);\n        close(pipeDescriptors[1]);\n        std::string command = \"wc -l '\" + filePath + \"'\";\n        execl(\"/bin/sh\", \"sh\", \"-c\", command.c_str(), (char*)NULL);\n        _exit(127);\n    }\n    close(pipeDescriptors[1]);\n    FILE* pipeStream = fdopen(pipeDescriptors[0], \"r\");\n    if (pipeStream == nullptr) {\n        close(pipeDescriptors[0]);\n        waitpid(childProcess, NULL, 0);\n        return -1;\n    }\n    char outputBuffer[64];\n    int lineCount = -1;\n    if (fgets(outputBuffer, sizeof(outputBuffer), pipeStream) != nullptr) {\n        lineCount = std::atoi(outputBuffer);\n    }\n    fclose(pipeStream);\n    waitpid(childProcess, NULL, 0);\n    return lineCount;\n}",
+  "fixed_code": "int FileLineCounter::CountLines(const std::string& filePath) {\n    if (filePath.empty()) {\n        return -1;\n    }\n    int pipeDescriptors[2];\n    if (pipe(pipeDescriptors) != 0) {\n        return -1;\n    }\n    pid_t childProcess = fork();\n    if (childProcess == -1) {\n        close(pipeDescriptors[0]);\n        close(pipeDescriptors[1]);\n        return -1;\n    }\n    if (childProcess == 0) {\n        close(pipeDescriptors[0]);\n        dup2(pipeDescriptors[1], STDOUT_FILENO);\n        close(pipeDescriptors[1]);\n        execlp(\"wc\", \"wc\", \"-l\", \"--\", filePath.c_str(), (char*)NULL);\n        _exit(127);\n    }\n    close(pipeDescriptors[1]);\n    FILE* pipeStream = fdopen(pipeDescriptors[0], \"r\");\n    if (pipeStream == nullptr) {\n        close(pipeDescriptors[0]);\n        waitpid(childProcess, NULL, 0);\n        return -1;\n    }\n    char outputBuffer[64];\n    int lineCount = -1;\n    if (fgets(outputBuffer, sizeof(outputBuffer), pipeStream) != nullptr) {\n        lineCount = std::atoi(outputBuffer);\n    }\n    fclose(pipeStream);\n    waitpid(childProcess, NULL, 0);\n    return lineCount;\n}",
+  "vulnerable_lines": [19, 20],
+  "task_description": "Counts the number of lines in a file by running the wc command and reading its output.",
+  "sink": "execl",
+  "build_style": "quoting_in_wrong_context",
+  "fix_type": "argv_no_shell",
+  "cwe_detail": "execl"
+}
 
 === 002
-
+{
+  "code": "std::string lookupCityByPostalCode(PGconn* connection, const std::string& postalCode, const std::string& sortColumn) {\n    std::string cityName;\n    std::string sortExpression = sortColumn;\n    if (sortExpression.empty()) {\n        sortExpression = \"city_name\";\n    }\n    const char* paramValues[1];\n    paramValues[0] = postalCode.c_str();\n    std::string queryText = \"SELECT city_name FROM postal_codes WHERE postal_code = $1 ORDER BY \" + sortExpression;\n    PGresult* result = PQexecParams(connection, queryText.c_str(), 1, NULL, paramValues, NULL, NULL, 0);\n    if (result == NULL) {\n        return cityName;\n    }\n    ExecStatusType status = PQresultStatus(result);\n    if (status == PGRES_TUPLES_OK) {\n        int rowCount = PQntuples(result);\n        if (rowCount > 0) {\n            cityName = PQgetvalue(result, 0, 0);\n        }\n    }\n    PQclear(result);\n    return cityName;\n  }",
+  "fixed_code": "std::string lookupCityByPostalCode(PGconn* connection, const std::string& postalCode, const std::string& sortColumn) {\n    std::string cityName;\n    std::string sortExpression = \"city_name\";\n    if (sortColumn == \"population\") {\n        sortExpression = \"population\";\n    } else if (sortColumn == \"region\") {\n        sortExpression = \"region\";\n    }\n    const char* paramValues[1];\n    paramValues[0] = postalCode.c_str();\n    std::string queryText = \"SELECT city_name FROM postal_codes WHERE postal_code = $1 ORDER BY \" + sortExpression;\n    PGresult* result = PQexecParams(connection, queryText.c_str(), 1, NULL, paramValues, NULL, NULL, 0);\n    if (result == NULL) {\n        return cityName;\n    }\n    ExecStatusType status = PQresultStatus(result);\n    if (status == PGRES_TUPLES_OK) {\n        int rowCount = PQntuples(result);\n        if (rowCount > 0) {\n            cityName = PQgetvalue(result, 0, 0);\n        }\n    }\n    PQclear(result);\n    return cityName;\n  }",
+  "vulnerable_lines": [3, 9, 10],
+  "task_description": "Looks up a city name by postal code from a PostgreSQL database, ordering results by a caller-supplied column.",
+  "sink": "PQexecParams",
+  "build_style": "concatenation",
+  "fix_type": "allowlist",
+  "cwe_detail": "order_by"
+}
 
 === 003
-
+{"code": "std::string CreateVaultKey() {\n    // Build a 32-character key for the local vault\n    std::string key;\n    const char alphabet[] = \"0123456789abcdefghijklmnopqrstuv\";\n    for (int index = 0; index < 32; ++index) {\n        int letter_index = rand() % 32;\n        key.push_back(alphabet[letter_index]);\n    }\n    return key;\n}", "fixed_code": "std::string CreateVaultKey() {\n    // Build a 32-character key for the local vault\n    std::string key;\n    const char alphabet[] = \"0123456789abcdefghijklmnopqrstuv\";\n    unsigned char random_byte = 0;\n    for (int index = 0; index < 32; ++index) {\n        if (!RAND_bytes(&random_byte, 1)) {\n            throw std::runtime_error(\"random source failure\");\n        }\n        int letter_index = random_byte & 31;\n        key.push_back(alphabet[letter_index]);\n    }\n    return key;\n}", "vulnerable_lines": [6, 7], "task_description": "Generates a 32-character encryption key for a local vault using a character alphabet.", "sink": "rand", "build_style": "modulo", "fix_type": "secure_bytes_encoded", "cwe_detail": "rand"}
 
 === 004
-
+{
+  "code": "std::string ComputeDiscountTier(double purchaseAmount) {\n    // Map the amount to a short tier label used on receipts.\n    // The caller prints this label next to the order total.\n    if (!(purchaseAmount >= 0.0)) {\n        return \"invalid\";\n    }\n    if (purchaseAmount < 50.0) {\n        return \"none\";\n    }\n    if (purchaseAmount < 150.0) {\n        return \"bronze\";\n    }\n    if (purchaseAmount < 400.0) {\n        return \"silver\";\n    }\n    return \"gold\";\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Compute a discount tier label from a purchase amount using a series of threshold comparisons.",
+  "sink": "",
+  "build_style": "none",
+  "fix_type": "",
+  "cwe_detail": "none"
+}
 
 === 005
-
+{
+  "code": "std::pair<std::string, std::string> split_token(const std::string& tok) {\n    size_t pos = tok.find('_');\n    if (pos == std::string::npos) return {tok, \"\"};\n    std::string pre = tok.substr(0, pos);\n    std::string body = tok.substr(pos + 1);\n    return {pre, body};\n}",
+  "fixed_code": "",
+  "vulnerable_lines": [],
+  "task_description": "Splits a token string at the first underscore into a prefix and body pair.",
+  "sink": "",
+  "build_style": "none",
+  "fix_type": "",
+  "cwe_detail": "none"
+}
 
 === 006
 
